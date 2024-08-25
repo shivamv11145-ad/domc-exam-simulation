@@ -8,11 +8,12 @@
         ]
     },
     {
-        "question": "What is 3 + 2?",
+        "question": "When does revoke action of a certification take place for a connected source?",
         "options": [
-            {"answer": 5, "correct": true},
-            {"answer": 6, "correct": false},
-            {"answer": 2, "correct": false}
+            {"answer": "On cert signoff", "correct": true},
+            {"answer": "Next account aggregation", "correct": false},
+            {"answer": "When revoking a cert item", "correct": false},
+            {"answer": "Identity Refresh", "correct": false}
         ]
     }
 ]
