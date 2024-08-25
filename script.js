@@ -1,27 +1,19 @@
-// Questions and options data
-const questions = [
-    {
-        question: "What is the purpose of IdN?",
-        options: [
-            { answer: "Option1:Its a IGA tool", correct: true },
-            { answer: "Option2:Its a PAM tool", correct: false },
-            { answer: "Option3:Its a EPM tool", correct: false }
-        ]
-    },
-    {
-        question: "What is 3 + 2?",
-        options: [
-            { answer: 5, correct: true },
-            { answer: 6, correct: false },
-            { answer: 2, correct: false }
-        ]
-    }
-];
-
+let questions = [];
 let currentQuestionIndex = 0;
 let currentOptionIndex = 0;
 let score = 0;
-let isCurrentQuestionCorrect = true; // Track if the entire question is answered correctly
+let isCurrentQuestionCorrect = true;
+
+// Fetch questions from the JSON file
+async function loadQuestions() {
+    try {
+        const response = await fetch('questions.json');
+        questions = await response.json();
+        startExam();
+    } catch (error) {
+        console.error('Error loading questions:', error);
+    }
+}
 
 // Initialize the first question and option
 function startExam() {
@@ -76,8 +68,8 @@ function handleResponse(userResponse) {
 function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.getElementById('score').innerText = `${score}/${questions.length}`;  // Each question gives 1 point
+    document.getElementById('score').innerText = `${score}/${questions.length}`;
 }
 
-// Start the exam when the page loads
-window.onload = startExam;
+// Start the exam when the page loads by loading questions first
+window.onload = loadQuestions;

@@ -1,0 +1,18 @@
+[
+    {
+        "question": "What is the purpose of IdN?",
+        "options": [
+            {"answer": "Option1: It's an IGA tool", "correct": true},
+            {"answer": "Option2: It's a PAM tool", "correct": false},
+            {"answer": "Option3: It's an EPM tool", "correct": false}
+        ]
+    },
+    {
+        "question": "What is 3 + 2?",
+        "options": [
+            {"answer": 5, "correct": true},
+            {"answer": 6, "correct": false},
+            {"answer": 2, "correct": false}
+        ]
+    }
+]
