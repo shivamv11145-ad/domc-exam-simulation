@@ -1,30 +1,99 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     margin: 0;
-    background-color: #f4f4f4;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-#exam-container, #result-container {
-    background: #ffffff;
+/* Header */
+header {
+    background-color: #6200ea;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
+.question-container {
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
 button {
-    margin: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #ddd;
+/* Button Styles */
+.yes-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.yes-btn:hover {
+    background-color: #388e3c;
+}
+
+.no-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.no-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Result Container */
+#result-container {
+    text-align: center;
+}
+
+#result-container h2 {
+    margin-bottom: 20px;
+}
+
+#result-container p {
+    font-size: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #6200ea;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
 }
