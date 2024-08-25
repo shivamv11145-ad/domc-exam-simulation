@@ -21,12 +21,14 @@ const questions = [
 let currentQuestionIndex = 0;
 let currentOptionIndex = 0;
 let score = 0;
+let currentQuestionCorrect = true; // Track if the current question's answers are correct
 
 // Initialize the first question and option
 function startExam() {
     currentQuestionIndex = 0;
     currentOptionIndex = 0;
     score = 0;
+    currentQuestionCorrect = true;
     displayNextOption();
 }
 
@@ -43,8 +45,8 @@ function handleResponse(userResponse) {
     const currentOption = questionObj.options[currentOptionIndex];
 
     // Check if the user's response matches the correctness of the option
-    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
-        score += 1;
+    if ((userResponse && !currentOption.correct) || (!userResponse && currentOption.correct)) {
+        currentQuestionCorrect = false; // Mark the current question as incorrect
     }
 
     // Move to the next option or next question
@@ -52,8 +54,15 @@ function handleResponse(userResponse) {
     if (currentOptionIndex < questionObj.options.length) {
         displayNextOption();
     } else {
+        if (currentQuestionCorrect) {
+            score += 1; // Only add to the score if the entire question was answered correctly
+        }
+
+        // Reset for the next question
         currentOptionIndex = 0;
         currentQuestionIndex++;
+        currentQuestionCorrect = true;
+
         if (currentQuestionIndex < questions.length) {
             displayNextOption();
         } else {
@@ -66,7 +75,7 @@ function handleResponse(userResponse) {
 function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.getElementById('score').innerText = `${score}/${questions.length * 3}`;  // Assuming 3 options per question
+    document.getElementById('score').innerText = `${score}/${questions.length}`;  // Each question gives 1 point
 }
 
 // Start the exam when the page loads
