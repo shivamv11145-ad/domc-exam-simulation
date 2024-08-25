@@ -3,9 +3,9 @@ const questions = [
     {
         question: "What is 2 + 2?",
         options: [
-            { answer: 3, correct: false },
             { answer: 4, correct: true },
-            { answer: 1, correct: false }
+            { answer: 5, correct: false },
+            { answer: 6, correct: false }
         ]
     },
     {
@@ -21,14 +21,14 @@ const questions = [
 let currentQuestionIndex = 0;
 let currentOptionIndex = 0;
 let score = 0;
-let currentQuestionCorrect = true; // Track if the current question's answers are correct
+let isCurrentQuestionCorrect = true; // Track if the entire question is answered correctly
 
 // Initialize the first question and option
 function startExam() {
     currentQuestionIndex = 0;
     currentOptionIndex = 0;
     score = 0;
-    currentQuestionCorrect = true;
+    isCurrentQuestionCorrect = true;
     displayNextOption();
 }
 
@@ -44,9 +44,9 @@ function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
     const currentOption = questionObj.options[currentOptionIndex];
 
-    // Check if the user's response matches the correctness of the option
+    // If the user's response doesn't match the correct answer, mark the question as incorrect
     if ((userResponse && !currentOption.correct) || (!userResponse && currentOption.correct)) {
-        currentQuestionCorrect = false; // Mark the current question as incorrect
+        isCurrentQuestionCorrect = false;
     }
 
     // Move to the next option or next question
@@ -54,14 +54,15 @@ function handleResponse(userResponse) {
     if (currentOptionIndex < questionObj.options.length) {
         displayNextOption();
     } else {
-        if (currentQuestionCorrect) {
-            score += 1; // Only add to the score if the entire question was answered correctly
+        // If the entire question was answered correctly, increase the score
+        if (isCurrentQuestionCorrect) {
+            score += 1;
         }
 
         // Reset for the next question
         currentOptionIndex = 0;
         currentQuestionIndex++;
-        currentQuestionCorrect = true;
+        isCurrentQuestionCorrect = true;
 
         if (currentQuestionIndex < questions.length) {
             displayNextOption();
