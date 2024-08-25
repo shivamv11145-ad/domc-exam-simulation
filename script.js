@@ -43,4 +43,31 @@ function handleResponse(userResponse) {
     const currentOption = questionObj.options[currentOptionIndex];
 
     // Check if the user's response matches the correctness of the option
-    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct
+    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+        score += 1;
+    }
+
+    // Move to the next option or next question
+    currentOptionIndex++;
+    if (currentOptionIndex < questionObj.options.length) {
+        displayNextOption();
+    } else {
+        currentOptionIndex = 0;
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            displayNextOption();
+        } else {
+            endExam();
+        }
+    }
+}
+
+// End the exam and display the score
+function endExam() {
+    document.getElementById('exam-container').style.display = 'none';
+    document.getElementById('result-container').style.display = 'block';
+    document.getElementById('score').innerText = `${score}/${questions.length * 3}`;  // Assuming 3 options per question
+}
+
+// Start the exam when the page loads
+window.onload = startExam;
