@@ -1,11 +1,11 @@
 // Questions and options data
 const questions = [
     {
-        question: "What is 2 + 2?",
+        question: "What is the purpose of IdN?",
         options: [
-            { answer: 4, correct: true },
-            { answer: 5, correct: false },
-            { answer: 6, correct: false }
+            { answer: "Option1:Its a IGA tool", correct: true },
+            { answer: "Option2:Its a PAM tool", correct: false },
+            { answer: "Option3:Its a EPM tool", correct: false }
         ]
     },
     {
