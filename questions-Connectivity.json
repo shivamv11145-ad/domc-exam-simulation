@@ -2,24 +2,24 @@
     {
         "question": "Which rule should be used to perform uniqueness check as per best practice?",
         "options": [
-            {"answer": "Identity Attribute", "correct": true},
+            {"answer": "Identity Attribute", "correct": false},
             {"answer": "BuildMap", "correct": false},
-            {"answer": "Attribute generator", "correct": false},
+            {"answer": "Attribute generator", "correct": true},
             {"answer": "BeforeProvisioning", "correct": false}
         ]
     },
     {
         "question": "Should we use rules or transforms where possible?",
         "options": [
-            {"answer": "rule", "correct": true},
-            {"answer": "transform", "correct": false}
+            {"answer": "rule", "correct": false},
+            {"answer": "transform", "correct": true}
         ]
     },
     {
         "question": "Do we need IQService for AD account and entitlement aggregations?",
         "options": [
-            {"answer": "Yes", "correct": true},
-            {"answer": "No", "correct": false}
+            {"answer": "Yes", "correct": false},
+            {"answer": "No", "correct": true}
         ]
     },
     {
@@ -34,8 +34,8 @@
     {
         "question": "Which of the following object models defines birthright access for users within each identity profile?",
         "options": [
-            {"answer": "Lifecycle State", "correct": false},
-            {"answer": "Access Profile", "correct": true},
+            {"answer": "Lifecycle State", "correct": true},
+            {"answer": "Access Profile", "correct": false},
             {"answer": "Role", "correct": false},
             {"answer": "Entitlement", "correct": false}
         ]
@@ -82,17 +82,17 @@
     {
         "question": "Which connector is for writing back to a flat file?",
         "options": [
-            {"answer": "Delimited File", "correct": true},
+            {"answer": "Delimited File", "correct": false},
             {"answer": "JDBC", "correct": false},
-            {"answer": "SQL Loader", "correct": false},
+            {"answer": "SQL Loader", "correct": true},
             {"answer": "Web Services", "correct": false}
         ]
     },
     {
         "question": "Which connector should be used for REST API endpoint?",
         "options": [
-            {"answer": "Custom", "correct": true},
-            {"answer": "SCIM", "correct": false},
+            {"answer": "Custom", "correct": false},
+            {"answer": "SCIM", "correct": true},
             {"answer": "JDBC", "correct": false},
             {"answer": "Web Services", "correct": false}
         ]
@@ -169,24 +169,24 @@
     {
         "question": "Correlation behavior must be defined for each source.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "What Service Desk Integrations are available out-of-the-box for IdentityNow to create manual provisioning operations?",
         "options": [
             {"answer": "ServiceNow", "correct": true},
-            {"answer": "Atlassian (Server/Cloud) Jira", "correct": false},
-            {"answer": "Zendesk", "correct": false},
-            {"answer": "BMC Helix", "correct": false}
+            {"answer": "Atlassian (Server/Cloud) Jira", "correct": true},
+            {"answer": "Zendesk", "correct": true},
+            {"answer": "BMC Helix", "correct": true}
         ]
     },
     {
         "question": "Can clients upload and manage cloud rules?",
         "options": [
-            {"answer": "Yes", "correct": true},
-            {"answer": "No", "correct": false}
+            {"answer": "Yes", "correct": false},
+            {"answer": "No", "correct": true}
         ]
     },
     {
@@ -210,8 +210,8 @@
     {
         "question": "Which connector provides a GUI to create accounts on IDN?",
         "options": [
-            {"answer": "Delimited File", "correct": true},
-            {"answer": "NELM", "correct": false},
+            {"answer": "Delimited File", "correct": false},
+            {"answer": "NELM", "correct": true},
             {"answer": "SQL Loader", "correct": false},
             {"answer": "Web Services", "correct": false}
         ]
