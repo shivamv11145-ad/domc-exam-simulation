@@ -1,19 +1,219 @@
 [
     {
-        "question": "What is the purpose of IdN?",
+        "question": "Which rule should be used to perform uniqueness check as per best practice?",
         "options": [
-            {"answer": "Option1: It's an IGA tool", "correct": true},
-            {"answer": "Option2: It's a PAM tool", "correct": false},
-            {"answer": "Option3: It's an EPM tool", "correct": false}
+            {"answer": "Identity Attribute", "correct": true},
+            {"answer": "BuildMap", "correct": false},
+            {"answer": "Attribute generator", "correct": false},
+            {"answer": "BeforeProvisioning", "correct": false}
         ]
     },
     {
-        "question": "When does revoke action of a certification take place for a connected source?",
+        "question": "Should we use rules or transforms where possible?",
         "options": [
-            {"answer": "On cert signoff", "correct": true},
-            {"answer": "Next account aggregation", "correct": false},
-            {"answer": "When revoking a cert item", "correct": false},
-            {"answer": "Identity Refresh", "correct": false}
+            {"answer": "rule", "correct": true},
+            {"answer": "transform", "correct": false}
+        ]
+    },
+    {
+        "question": "Do we need IQService for AD account and entitlement aggregations?",
+        "options": [
+            {"answer": "Yes", "correct": true},
+            {"answer": "No", "correct": false}
+        ]
+    },
+    {
+        "question": "Which of the following object models groups access by job role or business function, possibly across sources?",
+        "options": [
+            {"answer": "Lifecycle State", "correct": false},
+            {"answer": "Access Profile", "correct": false},
+            {"answer": "Role", "correct": true},
+            {"answer": "Entitlement", "correct": false}
+        ]
+    },
+    {
+        "question": "Which of the following object models defines birthright access for users within each identity profile?",
+        "options": [
+            {"answer": "Lifecycle State", "correct": false},
+            {"answer": "Access Profile", "correct": true},
+            {"answer": "Role", "correct": false},
+            {"answer": "Entitlement", "correct": false}
+        ]
+    },
+    {
+        "question": "The account ___________ defines the set of account attributes to collect from a source during aggregation.",
+        "options": [
+            {"answer": "schema", "correct": true},
+            {"answer": "correlation", "correct": false},
+            {"answer": "entitlements", "correct": false}
+        ]
+    },
+    {
+        "question": "Which of the following object models groups together one or more access/entitlements from a single source?",
+        "options": [
+            {"answer": "Lifecycle State", "correct": false},
+            {"answer": "Access Profile", "correct": false},
+            {"answer": "Role", "correct": true},
+            {"answer": "Entitlement", "correct": false}
+        ]
+    },
+    {
+        "question": "JDBC Connector for IdentityNow Supports 'Group Hierarchy'",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Do OOTB connectors support all versions of a given source?",
+        "options": [
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
+        ]
+    },
+    {
+        "question": "How do we aggregate AD accounts/entitlements from specific OUs?",
+        "options": [
+            {"answer": "LDAP Filter", "correct": true},
+            {"answer": "Correlation Rule", "correct": false},
+            {"answer": "Transform", "correct": false}
+        ]
+    },
+    {
+        "question": "Which connector is for writing back to a flat file?",
+        "options": [
+            {"answer": "Delimited File", "correct": true},
+            {"answer": "JDBC", "correct": false},
+            {"answer": "SQL Loader", "correct": false},
+            {"answer": "Web Services", "correct": false}
+        ]
+    },
+    {
+        "question": "Which connector should be used for REST API endpoint?",
+        "options": [
+            {"answer": "Custom", "correct": true},
+            {"answer": "SCIM", "correct": false},
+            {"answer": "JDBC", "correct": false},
+            {"answer": "Web Services", "correct": false}
+        ]
+    },
+    {
+        "question": "I have a JDBC Source with Multiple Group Object types, how can I support this in IdentityNow?",
+        "options": [
+            {"answer": "Add the additional Group Schemas in the IdentityNow Source Configuration via the UI", "correct": false},
+            {"answer": "Add the additional Group Schemas in the IdentityNow Source Configuration via the REST API or via the UI", "correct": true},
+            {"answer": "Add the additional Group Schemas in the IdentityNow Source Configuration via a Support Ticket", "correct": false},
+            {"answer": "Add the additional Group Schemas in the IdentityNow Source Configuration via the REST API", "correct": false}
+        ]
+    },
+    {
+        "question": "By Default the Active Directory Connector uses serverless binding, but you can specify a list of Servers the connector should connect to?",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "What does an account create profile specify?",
+        "options": [
+            {"answer": "An account create profile specifies which users need accounts.", "correct": false},
+            {"answer": "An account create profile specifies what attributes and values to use to create an account.", "correct": true},
+            {"answer": "An account create profile specifies a user's entitlements.", "correct": false}
+        ]
+    },
+    {
+        "question": "Which of the following statements best describes the correlation process?",
+        "options": [
+            {"answer": "The process of reading non-authoritative source data into IdentityNow.", "correct": false},
+            {"answer": "The process of promoting account attribute values to identity attributes.", "correct": false},
+            {"answer": "The process of matching accounts to the appropriate identity.", "correct": true}
+        ]
+    },
+    {
+        "question": "Can clients upload and manage connector rules?",
+        "options": [
+            {"answer": "Yes", "correct": true},
+            {"answer": "No", "correct": false}
+        ]
+    },
+    {
+        "question": "Access profiles represent combinations of logically related access from the same source.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Does AD connector support multi-domain multi-forest setup?",
+        "options": [
+            {"answer": "Yes", "correct": true},
+            {"answer": "No", "correct": false}
+        ]
+    },
+    {
+        "question": "Should uniqueness check be done on identity attribute rule as per best practice?",
+        "options": [
+            {"answer": "Yes", "correct": true},
+            {"answer": "No", "correct": false}
+        ]
+    },
+    {
+        "question": "Which attribute is not required on an Identity Profile?",
+        "options": [
+            {"answer": "User ID", "correct": false},
+            {"answer": "Manager and First Name", "correct": true},
+            {"answer": "Last Name", "correct": false},
+            {"answer": "Email", "correct": false}
+        ]
+    },
+    {
+        "question": "Correlation behavior must be defined for each source.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "What Service Desk Integrations are available out-of-the-box for IdentityNow to create manual provisioning operations?",
+        "options": [
+            {"answer": "ServiceNow", "correct": true},
+            {"answer": "Atlassian (Server/Cloud) Jira", "correct": false},
+            {"answer": "Zendesk", "correct": false},
+            {"answer": "BMC Helix", "correct": false}
+        ]
+    },
+    {
+        "question": "Can clients upload and manage cloud rules?",
+        "options": [
+            {"answer": "Yes", "correct": true},
+            {"answer": "No", "correct": false}
+        ]
+    },
+    {
+        "question": "Which of the following is not an option for handling the IDN - Provisioning of passwords for new accounts? (select all that apply)",
+        "options": [
+            {"answer": "Emailing a generated password to the user", "correct": true},
+            {"answer": "Using a static password for everyone", "correct": true},
+            {"answer": "Setting an initial password based on identity data the user will know", "correct": false},
+            {"answer": "Setting a random password and having the user reset it before logging in", "correct": false}
+        ]
+    },
+    {
+        "question": "If you need to run an Un-Optimized aggregation of a source you can call",
+        "options": [
+            {"answer": "POST /cc/api/source/loadAccounts/{id}", "correct": false},
+            {"answer": "POST /cc/api/source/loadAccounts/{id} with disableOptimization=true in the Form Body", "correct": true},
+            {"answer": "POST /cc/api/source/aggregateAccounts/{id}", "correct": false},
+            {"answer": "POST /cc/api/source/aggregateAccounts/{id} with disableOptimization=true in the Form Body", "correct": true}
+        ]
+    },
+    {
+        "question": "Which connector provides a GUI to create accounts on IDN?",
+        "options": [
+            {"answer": "Delimited File", "correct": true},
+            {"answer": "NELM", "correct": false},
+            {"answer": "SQL Loader", "correct": false},
+            {"answer": "Web Services", "correct": false}
         ]
     }
 ]
