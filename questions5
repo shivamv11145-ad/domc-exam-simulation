@@ -1,0 +1,409 @@
+[
+    {
+        "question": "Which identity attributes can end user change?",
+        "options": [
+            "alternate email",
+            "Work Phone",
+            "alternate phone",
+            "alternate email & alternate phone",
+            "work email"
+        ]
+    },
+    {
+        "question": "How do you prevent a null value from being printed in velocity?",
+        "options": [
+            "$identity.firstName",
+            "$identity.firstName$",
+            "$!identity.firstName",
+            "?identity.firstName"
+        ]
+    },
+    {
+        "question": "You can chain one rule to another.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "How long does IdentityNow store audit data that can be accessed directly via search API?",
+        "options": [
+            "7 years",
+            "24 months",
+            "1 year + current month",
+            "6 months"
+        ]
+    },
+    {
+        "question": "How can you match multiple authoritative sources to create a single identity?",
+        "options": [
+            "identity profile priority",
+            "Manager Correlation",
+            "Correlation",
+            "BuildMap rule"
+        ]
+    },
+    {
+        "question": "A PassThrough Authentication (PTA) source needs to be an authoritative source.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "Rules should be recommended over transforms.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "You can redirect all emails from IdentityNow to a test mailbox during development.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "What is minimal permission required to view identity list?",
+        "options": [
+            "Cert Admin",
+            "Org Admin",
+            "ReadOnly Admin",
+            "Helpdesk"
+        ]
+    },
+    {
+        "question": "What are the two ways to generate a Personal Access Token (PAT) token?",
+        "options": [
+            "API",
+            "Support",
+            "UI",
+            "Expert Services",
+            "API or UI"
+        ]
+    },
+    {
+        "question": "What is the search query for finding Identities with aggregation errors?",
+        "options": [
+            "identity:ERROR",
+            "processingState:ERROR",
+            "ERROR",
+            "identityState:ERROR"
+        ]
+    },
+    {
+        "question": "What is the most likely reason a custom attribute in a SSO identity mapping attribute does not work?",
+        "options": [
+            "Not searchable",
+            "Value is case-sensitive",
+            "User.givenname incorrect",
+            "Failed aggregation"
+        ]
+    },
+    {
+        "question": "What is the difference between these two searches created:[now-1d TO now] and created:[now-1d/d TO now/d]",
+        "options": [
+            "The first search returns all searchable objects created in the last day and the second search also returns all searchable objects created in the last day",
+            "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded down to midnight",
+            "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded up to midnight"
+        ]
+    },
+    {
+        "question": "Every Identity is required to login to IdentityNow.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "How do you monitor SaaS uptime?",
+        "options": [
+            "status.aws.com",
+            "status.identitynow.com",
+            "status.sailpoint.com",
+            "status.identitynow.com and status.sailpoint.com"
+        ]
+    },
+    {
+        "question": "Where is the documentation for IdentityNow APIs' located?",
+        "options": [
+            "https://api.sailpoint.com",
+            "https://developer.sailpoint.com",
+            "https://community.sailpoint.com",
+            "https://sailpoint.com"
+        ]
+    },
+    {
+        "question": "What is this search query expected to return @accounts(source.name'Directory' AND disabled:true)",
+        "options": [
+            "Accounts on the Source 'Directory' that is disabled",
+            "Identities that have an account on the Source 'Directory' that is disabled"
+        ]
+    },
+    {
+        "question": "How can a user obtain a JSON Web Token from the IdentityNow UI?",
+        "options": [
+            "https://{tenant}.identitynow.com/",
+            "https://{tenant}.identitynow.com/session",
+            "https://{tenant}.identitynow.com/accesstoken",
+            "https://{tenant}.identitynow.com/ui/session"
+        ]
+    },
+    {
+        "question": "What are minimum required attributes to create an identity?",
+        "options": [
+            "uid,firstname,lastname",
+            "firstname,lastname",
+            "uid",
+            "uid,lastname,email"
+        ]
+    },
+    {
+        "question": "What is the recommended authentication method for the IdentityNow REST API?",
+        "options": [
+            "Basic Authentication",
+            "Cookie session tokens",
+            "Legacy tokens",
+            "OAuth 2.0",
+            "A, B or D"
+        ]
+    },
+    {
+        "question": "Where do you find an audit log?",
+        "options": [
+            "Search API",
+            "Splunk",
+            "UI -> Search",
+            "UI-> Search & Search API"
+        ]
+    },
+    {
+        "question": "What is the easiest way to report errors on daily basis?",
+        "options": [
+            "Use PowerShell script and IDN API",
+            "Search -> Subscription",
+            "Contact Org Admin",
+            "Search API"
+        ]
+    },
+    {
+        "question": "What options can you enable in the system notifications page?",
+        "options": [
+            "Sources",
+            "Roles",
+            "Source and Applications",
+            "Applications",
+            "Identity Profiles"
+        ]
+    },
+    {
+        "question": "What is the search query for finding Active LifeCycleState (LCS) identities?",
+        "options": [
+            "cloudLifecycleState:active",
+            "LCS:Active",
+            "attributes.cloudLifecycleState:active",
+            "attributes.LCS:Active"
+        ]
+    },
+    {
+        "question": "You need an active identity on IdentityNow to download a search subscription report.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "How do you stop an email template from being sent?",
+        "options": [
+            "Java",
+            "BeanShell",
+            "Subject #stop, no_send, Stop",
+            "Configure redirect email"
+        ]
+    },
+    {
+        "question": "You can chain one transform to another.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "Identify which User level Role doesn't exist in IdentityNow?",
+        "options": [
+            "Cert Admin",
+            "Org Admin",
+            "ReadOnly Admin",
+            "Helpdesk"
+        ]
+    },
+    {
+        "question": "If you write a Script or Program to interact with IdentityNow, and you do need a user's context which grant type is most appropriate?",
+        "options": [
+            "Authorization Code grant flow",
+            "Client Credentials grant flow",
+            "Personal Access Token grant flow",
+            "Refresh Token grant flow"
+        ]
+    },
+    {
+        "question": "When is the @ keyword used in a search string?",
+        "options": [
+            "When you are searching a second level field",
+            "When you are searching a third level field",
+            "When you are searching a list field"
+        ]
+    },
+    {
+        "question": "How do you check a transform's results before applying it to all identities?",
+        "options": [
+            "Account Aggregation",
+            "Identity Preview",
+            "Identity Refresh",
+            "Account Refresh"
+        ]
+    },
+    {
+        "question": "IdentityNow supports SAML single log out.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "How do you deploy a transform to a tenant?",
+        "options": [
+            "Contact Support",
+            "UI",
+            "Contact Support",
+            "API"
+        ]
+    },
+    {
+        "question": "The following search query checks if the Identity model contains a location attribute and at least one identity has a non-null location attribute: _exists_ attributes.location",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "How do you verify that an Oauth Client ID exists in IdentityNow?",
+        "options": [
+            "https://{tenant}.api.identitynow.com/beta/validate-clients/{id}",
+            "https://{tenant}.api.identitynow.com/beta/oauth-clients/{id}",
+            "https://{tenant}.api.identitynow.com/beta/oauth-clients/validate/{id}",
+            "https://{tenant}.api.identitynow.com/beta/oauth-clients"
+        ]
+    },
+    {
+        "question": "What is HR source generally called which helps in creating identity in IdentityNow?",
+        "options": [
+            "Authorization Code grant flow",
+            "Client Credentials grant flow",
+            "Personal Access Token grant flow",
+            "Refresh Token grant flow"
+        ]
+    },
+    {
+        "question": "How do you generate a one-time bearer token?",
+        "options": [
+            "<tenant-url>/ui/token",
+            "<tenant-url>/ui/oauth2",
+            "<tenant-url>/ui/session",
+            "<tenant-url>/ui/oauth2/session"
+        ]
+    },
+    {
+        "question": "What mechanism is used to conditionally show text in an email template?",
+        "options": [
+            "Java if/else",
+            "BeamShell if/else",
+            "Velocity if/else",
+            "Before Provisioning rule"
+        ]
+    },
+    {
+        "question": "You can customize existing IdentityNow templates for branding.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "If you create a Web Application to interact with IdentityNow, which Grant Type is the most appropriate?",
+        "options": [
+            "Authorization Code grant flow",
+            "Client Credentials grant flow",
+            "Personal Access Token grant flow",
+            "Refresh Token grant flow"
+        ]
+    },
+    {
+        "question": "What is expected to be returned by the following search 'sao paulo'",
+        "options": [
+            "All results that contain the phrase 'sao paulo' are returned.",
+            "All results that does not contain the phrase 'sao paulo' are returned.",
+            "All results that contain the words sao or paulo are returned."
+        ]
+    },
+    {
+        "question": "Where can you not check for provisioning errors?",
+        "options": [
+            "ccg.log",
+            "charon.log",
+            "Search",
+            "IQService log"
+        ]
+    },
+    {
+        "question": "What authentication method does not enable a user to login to IdentityNow?",
+        "options": [
+            "Yubi Key",
+            "Local Password",
+            "PassThrough Authentication (PTA)",
+            "SSO"
+        ]
+    },
+    {
+        "question": "You can create new IdentityNow email templates.",
+        "options": [
+            "TRUE",
+            "FALSE"
+        ]
+    },
+    {
+        "question": "If you write a Script or Program to interact with IdentityNow and you do not need a user's context, which grant type is most appropriate?",
+        "options": [
+            "Authorization Code grant flow",
+            "Client Credentials grant flow",
+            "Personal Access Token grant flow",
+            "Refresh Token grant flow"
+        ]
+    },
+    {
+        "question": "What is the end point of the IdentityNow API Gateway?",
+        "options": [
+            "https://{tenant}.identitynow.com/api",
+            "https://{tenant}.api.identitynow.com/api",
+            "https://{tenant}.api.identitynow.com",
+            "https://{tenant}.identitynow.com/v3"
+        ]
+    },
+    {
+        "question": "In this search query manager.displayName:\"Bill Lumbergh\" which is the Second level field?",
+        "options": [
+            "manager",
+            "displayname"
+        ]
+    },
+    {
+        "question": "Which underlying IdentityNow API is used for creating a ClientID & Client Secret?",
+        "options": [
+            "https://{tenant}.api.identitynow.com/beta/oauth-clients",
+            "https://{tenant}.api.identitynow.com/beta/token",
+            "https://{tenant}.api.identitynow.com/oauth/grant",
+            "https://{tenant}.api.identitynow.com/oauth/grant/token"
+        ]
+    }
+]
