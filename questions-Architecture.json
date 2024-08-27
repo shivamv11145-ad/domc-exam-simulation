@@ -2,10 +2,10 @@
     {
         "question": "What source applications support Password Interception?",
         "options": [
+            {"answer": "Active Directory and IBM i", "correct": true}
             {"answer": "Active Directory", "correct": false},
             {"answer": "Active Directory and AWS", "correct": false},
-            {"answer": "Active Directory and LDAP", "correct": false},
-            {"answer": "Active Directory and IBM i", "correct": false}
+            {"answer": "Active Directory and LDAP", "correct": false}
         ]
     },
     {
@@ -29,17 +29,17 @@
     {
         "question": "It is recommended that you use a different key passphrase for all VAs across your installation.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "How many IdentityNow Environments will each customer get unless they have purchased additional Environments?",
         "options": [
             {"answer": "Development and Production", "correct": false},
-            {"answer": "Development, UAT, and Production", "correct": true},
+            {"answer": "Development, UAT, and Production", "correct": false},
             {"answer": "Production Only", "correct": false},
-            {"answer": "Sandbox and Production", "correct": false}
+            {"answer": "Sandbox and Production", "correct": true}
         ]
     },
     {
@@ -53,8 +53,8 @@
         "question": "How many VA's should be deployed in a Production IdentityNow Environment?",
         "options": [
             {"answer": "Min 1 Cluster with 1 VA", "correct": false},
-            {"answer": "Min 1 Cluster with 2 VA's", "correct": false},
-            {"answer": "Min 2 Clusters with 1 VA", "correct": true},
+            {"answer": "Min 1 Cluster with 2 VA's", "correct": true},
+            {"answer": "Min 2 Clusters with 1 VA", "correct": false},
             {"answer": "Min 2 Clusters with 2 VA's", "correct": false}
         ]
     },
@@ -86,15 +86,15 @@
     {
         "question": "Access Profiles can contain Entitlements from different Sources.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "What does VA stand for?",
         "options": [
-            {"answer": "Virtual Application", "correct": false},
-            {"answer": "Virtual Appliance", "correct": true},
+            {"answer": "Virtual Application", "correct": true},
+            {"answer": "Virtual Appliance", "correct": false},
             {"answer": "Virtual AWS", "correct": false},
             {"answer": "Virtual Azure", "correct": false}
         ]
@@ -104,8 +104,8 @@
         "options": [
             {"answer": "The VA is installed in the cloud, and its job is to check the health of IdentityNow, generate a log, and send notifications when resources stall.", "correct": false},
             {"answer": "The VA is installed in the cloud, and its job is to communicate updates to the IdentityNow tenant, and send notifications to administrators.", "correct": false},
-            {"answer": "The VA is installed in the customer's environment, inside the firewall, and its job is to call out to IdentityNow for any jobs/tasks to be executed.", "correct": true},
-            {"answer": "The VA is installed in the customer's environment, inside the firewall, and its job is to receive IdentityNow communication about jobs/tasks to execute.", "correct": false}
+            {"answer": "The VA is installed in the customer's environment, inside the firewall, and its job is to call out to IdentityNow for any jobs/tasks to be executed.", "correct": false},
+            {"answer": "The VA is installed in the customer's environment, inside the firewall, and its job is to receive IdentityNow communication about jobs/tasks to execute.", "correct": true}
         ]
     },
     {
@@ -181,9 +181,9 @@
     {
         "question": "What network configuration is available to the VA?",
         "options": [
-            {"answer": "HTTP Proxy", "correct": true},
-            {"answer": "Secure Tunnel", "correct": true},
-            {"answer": "Standard", "correct": true},
+            {"answer": "HTTP Proxy", "correct": false},
+            {"answer": "Secure Tunnel", "correct": false},
+            {"answer": "Standard", "correct": false},
             {"answer": "Options A, B, and C are available", "correct": true}
         ]
     }
