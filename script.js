@@ -7,7 +7,7 @@ let isCurrentQuestionCorrect = true;
 // Fetch questions from the JSON file
 async function loadQuestions() {
     try {
-        const response = await fetch('questions3.json');
+        const response = await fetch('questions5.json');
         questions = await response.json();
         startExam();
     } catch (error) {
