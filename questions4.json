@@ -1,0 +1,233 @@
+[
+    {
+        "question": "Access Profiles can contain entitlements from multiple sources",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Role can be used to grant access to multiple sources",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "In a certification campaign, once the due date arrives, the campaign auto closes and auto-approves outstanding items.",
+        "options": [
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
+        ]
+    },
+    {
+        "question": "Which of the following is not a primary process of IdentityNow?",
+        "options": [
+            {"answer": "Governance", "correct": false},
+            {"answer": "Provisioning", "correct": false},
+            {"answer": "Reading Data", "correct": true},
+            {"answer": "Business Modelling", "correct": false},
+            {"answer": "Transforming Data", "correct": false}
+        ]
+    },
+    {
+        "question": "How can we capture password reset directly on AD and send it to IDN?",
+        "options": [
+            {"answer": "Desktop Password Reset", "correct": false},
+            {"answer": "Password Sync Group", "correct": true},
+            {"answer": "Password Interceptor", "correct": false}
+        ]
+    },
+    {
+        "question": "What Role Assignment criteria does IDN Support",
+        "options": [
+            {"answer": "Criteria based", "correct": false},
+            {"answer": "Identity list", "correct": false},
+            {"answer": "Criteria Based or Identity List", "correct": true}
+        ]
+    },
+    {
+        "question": "The governance process includes certification and policy.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Which feature can be used to certify a criteria based role?",
+        "options": [
+            {"answer": "Access Cert", "correct": false},
+            {"answer": "Identity Cert", "correct": false},
+            {"answer": "Role Composition Cert", "correct": true}
+        ]
+    },
+    {
+        "question": "Where can you check AD provisioning errors?",
+        "options": [
+            {"answer": "ccg.log", "correct": false},
+            {"answer": "VA logs", "correct": false},
+            {"answer": "IQService log", "correct": true},
+            {"answer": "charon.log", "correct": false},
+            {"answer": "VA Log and IQService Log", "correct": true}
+        ]
+    },
+    {
+        "question": "Should IdentityNow password policy be weaker or stronger than sources?",
+        "options": [
+            {"answer": "Weaker", "correct": false},
+            {"answer": "Strongest", "correct": false},
+            {"answer": "The Same or Stronger", "correct": true},
+            {"answer": "The Same or Weaker", "correct": false}
+        ]
+    },
+    {
+        "question": "Which feature is being used for updating of downstream source attributes?",
+        "options": [
+            {"answer": "Account aggregation", "correct": false},
+            {"answer": "Attribute sync", "correct": true},
+            {"answer": "Create profile", "correct": false},
+            {"answer": "Attribute generator rule", "correct": false}
+        ]
+    },
+    {
+        "question": "How can we send the AD password to other sources like Okta and SNOW?",
+        "options": [
+            {"answer": "Desktop Password Recovery", "correct": false},
+            {"answer": "Password Sync Group", "correct": true},
+            {"answer": "Password Interceptor", "correct": false}
+        ]
+    },
+    {
+        "question": "Administrators and certifiers can both assign individual identities within a certification to a new certifier.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Email redirection can be configured globally and is a common practice for non-production tenants.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Recurring campaigns can be created?",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Strong authentication for administrative access requires integration with a 3rd party multi-factor authentication system.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "When does revoke action of a certification take place for a connected source?",
+        "options": [
+            {"answer": "On cert signoff", "correct": false},
+            {"answer": "Next account aggregation", "correct": true},
+            {"answer": "When revoking a cert item", "correct": false},
+            {"answer": "Identity Refresh", "correct": false}
+        ]
+    },
+    {
+        "question": "Each identity profile can be configured to have multiple Lifecycle states.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Which IdentityNow user level is set by default and has no elevated access?",
+        "options": [
+            {"answer": "Org Admin", "correct": false},
+            {"answer": "Help Desk", "correct": false},
+            {"answer": "Certification Admin", "correct": false},
+            {"answer": "User", "correct": true}
+        ]
+    },
+    {
+        "question": "Users can reset their initial AD password via IDN if they can do a form of strong authentication.",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "Manually requested access provisioning is being retried on failure, based on error type and connectors that support it?",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "What steps can be taken to check details on aggregation error?",
+        "options": [
+            {"answer": "Contact Support", "correct": false},
+            {"answer": "Enable connector log", "correct": true},
+            {"answer": "Enable VA Cluster debug", "correct": true},
+            {"answer": "Contact Expert Services", "correct": false},
+            {"answer": "Enable connector log and Enable VA Cluster debug", "correct": true}
+        ]
+    },
+    {
+        "question": "We can send plain text password to client as per best practice",
+        "options": [
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
+        ]
+    },
+    {
+        "question": "Which of the following should be completed first when establishing Password Management?",
+        "options": [
+            {"answer": "Configure sources for password management", "correct": false},
+            {"answer": "Define password sync groups", "correct": false},
+            {"answer": "Define password policies", "correct": true}
+        ]
+    },
+    {
+        "question": "What tool can be deployed on a Windows Deployment to help users reset password?",
+        "options": [
+            {"answer": "Desktop Password Reset", "correct": true},
+            {"answer": "Password Sync Group", "correct": false},
+            {"answer": "Password Interceptor", "correct": false}
+        ]
+    },
+    {
+        "question": "A Governance Group has 4 members and it is being assigned as approver for an access request. How many people need to approve the access request?",
+        "options": [
+            {"answer": "1", "correct": true},
+            {"answer": "2", "correct": false},
+            {"answer": "3", "correct": false},
+            {"answer": "4", "correct": false}
+        ]
+    },
+    {
+        "question": "We can customize password reset page with custom text?",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false}
+        ]
+    },
+    {
+        "question": "What are the available methods for generating passwords?",
+        "options": [
+            {"answer": "Static", "correct": false},
+            {"answer": "Dynamic known password", "correct": false},
+            {"answer": "Dynamic unknown password and password reset", "correct": true},
+            {"answer": "All the options", "correct": false}
+        ]
+    },
+    {
+        "question": "What is the best way to create custom certification campaigns?",
+        "options": [
+            {"answer": "Campaign Filters", "correct": true},
+            {"answer": "Search", "correct": false},
+            {"answer": "Contact Org Admin", "correct": false}
+        ]
+    }
+]
