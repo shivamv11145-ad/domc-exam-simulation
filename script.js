@@ -36,8 +36,11 @@ function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
     const currentOption = questionObj.options[currentOptionIndex];
 
-    // If the user's response doesn't match the correct answer, mark the question as incorrect
-    if ((userResponse && !currentOption.correct) || (!userResponse && currentOption.correct)) {
+    // Check if the user's response matches the correct answer
+    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+        // User got this option right, do nothing
+    } else {
+        // User got this option wrong
         isCurrentQuestionCorrect = false;
     }
 
@@ -46,7 +49,7 @@ function handleResponse(userResponse) {
     if (currentOptionIndex < questionObj.options.length) {
         displayNextOption();
     } else {
-        // If the entire question was answered correctly, increase the score
+        // If all correct options were chosen and no wrong options were selected, award a point
         if (isCurrentQuestionCorrect) {
             score += 1;
         }
@@ -63,6 +66,7 @@ function handleResponse(userResponse) {
         }
     }
 }
+
 
 // End the exam and display the score
 function endExam() {
