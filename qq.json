@@ -1,0 +1,9 @@
+[
+    {
+        "question": "Access Profiles can contain entitlements from multiple sources",
+        "options": [
+            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": true}
+        ]
+    }
+]
