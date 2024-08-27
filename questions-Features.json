@@ -2,8 +2,8 @@
     {
         "question": "Access Profiles can contain entitlements from multiple sources",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
@@ -25,17 +25,17 @@
         "options": [
             {"answer": "Governance", "correct": false},
             {"answer": "Provisioning", "correct": false},
-            {"answer": "Reading Data", "correct": true},
+            {"answer": "Reading Data", "correct": false},
             {"answer": "Business Modelling", "correct": false},
-            {"answer": "Transforming Data", "correct": false}
+            {"answer": "Transforming Data", "correct": true}
         ]
     },
     {
         "question": "How can we capture password reset directly on AD and send it to IDN?",
         "options": [
             {"answer": "Desktop Password Reset", "correct": false},
-            {"answer": "Password Sync Group", "correct": true},
-            {"answer": "Password Interceptor", "correct": false}
+            {"answer": "Password Sync Group", "correct": false},
+            {"answer": "Password Interceptor", "correct": true}
         ]
     },
     {
@@ -66,7 +66,7 @@
         "options": [
             {"answer": "ccg.log", "correct": false},
             {"answer": "VA logs", "correct": false},
-            {"answer": "IQService log", "correct": true},
+            {"answer": "IQService log", "correct": false},
             {"answer": "charon.log", "correct": false},
             {"answer": "VA Log and IQService Log", "correct": true}
         ]
@@ -100,8 +100,8 @@
     {
         "question": "Administrators and certifiers can both assign individual identities within a certification to a new certifier.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
@@ -128,8 +128,8 @@
     {
         "question": "When does revoke action of a certification take place for a connected source?",
         "options": [
-            {"answer": "On cert signoff", "correct": false},
-            {"answer": "Next account aggregation", "correct": true},
+            {"answer": "On cert signoff", "correct": true},
+            {"answer": "Next account aggregation", "correct": false},
             {"answer": "When revoking a cert item", "correct": false},
             {"answer": "Identity Refresh", "correct": false}
         ]
@@ -168,8 +168,8 @@
         "question": "What steps can be taken to check details on aggregation error?",
         "options": [
             {"answer": "Contact Support", "correct": false},
-            {"answer": "Enable connector log", "correct": true},
-            {"answer": "Enable VA Cluster debug", "correct": true},
+            {"answer": "Enable connector log", "correct": false},
+            {"answer": "Enable VA Cluster debug", "correct": false},
             {"answer": "Contact Expert Services", "correct": false},
             {"answer": "Enable connector log and Enable VA Cluster debug", "correct": true}
         ]
@@ -218,15 +218,15 @@
         "options": [
             {"answer": "Static", "correct": false},
             {"answer": "Dynamic known password", "correct": false},
-            {"answer": "Dynamic unknown password and password reset", "correct": true},
-            {"answer": "All the options", "correct": false}
+            {"answer": "Dynamic unknown password and password reset", "correct": false},
+            {"answer": "All the options", "correct": true}
         ]
     },
     {
         "question": "What is the best way to create custom certification campaigns?",
         "options": [
-            {"answer": "Campaign Filters", "correct": true},
-            {"answer": "Search", "correct": false},
+            {"answer": "Campaign Filters", "correct": false},
+            {"answer": "Search", "correct": true},
             {"answer": "Contact Org Admin", "correct": false}
         ]
     }
