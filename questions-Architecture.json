@@ -69,8 +69,8 @@
     {
         "question": "If you need to run a non-optimized aggregation from a source, you can only configure this via the API.",
         "options": [
-            {"answer": "FALSE", "correct": false}
-            {"answer": "TRUE", "correct": true},
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
