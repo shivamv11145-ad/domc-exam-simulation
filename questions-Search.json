@@ -208,7 +208,7 @@
     {
         "question": "You need an active identity on IdentityNow to download a search subscription report.",
         "options": [
-            {"answer": "FALSE", "correct": true}
+            {"answer": "FALSE", "correct": true},
             {"answer": "TRUE", "correct": false}
         ]
     },
