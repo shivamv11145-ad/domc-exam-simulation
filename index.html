@@ -3,35 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOMC Exam Simulation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Select Quiz</title>
 </head>
 <body>
-    <header>
-        <h1>IdN Engineer Exam</h1>
-    </header>
-
-    <main id="exam-container">
-        <div class="question-container">
-            <p id="question">Loading...</p>
-            <p id="option">Loading...</p>
-        </div>
-        <div class="buttons">
-            <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-            <button onclick="handleResponse(false)" class="no-btn">No</button>
-        </div>
-    </main>
-
-    <div id="result-container" style="display: none;">
-        <h2>Exam Completed</h2>
-        <p>Your score: <span id="score"></span></p>
+    <div id="selection-container">
+        <h2>Select a Quiz</h2>
+        <select id="quizDropdown">
+            <option value="questions-VA.json">VA</option>
+            <option value="questions-Architecture.json">Architecture</option>
+            <option value="questions-Connectivity.json">Connectivity</option>
+        </select>
+        <button id="startQuizBtn">Start Quiz</button>
     </div>
 
-    <footer>
-        <p>Cyderes</p>
-    </footer>
-
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('startQuizBtn').addEventListener('click', function() {
+            const selectedQuiz = document.getElementById('quizDropdown').value;
+            localStorage.setItem('selectedQuiz', selectedQuiz);
+            window.location.href = 'quiz.html'; // Redirect to the quiz page
+        });
+    </script>
 </body>
 </html>
