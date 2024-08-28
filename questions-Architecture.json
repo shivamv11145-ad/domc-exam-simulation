@@ -2,19 +2,18 @@
     {
         "question": "What source applications support Password Interception?",
         "options": [
-            {"answer": "Active Directory and IBM i", "correct": true}
-            {"answer": "Active Directory", "correct": false},
             {"answer": "Active Directory and AWS", "correct": false},
-            {"answer": "Active Directory and LDAP", "correct": false}
+            {"answer": "Active Directory and LDAP", "correct": false},
+            {"answer": "Active Directory", "correct": true},
+            {"answer": "Active Directory and IBM i", "correct": true}
         ]
     },
     {
         "question": "Which option describes 'Zero Knowledge Encryption' as used by IdentityNow?",
         "options": [
-            {"answer": "An administrator specifies a passphrase to generate a 2048-bit RSA public/private key pair that is used by the virtual appliance to secure communications.", "correct": false},
-            {"answer": "Each cluster may have its own unique user-assigned passphrase, and multiple clusters may be deployed to meet the distributed needs of a security model.", "correct": false},
-            {"answer": "Software and app credentials are secured in a way that separates the key from encrypted data so that even SailPoint cannot decrypt customers’ data.", "correct": false},
-            {"answer": "Zero Knowledge Encryption as used by IdentityNow includes A, B, and C", "correct": true}
+            {"answer": "An administrator specifies a passphrase to generate a 2048-bit RSA public/private key pair that is used by the virtual appliance to secure communications.", "correct": true},
+            {"answer": "Each cluster may have its own unique user-assigned passphrase, and multiple clusters may be deployed to meet the distributed needs of a security model.", "correct": true},
+            {"answer": "Software and app credentials are secured in a way that separates the key from encrypted data so that even SailPoint cannot decrypt customers’ data.", "correct": true}
         ]
     },
     {
@@ -22,8 +21,8 @@
         "options": [
             {"answer": "IdentityNow Microservices are dependent so they scale by elastically starting a few number of API calls and limiting the number of resources it spins up.", "correct": false},
             {"answer": "IdentityNow Microservices are dependent so they scale by using other parts of the platform to spin up dynamic resources.", "correct": false},
-            {"answer": "IdentityNow Microservices independently and elastically scale in real time so usage can scale on demand and balance across dynamic resources.", "correct": true},
-            {"answer": "IdentityNow Microservices independently and elastically scale in real time to work in a singular unified direction for overall optimization.", "correct": false}
+            {"answer": "IdentityNow Microservices independently and elastically scale in real time to work in a singular unified direction for overall optimization.", "correct": false},
+            {"answer": "IdentityNow Microservices independently and elastically scale in real time so usage can scale on demand and balance across dynamic resources.", "correct": true}
         ]
     },
     {
@@ -53,25 +52,25 @@
         "question": "How many VA's should be deployed in a Production IdentityNow Environment?",
         "options": [
             {"answer": "Min 1 Cluster with 1 VA", "correct": false},
-            {"answer": "Min 1 Cluster with 2 VA's", "correct": true},
             {"answer": "Min 2 Clusters with 1 VA", "correct": false},
-            {"answer": "Min 2 Clusters with 2 VA's", "correct": false}
+            {"answer": "Min 2 Clusters with 2 VA's", "correct": false},
+            {"answer": "Min 1 Cluster with 2 VA's", "correct": true}
         ]
     },
     {
         "question": "The Governance process includes:",
         "options": [
-            {"answer": "Certification and Policy", "correct": true},
             {"answer": "Certification and Roles", "correct": false},
             {"answer": "Policy and Authentication", "correct": false},
-            {"answer": "Policy and Roles", "correct": false}
+            {"answer": "Policy and Roles", "correct": false},
+            {"answer": "Certification and Policy", "correct": true}
         ]
     },
     {
         "question": "If you need to run a non-optimized aggregation from a source, you can only configure this via the API.",
         "options": [
-            {"answer": "TRUE", "correct": true},
             {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": true},
         ]
     },
     {
@@ -93,10 +92,10 @@
     {
         "question": "What does VA stand for?",
         "options": [
-            {"answer": "Virtual Application", "correct": true},
             {"answer": "Virtual Appliance", "correct": false},
             {"answer": "Virtual AWS", "correct": false},
-            {"answer": "Virtual Azure", "correct": false}
+            {"answer": "Virtual Azure", "correct": false},
+            {"answer": "Virtual Application", "correct": true}
         ]
     },
     {
@@ -113,60 +112,59 @@
         "options": [
             {"answer": "acme.identitynow.com", "correct": false},
             {"answer": "acme-sb.identitynow.com", "correct": false},
-            {"answer": "identitynow.acme.com", "correct": true},
-            {"answer": "A and B", "correct": false}
+            {"answer": "identitynow.acme.com", "correct": true}
         ]
     },
     {
         "question": "What is the purpose of 'Desktop Password Reset'?",
         "options": [
-            {"answer": "It allows a user who has forgotten his/her Windows or Network password to access IdentityNow with secondary authentication for the purpose of unlocking and resetting their Windows or Network password.", "correct": true},
             {"answer": "It allows a user who has forgotten his/her Windows or Network password to access IdentityNow without authentication for the purpose of unlocking and resetting their Windows or Network password.", "correct": false},
             {"answer": "It allows a user who has forgotten his/her Windows or Network password to click a 'Forgot Password' button and activate a chatbot for the purpose of unlocking and resetting their Windows or Network password.", "correct": false},
-            {"answer": "It allows a user who has forgotten his/her Windows or Network password to click a 'Forgot Password' button and they will receive a call from helpdesk for the purpose of unlocking and resetting their Network password.", "correct": false}
+            {"answer": "It allows a user who has forgotten his/her Windows or Network password to click a 'Forgot Password' button and they will receive a call from helpdesk for the purpose of unlocking and resetting their Network password.", "correct": false},
+            {"answer": "It allows a user who has forgotten his/her Windows or Network password to access IdentityNow with secondary authentication for the purpose of unlocking and resetting their Windows or Network password.", "correct": true}
         ]
     },
     {
         "question": "What is the purpose of IQService?",
         "options": [
             {"answer": "It is a native Linux service that enables IdentityNow to participate in a remote environment to access information only available through Linux commands and APIs.", "correct": false},
-            {"answer": "It is a native Windows service that enables IdentityNow to participate in a Windows environment and access information only available through Windows APIs.", "correct": true},
             {"answer": "It is an IdentityNow service that works with the VA to query the jobs queue and retrieve cloud access and internal financial information related to shadow IT operations.", "correct": false},
-            {"answer": "Its purpose is to execute Powershell commands/scripts on a Windows environment to gather and report AWS, Azure, and GCP access information.", "correct": false}
+            {"answer": "Its purpose is to execute Powershell commands/scripts on a Windows environment to gather and report AWS, Azure, and GCP access information.", "correct": false},
+            {"answer": "It is a native Windows service that enables IdentityNow to participate in a Windows environment and access information only available through Windows APIs.", "correct": true}
         ]
     },
     {
         "question": "Requestable Objects can be Entitlements, Access Profiles, Roles, and Apps.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "How often will SailPoint release updates (Fixes, Patches, new Features) to IdentityNow?",
         "options": [
-            {"answer": "IdentityNow updates are ongoing and can occur multiple times per week.", "correct": true},
             {"answer": "Monthly", "correct": false},
             {"answer": "On the 15th and the 30th of every month", "correct": false},
-            {"answer": "Quarterly", "correct": false}
+            {"answer": "Quarterly", "correct": false},
+            {"answer": "IdentityNow updates are ongoing and can occur multiple times per week.", "correct": true}
         ]
     },
     {
         "question": "What is the purpose of the Password Interceptor?",
         "options": [
-            {"answer": "To intercept the password when a user changes his/her password in an application like Active Directory and send this password to IdentityNow for distribution to other target sources.", "correct": true},
             {"answer": "To intercept the password when a user changes his/her password in IdentityNow and send this password to other target sources and clouds for distribution.", "correct": false},
             {"answer": "To intercept the password when a user changes his/her password on any system and send this password for distribution to other target sources and applications.", "correct": false},
-            {"answer": "To intercept the password when a user changes his/her password in a remote location and send this password to IdentityNow for distribution to an access manager.", "correct": false}
+            {"answer": "To intercept the password when a user changes his/her password in a remote location and send this password to IdentityNow for distribution to an access manager.", "correct": false},
+            {"answer": "To intercept the password when a user changes his/her password in an application like Active Directory and send this password to IdentityNow for distribution to other target sources.", "correct": true}
         ]
     },
     {
         "question": "Multi-Tenant processing behavior can be described as:",
         "options": [
             {"answer": "Administrators configure IdentityNow tenant to use a designated amount of processing resources.", "correct": false},
-            {"answer": "Changes to individual microservices limit the risk of unintentional effects to other parts of the system.", "correct": true},
+            {"answer": "Changes to individual microservices limit the risk of unintentional effects to other parts of the system.", "correct": false},
             {"answer": "Every IdentityNow tenant gets allocated the same amount of processing resources.", "correct": false},
-            {"answer": "IdentityNow incorporates a fairness algorithm that determines how much each tenant can process relative to its size.", "correct": false}
+            {"answer": "IdentityNow incorporates a fairness algorithm that determines how much each tenant can process relative to its size.", "correct": true}
         ]
     },
     {
@@ -174,17 +172,16 @@
         "options": [
             {"answer": "Feature flags automate the deployment of existing functionality so new services or changes to a service can roll out to other parts of the system.", "correct": false},
             {"answer": "Feature flags couple new functionality so a new service or changes to a service can roll out to everyone in an organization.", "correct": false},
-            {"answer": "Feature flags decouple the deployment of new functionality from its enablement so you can “try out” a new service or changes to a service.", "correct": true},
-            {"answer": "Feature flags limit microservices risks from unintentional uses and missteps on other parts of the system and automated services.", "correct": true}
+            {"answer": "Feature flags limit microservices risks from unintentional uses and missteps on other parts of the system and automated services.", "correct": false},
+            {"answer": "Feature flags decouple the deployment of new functionality from its enablement so you can “try out” a new service or changes to a service.", "correct": true}
         ]
     },
     {
         "question": "What network configuration is available to the VA?",
         "options": [
-            {"answer": "HTTP Proxy", "correct": false},
-            {"answer": "Secure Tunnel", "correct": false},
-            {"answer": "Standard", "correct": false},
-            {"answer": "Options A, B, and C are available", "correct": true}
+            {"answer": "HTTP Proxy", "correct": true},
+            {"answer": "Secure Tunnel", "correct": true},
+            {"answer": "Standard", "correct": true}
         ]
     }
 ]
