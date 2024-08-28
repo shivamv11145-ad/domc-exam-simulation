@@ -45,7 +45,7 @@
         "options": [
             {"answer": "correlation", "correct": false},
             {"answer": "entitlements", "correct": false},
-            {"answer": "schema", "correct": true},
+            {"answer": "schema", "correct": true}
         ]
     },
     {
