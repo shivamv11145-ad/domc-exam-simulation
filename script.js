@@ -27,8 +27,12 @@
 
         async function loadQuestions() {
             const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json'; // Default to 'questions-VA.json' if none selected
+
+             // Convert the selectedQuiz to a raw GitHub URL if necessary
+            const quizFileUrl = `https://raw.githubusercontent.com/shivamv1145-ad/domc-exam-simulation/main/${selectedQuiz}`;
+
             try {
-                const response = await fetch(selectedQuiz);
+                const response = await fetch(quizFileUrl);
                 questions = await response.json();
                 startExam();
             } catch (error) {
