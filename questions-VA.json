@@ -4,17 +4,17 @@
         "options": [
             {"answer": "ccg", "correct": false},
             {"answer": "va_agent", "correct": false},
-            {"answer": "sailpoint", "correct": false},
-            {"answer": "fluent", "correct": true}
+            {"answer": "fluent", "correct": false},
+            {"answer": "sailpoint", "correct": true}
         ]
     },
     {
         "question": "How can you check if your VA's are having the expected Gateway, Netmask and IP Address configured?",
         "options": [
-            {"answer": "ifconfig", "correct": true},
             {"answer": "ifconfig /p", "correct": false},
             {"answer": "ipconfig", "correct": false},
-            {"answer": "ipconfig /f", "correct": false}
+            {"answer": "ipconfig /f", "correct": false},
+            {"answer": "ifconfig", "correct": true}
         ]
     },
     {
@@ -22,51 +22,51 @@
         "options": [
             {"answer": "Cloud Computing Gateway", "correct": false},
             {"answer": "Computer Connector Gateway", "correct": false},
-            {"answer": "Cloud Connector Gateway", "correct": true},
-            {"answer": "Cloud Computing GET", "correct": false}
+            {"answer": "Cloud Computing GET", "correct": false},
+            {"answer": "Cloud Connector Gateway", "correct": true}
         ]
     },
     {
         "question": "When deploying VAs for High Availability and Disaster Recovery with 'Strategy 1 - All VAs Running,' what is the potential downside?",
         "options": [
             {"answer": "A VA cannot be deployed on the DR servers, because it creates latency issues.", "correct": false},
-            {"answer": "Some VAs will be deployed on the DR servers, and there may be latency issues between the DR site and the Sources that the VAs are serving.", "correct": true},
             {"answer": "Since there is only one Cluster, if the Cluster goes down, all the VAs go down.", "correct": false},
-            {"answer": "There is no downside.", "correct": false}
+            {"answer": "There is no downside.", "correct": false},
+            {"answer": "Some VAs will be deployed on the DR servers, and there may be latency issues between the DR site and the Sources that the VAs are serving.", "correct": true}
         ]
     },
     {
         "question": "Where can you download the VA from?",
         "options": [
             {"answer": "SailPoint's Website", "correct": false},
-            {"answer": "Compass Website", "correct": false},
-            {"answer": "Directly from your IdentityNow tenant", "correct": false},
+            {"answer": "Compass Website", "correct": true},
+            {"answer": "Directly from your IdentityNow tenant", "correct": true},
             {"answer": "Directly from your IdentityNow tenant or the Compass Website", "correct": true}
         ]
     },
     {
         "question": "A Cluster of two VA's should run on the same servers whenever possible.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "If an organization has a VPN connection to its AWS or Azure Virtual Private Cloud (VPC), and wants the VA deployed in AWS or Azure.",
         "options": [
-            {"answer": "Hosted in the same region that's hosting the network gateways for the organization", "correct": true},
             {"answer": "Hosted in the same region that's hosting the network gateways plus at least one more", "correct": false},
             {"answer": "Not hosted in the same region that's hosting the network gateways for the organization", "correct": false},
-            {"answer": "The region hosting the network gateways for the organization does not matter", "correct": false}
+            {"answer": "The region hosting the network gateways for the organization does not matter", "correct": false},
+            {"answer": "Hosted in the same region that's hosting the network gateways for the organization", "correct": true}
         ]
     },
     {
         "question": "What command should you use to check external connectivity to your Region specific AWS URL?",
         "options": [
-            {"answer": "curl", "correct": true},
             {"answer": "telnet", "correct": false},
             {"answer": "ping", "correct": false},
-            {"answer": "all of them", "correct": false}
+            {"answer": "all of them", "correct": false},
+            {"answer": "curl", "correct": true}
         ]
     },
     {
@@ -74,8 +74,8 @@
         "options": [
             {"answer": "The cluster is connected to a specific Virtual Machine", "correct": false},
             {"answer": "The Cluster VA's have a static IP Address", "correct": false},
-            {"answer": "The VA's are running a specific version and are not being updated", "correct": true},
-            {"answer": "The VAs are connected to a static IP Address running any version", "correct": false}
+            {"answer": "The VAs are connected to a static IP Address running any version", "correct": false},
+            {"answer": "The VA's are running a specific version and are not being updated", "correct": true}
         ]
     },
     {
@@ -105,26 +105,26 @@
     {
         "question": "How do you access the Toolbox commands on the VA's?",
         "options": [
-            {"answer": "sudo toolbox", "correct": true},
-            {"answer": "./tb", "correct": false},
-            {"answer": "sp_toolbox", "correct": false}
+            {"answer": "sudo toolbox", "correct": false},
+            {"answer": "sp_toolbox", "correct": false},
+            {"answer": "./tb", "correct": true}
         ]
     },
     {
         "question": "If you are required to add outbound traffic from the VA's to the allow list, and your firewall does not support domain entries, we recommend you configure a:",
         "options": [
             {"answer": "Standard VA Configuration", "correct": false},
-            {"answer": "HTTP Proxy VA Configuration", "correct": true},
-            {"answer": "Secure Tunnel VA Configuration", "correct": false},
-            {"answer": "External CA", "correct": false}
+            {"answer": "HTTP Proxy VA Configuration", "correct": false},
+            {"answer": "External CA", "correct": false},
+            {"answer": "Secure Tunnel VA Configuration", "correct": true}
         ]
     },
     {
         "question": "How many VA's is it recommended to install on a single Virtual Machine?",
         "options": [
-            {"answer": "1", "correct": true},
             {"answer": "2", "correct": false},
-            {"answer": "2+", "correct": false}
+            {"answer": "2+", "correct": false},
+            {"answer": "1", "correct": true}
         ]
     },
     {
@@ -139,21 +139,21 @@
     {
         "question": "What is the recommended resources required for a VA deployed locally?",
         "options": [
-            {"answer": "Processor: 1", "correct": true}
+            {"answer": "Processor:  2 Memory:  16 GB Storage:  128 GB", "correct": true}
         ]
     },
     {
         "question": "If deploying the VA's locally Each cluster should be installed in close proximity to the connected source system.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
         "question": "Customers can optionally use 'Deep packet inspection'.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
@@ -167,32 +167,32 @@
     {
         "question": "What are the network configurations options for the VA's?",
         "options": [
-            {"answer": "Standard", "correct": true}
+            {"answer": "Standard HTTP Proxy Secure Tunnel", "correct": true}
         ]
     },
     {
         "question": "SailPoint published a list of primary URLs and region specific URLs that must be accessible to the VA's.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
         "question": "Deploying VAs for High Availability and Disaster Recovery With the 'Strategy 2 - Switch Clusters' What is the potential downside?",
         "options": [
             {"answer": "If the DR clusters go down, the IdentityNow Sources to must use the Primary sites VA.", "correct": false},
-            {"answer": "If the Primary sites VAs go down, it's a manual process to reconfigure the IdentityNow Sources to use the DR's Cluster", "correct": true},
             {"answer": "Some VAs will be deployed on DR servers, and there may be latency issues between the DR site and the Sources that the VAs are serving", "correct": false},
-            {"answer": "There is no downside", "correct": false}
+            {"answer": "There is no downside", "correct": false},
+            {"answer": "If the Primary sites VAs go down, it's a manual process to reconfigure the IdentityNow Sources to use the DR's Cluster", "correct": true}
         ]
     },
     {
         "question": "If Deploying the VA in AWS or Azure, each cluster should be placed in the Availability Zone.",
         "options": [
             {"answer": "After the target sources", "correct": false},
-            {"answer": "As close as possible to the target sources", "correct": true},
             {"answer": "Before the target sources", "correct": false},
-            {"answer": "In any order", "correct": false}
+            {"answer": "In any order", "correct": false},
+            {"answer": "As close as possible to the target sources", "correct": true}
         ]
     },
     {
@@ -212,8 +212,8 @@
     {
         "question": "If VA's are deployed on AWS or Azure, and the customer has a VPN, then the VA should be deployed in the same region hosting the network gateway.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
