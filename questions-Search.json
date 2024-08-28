@@ -2,11 +2,11 @@
     {
         "question": "Which identity attributes can end user change?",
         "options": [
-            {"answer": "alternate email", "correct": false},
+            {"answer": "alternate email", "correct": true},
             {"answer": "Work Phone", "correct": false},
-            {"answer": "alternate phone", "correct": false},
-            {"answer": "alternate email & alternate phone", "correct": true},
-            {"answer": "work email", "correct": false}
+            {"answer": "alternate phone", "correct": true},
+            {"answer": "work email", "correct": false},
+            {"answer": "alternate email & alternate phone", "correct": true}
         ]
     },
     {
@@ -14,24 +14,24 @@
         "options": [
             {"answer": "$identity.firstName", "correct": false},
             {"answer": "$identity.firstName$", "correct": false},
-            {"answer": "$!identity.firstName", "correct": true},
-            {"answer": "?identity.firstName", "correct": false}
+            {"answer": "?identity.firstName", "correct": false},
+            {"answer": "$!identity.firstName", "correct": true}
         ]
     },
     {
         "question": "You can chain one rule to another.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "TRUE", "correct": false},
+            {"answer": "FALSE", "correct": true}
         ]
     },
     {
         "question": "How long does IdentityNow store audit data that can be accessed directly via search API?",
         "options": [
-            {"answer": "7 years", "correct": true},
+            {"answer": "7 years", "correct": false},
             {"answer": "24 months", "correct": false},
-            {"answer": "1 year + current month", "correct": false},
-            {"answer": "6 months", "correct": false}
+            {"answer": "6 months", "correct": false},
+            {"answer": "1 year + current month", "correct": true}
         ]
     },
     {
@@ -39,8 +39,8 @@
         "options": [
             {"answer": "identity profile priority", "correct": false},
             {"answer": "Manager Correlation", "correct": false},
-            {"answer": "Correlation", "correct": true},
-            {"answer": "BuildMap rule", "correct": false}
+            {"answer": "BuildMap rule", "correct": false},
+            {"answer": "Correlation", "correct": true}
         ]
     },
     {
@@ -60,8 +60,8 @@
     {
         "question": "You can redirect all emails from IdentityNow to a test mailbox during development.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
@@ -69,8 +69,8 @@
         "options": [
             {"answer": "Cert Admin", "correct": false},
             {"answer": "Org Admin", "correct": false},
-            {"answer": "ReadOnly Admin", "correct": true},
-            {"answer": "Helpdesk", "correct": false}
+            {"answer": "ReadOnly Admin", "correct": false},
+            {"answer": "Helpdesk", "correct": true}
         ]
     },
     {
@@ -87,26 +87,26 @@
         "question": "What is the search query for finding Identities with aggregation errors?",
         "options": [
             {"answer": "identity:ERROR", "correct": false},
-            {"answer": "processingState:ERROR", "correct": true},
             {"answer": "ERROR", "correct": false},
-            {"answer": "identityState:ERROR", "correct": false}
+            {"answer": "identityState:ERROR", "correct": false},
+            {"answer": "processingState:ERROR", "correct": true}
         ]
     },
     {
         "question": "What is the most likely reason a custom attribute in a SSO identity mapping attribute does not work?",
         "options": [
-            {"answer": "Not searchable", "correct": false},
             {"answer": "Value is case-sensitive", "correct": false},
-            {"answer": "User.givenname incorrect", "correct": true},
-            {"answer": "Failed aggregation", "correct": false}
+            {"answer": "User.givenname incorrect", "correct": false},
+            {"answer": "Failed aggregation", "correct": false},
+            {"answer": "Not searchable", "correct": false}
         ]
     },
     {
         "question": "What is the difference between these two searches created:[now-1d TO now] and created:[now-1d/d TO now/d]",
         "options": [
             {"answer": "The first search returns all searchable objects created in the last day and the second search also returns all searchable objects created in the last day", "correct": false},
-            {"answer": "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded down to midnight", "correct": true},
-            {"answer": "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded up to midnight", "correct": false}
+            {"answer": "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded up to midnight", "correct": false},
+            {"answer": "The first search returns all searchable objects created in the last day and the second search returns all searchable objects created in the last day rounded down to midnight", "correct": true}
         ]
     },
     {
@@ -121,24 +121,24 @@
         "options": [
             {"answer": "status.aws.com", "correct": false},
             {"answer": "status.identitynow.com", "correct": true},
-            {"answer": "status.sailpoint.com", "correct": false},
-            {"answer": "status.identitynow.com and status.sailpoint.com", "correct": false}
+            {"answer": "status.sailpoint.com", "correct": true},
+            {"answer": "status.identitynow.com and status.sailpoint.com", "correct": true}
         ]
     },
     {
         "question": "Where is the documentation for IdentityNow APIs' located?",
         "options": [
             {"answer": "https://api.sailpoint.com", "correct": false},
-            {"answer": "https://developer.sailpoint.com", "correct": true},
             {"answer": "https://community.sailpoint.com", "correct": false},
-            {"answer": "https://sailpoint.com", "correct": false}
+            {"answer": "https://sailpoint.com", "correct": false},
+            {"answer": "https://developer.sailpoint.com", "correct": true}
         ]
     },
     {
         "question": "What is this search query expected to return @accounts(source.name'Directory' AND disabled:true)",
         "options": [
-            {"answer": "Accounts on the Source 'Directory' that is disabled", "correct": true},
-            {"answer": "Identities that have an account on the Source 'Directory' that is disabled", "correct": false}
+            {"answer": "Accounts on the Source 'Directory' that is disabled", "correct": false},
+            {"answer": "Identities that have an account on the Source 'Directory' that is disabled", "correct": true}
         ]
     },
     {
@@ -165,8 +165,7 @@
             {"answer": "Basic Authentication", "correct": false},
             {"answer": "Cookie session tokens", "correct": false},
             {"answer": "Legacy tokens", "correct": false},
-            {"answer": "OAuth 2.0", "correct": true},
-            {"answer": "A, B or D", "correct": true}
+            {"answer": "OAuth 2.0", "correct": true}
         ]
     },
     {
@@ -174,7 +173,7 @@
         "options": [
             {"answer": "Search API", "correct": true},
             {"answer": "Splunk", "correct": false},
-            {"answer": "UI -> Search", "correct": false},
+            {"answer": "UI -> Search", "correct": true},
             {"answer": "UI-> Search & Search API", "correct": true}
         ]
     },
@@ -182,9 +181,9 @@
         "question": "What is the easiest way to report errors on daily basis?",
         "options": [
             {"answer": "Use PowerShell script and IDN API", "correct": false},
-            {"answer": "Search -> Subscription", "correct": true},
             {"answer": "Contact Org Admin", "correct": false},
-            {"answer": "Search API", "correct": false}
+            {"answer": "Search API", "correct": false},
+            {"answer": "Search -> Subscription", "correct": true}
         ]
     },
     {
@@ -192,9 +191,9 @@
         "options": [
             {"answer": "Sources", "correct": false},
             {"answer": "Roles", "correct": false},
-            {"answer": "Source and Applications", "correct": false},
-            {"answer": "Applications", "correct": true},
-            {"answer": "Identity Profiles", "correct": false}
+            {"answer": "Applications", "correct": false},
+            {"answer": "Identity Profiles", "correct": false},
+            {"answer": "Source and Applications", "correct": false}
         ]
     },
     {
@@ -202,15 +201,15 @@
         "options": [
             {"answer": "cloudLifecycleState:active", "correct": false},
             {"answer": "LCS:Active", "correct": false},
-            {"answer": "attributes.cloudLifecycleState:active", "correct": true},
-            {"answer": "attributes.LCS:Active", "correct": false}
+            {"answer": "attributes.LCS:Active", "correct": false},
+            {"answer": "attributes.cloudLifecycleState:active", "correct": true}
         ]
     },
     {
         "question": "You need an active identity on IdentityNow to download a search subscription report.",
         "options": [
-            {"answer": "TRUE", "correct": false},
             {"answer": "FALSE", "correct": true}
+            {"answer": "TRUE", "correct": false}
         ]
     },
     {
@@ -218,15 +217,15 @@
         "options": [
             {"answer": "Java", "correct": false},
             {"answer": "BeanShell", "correct": false},
-            {"answer": "Subject #stop, no_send, Stop", "correct": false},
-            {"answer": "Configure redirect email", "correct": true}
+            {"answer": "Configure redirect email", "correct": false},
+            {"answer": "Subject #stop, no_send, Stop", "correct": true}
         ]
     },
     {
         "question": "You can chain one transform to another.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
@@ -234,8 +233,8 @@
         "options": [
             {"answer": "Cert Admin", "correct": false},
             {"answer": "Org Admin", "correct": false},
-            {"answer": "ReadOnly Admin", "correct": false},
-            {"answer": "Helpdesk", "correct": true}
+            {"answer": "Helpdesk", "correct": false},
+            {"answer": "ReadOnly Admin", "correct": true}
         ]
     },
     {
@@ -243,8 +242,8 @@
         "options": [
             {"answer": "Authorization Code grant flow", "correct": true},
             {"answer": "Client Credentials grant flow", "correct": false},
-            {"answer": "Personal Access Token grant flow", "correct": false},
-            {"answer": "Refresh Token grant flow", "correct": false}
+            {"answer": "Refresh Token grant flow", "correct": false},
+            {"answer": "Personal Access Token grant flow", "correct": true}
         ]
     },
     {
@@ -259,9 +258,9 @@
         "question": "How do you check a transform's results before applying it to all identities?",
         "options": [
             {"answer": "Account Aggregation", "correct": false},
-            {"answer": "Identity Preview", "correct": true},
             {"answer": "Identity Refresh", "correct": false},
-            {"answer": "Account Refresh", "correct": false}
+            {"answer": "Account Refresh", "correct": false},
+            {"answer": "Identity Preview", "correct": true}
         ]
     },
     {
@@ -282,35 +281,32 @@
     {
         "question": "The following search query checks if the Identity model contains a location attribute and at least one identity has a non-null location attribute: _exists_ attributes.location",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
         "question": "How do you verify that an OAuth Client ID exists in IdentityNow?",
         "options": [
             {"answer": "https://{tenant}.api.identitynow.com/beta/validate-clients/{id}", "correct": false},
-            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients/{id}", "correct": true},
             {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients/validate/{id}", "correct": false},
-            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients", "correct": false}
+            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients", "correct": false},
+            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients/{id}", "correct": true}
         ]
     },
     {
         "question": "What is HR source generally called which helps in creating identity in IdentityNow?",
         "options": [
-            {"answer": "Authorization Code grant flow", "correct": false},
-            {"answer": "Client Credentials grant flow", "correct": false},
-            {"answer": "Personal Access Token grant flow", "correct": false},
-            {"answer": "Refresh Token grant flow", "correct": false}
+            {"answer": "Authoritative Source", "correct": true}
         ]
     },
     {
         "question": "How do you generate a one-time bearer token?",
         "options": [
             {"answer": "<tenant-url>/ui/token", "correct": false},
-            {"answer": "<tenant-url>/ui/oauth2", "correct": true},
-            {"answer": "<tenant-url>/ui/session", "correct": false},
-            {"answer": "<tenant-url>/ui/oauth2/session", "correct": false}
+            {"answer": "<tenant-url>/ui/oauth2", "correct": false},
+            {"answer": "<tenant-url>/ui/oauth2/session", "correct": false},
+            {"answer": "<tenant-url>/ui/session", "correct": true}
         ]
     },
     {
@@ -318,50 +314,50 @@
         "options": [
             {"answer": "Java if/else", "correct": false},
             {"answer": "BeamShell if/else", "correct": false},
-            {"answer": "Velocity if/else", "correct": true},
-            {"answer": "Before Provisioning rule", "correct": false}
+            {"answer": "Before Provisioning rule", "correct": false},
+            {"answer": "Velocity if/else", "correct": true}
         ]
     },
     {
         "question": "You can customize existing IdentityNow templates for branding.",
         "options": [
-            {"answer": "TRUE", "correct": true},
-            {"answer": "FALSE", "correct": false}
+            {"answer": "FALSE", "correct": false},
+            {"answer": "TRUE", "correct": true}
         ]
     },
     {
         "question": "If you create a Web Application to interact with IdentityNow, which Grant Type is the most appropriate?",
         "options": [
-            {"answer": "Authorization Code grant flow", "correct": true},
             {"answer": "Client Credentials grant flow", "correct": false},
             {"answer": "Personal Access Token grant flow", "correct": false},
-            {"answer": "Refresh Token grant flow", "correct": false}
+            {"answer": "Refresh Token grant flow", "correct": false},
+            {"answer": "Authorization Code grant flow", "correct": true}
         ]
     },
     {
         "question": "What is expected to be returned by the following search 'sao paulo'",
         "options": [
-            {"answer": "All results that contain the phrase 'sao paulo' are returned.", "correct": true},
+            {"answer": "All results that contain the phrase 'sao paulo' are returned.", "correct": false},
             {"answer": "All results that does not contain the phrase 'sao paulo' are returned.", "correct": false},
-            {"answer": "All results that contain the words sao or paulo are returned.", "correct": false}
+            {"answer": "All results that contain the words sao or paulo are returned.", "correct": true}
         ]
     },
     {
         "question": "Where can you not check for provisioning errors?",
         "options": [
             {"answer": "ccg.log", "correct": false},
-            {"answer": "charon.log", "correct": false},
+            {"answer": "charon.log", "correct": true},
             {"answer": "Search", "correct": false},
-            {"answer": "IQService log", "correct": true}
+            {"answer": "IQService log", "correct": false}
         ]
     },
     {
         "question": "What authentication method does not enable a user to login to IdentityNow?",
         "options": [
-            {"answer": "Yubi Key", "correct": false},
             {"answer": "Local Password", "correct": false},
-            {"answer": "PassThrough Authentication (PTA)", "correct": true},
-            {"answer": "SSO", "correct": false}
+            {"answer": "PassThrough Authentication (PTA)", "correct": false},
+            {"answer": "SSO", "correct": false},
+            {"answer": "Yubi Key", "correct": true}
         ]
     },
     {
@@ -375,9 +371,9 @@
         "question": "If you write a Script or Program to interact with IdentityNow and you do not need a user's context, which grant type is most appropriate?",
         "options": [
             {"answer": "Authorization Code grant flow", "correct": false},
-            {"answer": "Client Credentials grant flow", "correct": true},
             {"answer": "Personal Access Token grant flow", "correct": false},
-            {"answer": "Refresh Token grant flow", "correct": false}
+            {"answer": "Refresh Token grant flow", "correct": false},
+            {"answer": "Client Credentials grant flow", "correct": true}
         ]
     },
     {
@@ -385,24 +381,24 @@
         "options": [
             {"answer": "https://{tenant}.identitynow.com/api", "correct": false},
             {"answer": "https://{tenant}.api.identitynow.com/api", "correct": false},
-            {"answer": "https://{tenant}.api.identitynow.com", "correct": true},
-            {"answer": "https://{tenant}.identitynow.com/v3", "correct": false}
+            {"answer": "https://{tenant}.identitynow.com/v3", "correct": false},
+            {"answer": "https://{tenant}.api.identitynow.com", "correct": true}
         ]
     },
     {
         "question": "In this search query manager.displayName:\"Bill Lumbergh\" which is the Second level field?",
         "options": [
-            {"answer": "manager", "correct": true},
-            {"answer": "displayname", "correct": false}
+            {"answer": "displayname", "correct": false},
+            {"answer": "manager", "correct": true}
         ]
     },
     {
         "question": "Which underlying IdentityNow API is used for creating a ClientID & Client Secret?",
         "options": [
-            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients", "correct": true},
             {"answer": "https://{tenant}.api.identitynow.com/beta/token", "correct": false},
             {"answer": "https://{tenant}.api.identitynow.com/oauth/grant", "correct": false},
-            {"answer": "https://{tenant}.api.identitynow.com/oauth/grant/token", "correct": false}
+            {"answer": "https://{tenant}.api.identitynow.com/oauth/grant/token", "correct": false},
+            {"answer": "https://{tenant}.api.identitynow.com/beta/oauth-clients", "correct": true}
         ]
     }
 ]
