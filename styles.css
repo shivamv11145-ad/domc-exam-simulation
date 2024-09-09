@@ -16,7 +16,7 @@ body {
     position: absolute;
     top: 10px;
     left: 20px;
-    width: 200px; /* Adjust the size as necessary */
+    width: 100px; /* Adjust the size as necessary */
     height: auto;
 }
 
@@ -26,7 +26,12 @@ header {
     text-align: center;
     padding: 20px 0;
     position: relative;
-    padding-left: 80px; /* Adjust padding to avoid overlapping with the logo */
+    padding-left: 120px;  /* Add padding to avoid overlap with the logo */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;  /* Adjust the size as necessary */
 }
 
 
