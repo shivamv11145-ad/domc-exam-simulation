@@ -3,6 +3,10 @@
     background-color: #CD4131;
     height: 5px; /* Adjust height as needed */
     width: 100%;
+    position: fixed; /* Ensures it stays in place */
+    top: 0; /* Positions it at the very top */
+    left: 0;
+    z-index: 999; /* Ensures it is below the header but above other content */
 }
 
 /* Global Styles */
@@ -33,7 +37,7 @@ header {
     padding: 20px 0;
     position: fixed;
     width: 100%;
-    top: 0;
+    top: 5px; /* Adjusted to account for the height of the color strip */
     left: 0;
     z-index: 1000; /* Ensure it stays above other content */
 }
