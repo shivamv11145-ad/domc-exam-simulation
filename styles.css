@@ -1,3 +1,10 @@
+/* Color Strip */
+.color-strip {
+    background-color: #CD4131;
+    height: 5px; /* Adjust height as needed */
+    width: 100%;
+}
+
 /* Global Styles */
 body {
     font-family: 'Roboto', sans-serif;
@@ -21,7 +28,7 @@ body {
 
 header {
     background-color: #FFFFFF;
-    color: black;
+    color: black; /* Changed from white to black */
     text-align: center;
     padding: 20px 0;
     position: fixed;
@@ -55,20 +62,20 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px); /* Adjust for header height */
+    height: calc(100vh - 85px); /* Adjust for header and color strip height */
     margin: 0 auto;
     padding: 20px;
     position: relative;
-    margin-top: 80px; /* Adjust for header height */
+    margin-top: 85px; /* Adjust for header and color strip height */
 }
 
 /* Question Tracker */
 #question-tracker {
     position: fixed;
     left: 0;
-    top: 80px; /* Adjusted to match the height of the header */
+    top: 85px; /* Adjusted to match the height of the header and color strip */
     width: 100px;
-    height: calc(100vh - 160px); /* Adjusted to exclude header and footer height */
+    height: calc(100vh - 170px); /* Adjusted to exclude header, color strip, and footer height */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,7 +179,7 @@ button {
 /* Footer */
 footer {
     background-color: #FFFFFF;
-    color: black;
+    color: black; /* Changed from white to black */
     text-align: center;
     padding: 10px 0;
     margin-top: auto;
