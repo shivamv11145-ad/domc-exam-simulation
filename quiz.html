@@ -10,27 +10,20 @@
 <body>
     <header>
         <h1>IdN Engineer Exam</h1>
+        <div id="timer">00:00</div>
     </header>
 
-    <div id="main-content">
-        <aside id="question-tracker">
-            <h2>Questions</h2>
-            <ul id="question-list">
-                <!-- List items will be dynamically added here -->
-            </ul>
-        </aside>
-
-        <main id="exam-container">
-            <div class="question-container">
-                <p id="question">Loading...</p>
-                <p id="option">Loading...</p>
-            </div>
-            <div class="buttons">
-                <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-                <button onclick="handleResponse(false)" class="no-btn">No</button>
-            </div>
-        </main>
-    </div>
+    <main id="exam-container">
+        <div id="question-tracker"></div> <!-- Question Tracker -->
+        <div class="question-container">
+            <p id="question">Loading...</p>
+            <p id="option">Loading...</p>
+        </div>
+        <div class="buttons">
+            <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+            <button onclick="handleResponse(false)" class="no-btn">No</button>
+        </div>
+    </main>
 
     <div id="result-container" style="display: none;">
         <h2>Exam Completed</h2>
@@ -38,7 +31,7 @@
     </div>
 
     <footer>
-        <p>Cyderes</p>
+        <p>Cydec | IdN Engineer</p>
     </footer>
 
     <script src="script.js"></script>
