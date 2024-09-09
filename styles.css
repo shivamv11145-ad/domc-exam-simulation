@@ -67,16 +67,16 @@ main {
 }
 
 .tracker-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 25%;
-    width: 20px;
-    height: 20px;
+    margin-bottom: 8px; /* Optionally adjust margin */
+    padding: 8px; /* Optionally adjust padding */
+    border-radius: 50%; /* Ensures the item is perfectly circular */
+    width: 15px; /* Reduced width */
+    height: 15px; /* Reduced height */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Optionally adjust font size */
     color: white;
 }
 
