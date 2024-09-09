@@ -16,7 +16,7 @@
 /* Bottom Color Strip */
 .color-strip.bottom {
     height: 50px;
-    top: 30px; /* Adjust based on height of the top color strip */
+    top: 60px; /* Adjust based on height of the top color strip */
 }
 
 /* Global Styles */
