@@ -7,7 +7,6 @@ let isCurrentQuestionCorrect = true;
 async function loadQuestions() {
     const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json'; // Default to 'questions-VA.json' if none selected
 
-    // Use the raw GitHub URL for the JSON file
     const quizFileUrl = `https://raw.githubusercontent.com/shivamv11145-ad/domc-exam-simulation/main/${selectedQuiz}`;
 
     try {
@@ -16,6 +15,7 @@ async function loadQuestions() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         questions = await response.json();
+        console.log("Questions loaded:", questions);  // Debugging log
         initializeQuestionTracker();
         startExam();
     } catch (error) {
@@ -27,13 +27,17 @@ async function loadQuestions() {
 
 function initializeQuestionTracker() {
     const trackerContainer = document.getElementById('question-tracker');
-    trackerContainer.innerHTML = '';
+    console.log("Initializing question tracker...");  // Debugging log
+
+    trackerContainer.innerHTML = ''; // Clear any existing content
+
     questions.forEach((_, index) => {
         const trackerItem = document.createElement('div');
         trackerItem.className = 'tracker-item unanswered';
         trackerItem.id = `tracker-item-${index}`;
         trackerItem.innerText = `Q${index + 1}`;
         trackerContainer.appendChild(trackerItem);
+        console.log(`Tracker item for Q${index + 1} added.`);  // Debugging log
     });
 }
 
@@ -44,7 +48,7 @@ function startExam() {
     isCurrentQuestionCorrect = true;
     updateQuestionTracker();
     displayNextOption();
-    startTimer(); // Start the timer when the exam starts
+    startTimer();
 }
 
 function updateQuestionTracker() {
