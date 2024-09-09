@@ -11,7 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-
 #logo {
     position: absolute;
     top: 10px;
@@ -32,20 +31,6 @@ header {
 header h1 {
     margin: 0;
     font-size: 1.8rem;  /* Adjust the size as necessary */
-}
-
-
-/* Logo Container */
-.logo-container {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-}
-
-/* Logo Image */
-.logo {
-    width: 50px; /* Adjust as needed */
-    height: auto; /* Maintains aspect ratio */
 }
 
 /* Timer */
@@ -76,9 +61,9 @@ main {
 #question-tracker {
     position: fixed;
     left: 0;
-    top: 80px;
+    top: 80px; /* Adjusted to match the height of the header */
     width: 100px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 80px); /* Adjusted height */
     display: flex;
     flex-direction: column;
     align-items: center;
