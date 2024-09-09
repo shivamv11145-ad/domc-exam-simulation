@@ -92,7 +92,7 @@ function startTimer() {
         timerElement.textContent = `${minutes}:${seconds}`;
 
         if (totalTime > 0) {
-            totalTime--;
+            totalTime--; // Decrement the total time
         } else {
             clearInterval(timerInterval);
             alert("Time's up!");
