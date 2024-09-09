@@ -67,7 +67,7 @@ main {
 }
 
 .tracker-item {
-    margin-bottom: 8px; /* Optionally adjust margin */
+    margin-bottom: 4px; /* Optionally adjust margin */
     padding: 8px; /* Optionally adjust padding */
     border-radius: 50%; /* Ensures the item is perfectly circular */
     width: 15px; /* Reduced width */
