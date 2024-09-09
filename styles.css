@@ -40,11 +40,10 @@ header h1 {
 main {
     flex-grow: 1;
     display: flex;
-    align-items: flex-start; /* Aligns to the top with the question tracker */
     padding: 20px;
-    text-align: center;
     margin: 0 auto; /* Center align the main content */
     max-width: 1200px; /* Optional: Set a max-width for better alignment */
+    position: relative;
 }
 
 /* Question Tracker */
@@ -61,24 +60,27 @@ main {
 .tracker-item {
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    text-align: left;
+    border-radius: 50%;
+    width: 30px; /* Set width for circle */
+    height: 30px; /* Set height for circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
 }
 
 .tracker-item.active {
     background-color: #6200ea;
-    color: white;
 }
 
 .tracker-item.answered {
     background-color: #4caf50;
-    color: white;
 }
 
 .tracker-item.unanswered {
     background-color: #f44336;
-    color: white;
 }
 
 /* Question Container */
@@ -88,11 +90,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
 }
 
 .buttons {
     display: flex;
     gap: 15px;
+    margin-top: 20px; /* Space between options and questions */
 }
 
 button {
