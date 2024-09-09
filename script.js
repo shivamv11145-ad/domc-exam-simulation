@@ -16,6 +16,7 @@ async function loadQuestions() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         questions = await response.json();
+        initializeQuestionTracker();
         startExam();
     } catch (error) {
         console.error('Error loading questions:', error);
@@ -24,13 +25,39 @@ async function loadQuestions() {
     }
 }
 
+function initializeQuestionTracker() {
+    const trackerContainer = document.getElementById('question-tracker');
+    trackerContainer.innerHTML = '';
+    questions.forEach((_, index) => {
+        const trackerItem = document.createElement('div');
+        trackerItem.className = 'tracker-item unanswered';
+        trackerItem.id = `tracker-item-${index}`;
+        trackerItem.innerText = `Q${index + 1}`;
+        trackerContainer.appendChild(trackerItem);
+    });
+}
+
 function startExam() {
     currentQuestionIndex = 0;
     currentOptionIndex = 0;
     score = 0;
     isCurrentQuestionCorrect = true;
+    updateQuestionTracker();
     displayNextOption();
     startTimer(); // Start the timer when the exam starts
+}
+
+function updateQuestionTracker() {
+    questions.forEach((_, index) => {
+        const trackerItem = document.getElementById(`tracker-item-${index}`);
+        if (index === currentQuestionIndex) {
+            trackerItem.className = 'tracker-item active';
+        } else if (index < currentQuestionIndex) {
+            trackerItem.className = 'tracker-item answered';
+        } else {
+            trackerItem.className = 'tracker-item unanswered';
+        }
+    });
 }
 
 function displayNextOption() {
@@ -59,6 +86,8 @@ function handleResponse(userResponse) {
         currentOptionIndex = 0;
         currentQuestionIndex++;
         isCurrentQuestionCorrect = true;
+
+        updateQuestionTracker();
 
         if (currentQuestionIndex < questions.length) {
             displayNextOption();
