@@ -30,6 +30,7 @@ function startExam() {
     score = 0;
     isCurrentQuestionCorrect = true;
     displayNextOption();
+    startTimer(); // Start the timer when the exam starts
 }
 
 function displayNextOption() {
@@ -71,6 +72,33 @@ function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
     document.getElementById('score').innerText = `${score}/${questions.length}`;
+    clearInterval(timerInterval); // Stop the timer when the exam ends
+}
+
+/* Timer Code */
+let timerElement = document.getElementById('timer');
+let totalTime = 10 * 60; // Set the timer for 10 minutes
+let timerInterval;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        timerElement.textContent = `${minutes}:${seconds}`;
+
+        if (totalTime > 0) {
+            totalTime--;
+        } else {
+            clearInterval(timerInterval);
+            alert("Time's up!");
+            endExam(); // End the exam when time is up
+        }
+    }, 1000);
 }
 
 window.onload = loadQuestions;
