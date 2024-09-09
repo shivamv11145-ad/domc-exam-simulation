@@ -16,6 +16,7 @@ header {
     color: white;
     text-align: center;
     padding: 20px 0;
+    position: relative; /* For timer positioning */
 }
 
 header h1 {
@@ -23,68 +24,64 @@ header h1 {
     font-size: 2rem;
 }
 
+/* Timer */
+#timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #3700b3;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 /* Main Content */
-#main-content {
-    display: flex;
+main {
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns to the top with the question tracker */
+    padding: 20px;
+    text-align: center;
 }
 
 /* Question Tracker */
 #question-tracker {
     width: 200px;
-    padding: 20px;
-    background-color: #ececec;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-#question-tracker h2 {
-    margin-top: 0;
-    font-size: 1.5rem;
-}
-
-#question-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#question-list li {
-    padding: 10px;
+.tracker-item {
     margin-bottom: 10px;
+    padding: 10px;
     border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
+    width: 100%;
+    text-align: left;
 }
 
-/* Question Status Colors */
-.active-question {
+.tracker-item.active {
     background-color: #6200ea;
     color: white;
 }
 
-.answered-question {
+.tracker-item.answered {
     background-color: #4caf50;
     color: white;
 }
 
-.unanswered-question {
+.tracker-item.unanswered {
     background-color: #f44336;
     color: white;
 }
 
-/* Main Exam Container */
-main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-}
-
+/* Question Container */
 .question-container {
     margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .buttons {
@@ -145,14 +142,4 @@ footer {
 footer p {
     margin: 0;
     font-size: 0.9rem;
-}
-
-/* Timer */
-#timer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
 }
