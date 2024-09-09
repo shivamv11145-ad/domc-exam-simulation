@@ -17,12 +17,20 @@ header {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: relative; /* For timer positioning */
+    position: relative;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2rem;
+/* Logo Container */
+.logo-container {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+/* Logo Image */
+.logo {
+    width: 50px; /* Adjust as needed */
+    height: auto; /* Maintains aspect ratio */
 }
 
 /* Timer */
