@@ -40,10 +40,11 @@ header h1 {
 main {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
     align-items: flex-start; /* Aligns to the top with the question tracker */
     padding: 20px;
     text-align: center;
+    margin: 0 auto; /* Center align the main content */
+    max-width: 1200px; /* Optional: Set a max-width for better alignment */
 }
 
 /* Question Tracker */
@@ -53,6 +54,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: sticky; /* Keeps it in place when scrolling */
+    top: 0; /* Sticks to the top */
 }
 
 .tracker-item {
@@ -81,7 +84,10 @@ main {
 /* Question Container */
 .question-container {
     margin-bottom: 20px;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows it to take remaining space */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
 }
 
 .buttons {
