@@ -48,14 +48,17 @@ main {
 
 /* Question Tracker */
 #question-tracker {
+    position: fixed; /* Fix to the left */
+    left: 0;
+    top: 100px; /* Adjust if needed */
     width: 200px;
-    margin-right: 20px;
+    height: calc(100% - 100px); /* Full height minus header space */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: sticky;
-    top: 0;
-    height: 100%; /* Full height for vertical scrolling */
+    background: #f4f4f9; /* Same as body background or any color you prefer */
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
     overflow-y: auto; /* Scroll if necessary */
 }
 
@@ -87,18 +90,21 @@ main {
 
 /* Question Container */
 .question-container {
+    margin-left: 220px; /* Space for the question tracker */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; /* Take up remaining space */
     text-align: center;
+    height: 100%; /* Center vertically */
 }
 
 .buttons {
     display: flex;
     gap: 15px;
     margin-top: 20px; /* Space between options and questions */
+    justify-content: center; /* Center buttons horizontally */
 }
 
 button {
@@ -108,6 +114,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 120px; /* Adjust width as needed */
 }
 
 /* Button Styles */
