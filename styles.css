@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden; /* Prevent horizontal overflow due to fixed elements */
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -43,7 +43,7 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px); /* Adjust height to account for header */
+    height: calc(100vh - 80px);
     margin: 0 auto;
     padding: 20px;
     position: relative;
@@ -51,32 +51,32 @@ main {
 
 /* Question Tracker */
 #question-tracker {
-    position: fixed; /* Fix to the left */
+    position: fixed;
     left: 0;
-    top: 80px; /* Adjust if needed to accommodate header */
-    width: 100px; /* Lessened length */
-    height: calc(100vh - 80px); /* Full height minus header space */
+    top: 80px;
+    width: 100px;
+    height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #f4f4f9; /* Same as body background or any color you prefer */
+    background: #f4f4f9;
     padding: 5px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
-    overflow-y: auto; /* Scroll if necessary */
-    border-right: 2px solid #e0e0e0; /* Optional border for separation */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    border-right: 2px solid #e0e0e0;
 }
 
 .tracker-item {
-    margin-bottom: 1px; /* Optionally adjust margin */
-    padding: 8px; /* Optionally adjust padding */
-    border-radius: 50%; /* Ensures the item is perfectly circular */
-    width: 15px; /* Reduced width */
-    height: 15px; /* Reduced height */
+    margin-bottom: 1px;
+    padding: 8px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 0.8rem; /* Optionally adjust font size */
+    font-size: 0.8rem;
     color: white;
 }
 
@@ -100,15 +100,15 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-left: 120px; /* Space for the question tracker */
-    width: calc(100% - 120px); /* Adjust width to accommodate tracker */
+    margin-left: 120px; 
+    width: calc(100% - 120px);
 }
 
 .buttons {
     display: flex;
     gap: 15px;
-    margin-top: 20px; /* Space between options and questions */
-    justify-content: center; /* Center buttons horizontally */
+    margin-top: 20px; 
+    justify-content: center;
 }
 
 button {
@@ -118,7 +118,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 120px; /* Adjust width as needed */
+    width: 120px; 
 }
 
 /* Button Styles */
