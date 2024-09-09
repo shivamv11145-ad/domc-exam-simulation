@@ -5,7 +5,7 @@ let score = 0;
 let isCurrentQuestionCorrect = true;
 
 async function loadQuestions() {
-    const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json'; // Default to 'questions-VA.json' if none selected
+    const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
 
     const quizFileUrl = `https://raw.githubusercontent.com/shivamv11145-ad/domc-exam-simulation/main/${selectedQuiz}`;
 
