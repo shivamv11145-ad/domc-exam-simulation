@@ -2,21 +2,21 @@
 .color-strip {
     background-color: #CD4131;
     width: 100%;
-    position: fixed; /* Ensures it stays in place */
+    position: fixed;
     left: 0;
-    z-index: 999; /* Ensure it is below the header but above other content */
+    z-index: 999;
 }
 
 /* Top Color Strip */
 .color-strip.top {
-    height: 50px; /* Adjust height as needed */
-    top: 0; /* Positions it at the very top */
+    height: 50px;
+    top: 0;
 }
 
 /* Bottom Color Strip */
 .color-strip.bottom {
-    height: 50px; /* Adjust height as needed */
-    top: 60px; /* Adjust based on header height and top strip height */
+    height: 50px;
+    top: 50px; /* Adjust based on height of the top color strip */
 }
 
 /* Global Styles */
@@ -32,34 +32,27 @@ body {
     overflow-x: hidden;
 }
 
-#logo {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 100px; /* Adjust the size as necessary */
-    height: auto;
-}
-
+/* Header */
 header {
     background-color: #FFFFFF;
-    color: black; /* Changed from white to black */
+    color: black;
     text-align: center;
     padding: 20px 0;
     position: fixed;
     width: 100%;
     top: 50px; /* Adjusted to account for the height of the top color strip */
     left: 0;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.8rem;  /* Adjust the size as necessary */
+    font-size: 1.8rem;
 }
 
 /* Timer */
 #timer {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     font-size: 1.5rem;
@@ -67,7 +60,7 @@ header h1 {
     background-color: #3700b3;
     padding: 5px 10px;
     border-radius: 5px;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 /* Main Content */
@@ -80,16 +73,16 @@ main {
     margin: 0 auto;
     padding: 20px;
     position: relative;
-    margin-top: 60px; /* Adjust for header and both color strips height */
+    margin-top: 110px; /* Adjust for header and both color strips height */
 }
 
 /* Question Tracker */
 #question-tracker {
     position: fixed;
     left: 0;
-    top: 60px; /* Adjusted to match the height of the header and color strip */
+    top: 100px; /* Adjusted to be below the header and color strips */
     width: 100px;
-    height: calc(100vh - 120px); /* Adjusted to exclude header, color strips, and footer height */
+    height: calc(100vh - 150px); /* Adjusted to exclude header, color strips, and footer height */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,7 +91,7 @@ main {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     border-right: 2px solid #e0e0e0;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 .tracker-item {
@@ -135,7 +128,7 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-left: 120px; 
+    margin-left: 120px;
     width: calc(100% - 120px);
     padding-bottom: 60px; /* Adjust for footer height */
 }
@@ -144,7 +137,7 @@ main {
 .buttons {
     display: flex;
     gap: 15px;
-    margin-top: 20px; 
+    margin-top: 20px;
     justify-content: center;
 }
 
@@ -155,7 +148,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 120px; 
+    width: 120px;
 }
 
 /* Button Styles */
@@ -193,14 +186,14 @@ button {
 /* Footer */
 footer {
     background-color: #FFFFFF;
-    color: black; /* Changed from white to black */
+    color: black;
     text-align: center;
     padding: 10px 0;
     margin-top: auto;
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 footer p {
