@@ -16,7 +16,6 @@ header {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: relative; /* Make header position relative for absolute positioning of timer */
 }
 
 header h1 {
@@ -24,19 +23,56 @@ header h1 {
     font-size: 2rem;
 }
 
-/* Timer */
-#timer {
-    position: absolute;
-    top: 20px; /* Aligns with the padding of the header */
-    right: 20px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: #3700b3;
-    padding: 5px 10px;
-    border-radius: 5px;
+/* Main Content */
+#main-content {
+    display: flex;
+    flex-grow: 1;
 }
 
-/* Main Content */
+/* Question Tracker */
+#question-tracker {
+    width: 200px;
+    padding: 20px;
+    background-color: #ececec;
+}
+
+#question-tracker h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+#question-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#question-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Question Status Colors */
+.active-question {
+    background-color: #6200ea;
+    color: white;
+}
+
+.answered-question {
+    background-color: #4caf50;
+    color: white;
+}
+
+.unanswered-question {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Main Exam Container */
 main {
     flex-grow: 1;
     display: flex;
@@ -109,4 +145,14 @@ footer {
 footer p {
     margin: 0;
     font-size: 0.9rem;
+}
+
+/* Timer */
+#timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
 }
