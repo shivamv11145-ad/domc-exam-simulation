@@ -16,11 +16,24 @@ header {
     color: white;
     text-align: center;
     padding: 20px 0;
+    position: relative; /* Make header position relative for absolute positioning of timer */
 }
 
 header h1 {
     margin: 0;
     font-size: 2rem;
+}
+
+/* Timer */
+#timer {
+    position: absolute;
+    top: 20px; /* Aligns with the padding of the header */
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #3700b3;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 /* Main Content */
