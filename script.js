@@ -110,7 +110,7 @@ function endExam() {
 
 /* Timer Code */
 let timerElement = document.getElementById('timer');
-let totalTime = 10 * 60; // Set the timer for 10 minutes
+let totalTime = 15 * 60; // Set the timer for 10 minutes
 let timerInterval;
 
 function startTimer() {
