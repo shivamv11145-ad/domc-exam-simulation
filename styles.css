@@ -9,14 +9,14 @@
 
 /* Top Color Strip */
 .color-strip.top {
-    height: 50px;
+    height: 30px; /* Slimmer top color strip */
     top: 0;
 }
 
 /* Bottom Color Strip */
 .color-strip.bottom {
     height: 50px;
-    top: 50px; /* Adjust based on height of the top color strip */
+    top: 30px; /* Adjust based on height of the top color strip */
 }
 
 /* Global Styles */
@@ -37,28 +37,37 @@ header {
     background-color: #FFFFFF;
     color: black;
     text-align: center;
-    padding: 20px 0;
+    padding: 5px 0; /* Slimmed down header padding */
     position: fixed;
     width: 100%;
-    top: 50px; /* Adjusted to account for the height of the top color strip */
+    top: 30px; /* Adjusted to account for the height of the top color strip */
     left: 0;
     z-index: 1000;
 }
 
+#logo {
+    position: absolute;
+    top: 5px; /* Adjusted for the new header height */
+    left: 20px; /* Positioned on the extreme left */
+    width: 80px; /* Adjust the size as necessary */
+    height: auto;
+}
+
 header h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.2rem; /* Adjusted for a slimmer header */
+    padding: 0 100px; /* Adjusted to ensure title is centered */
 }
 
 /* Timer */
 #timer {
     position: absolute;
-    top: 20px;
+    top: 5px;
     right: 20px;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjusted font size */
     font-weight: bold;
     background-color: #3700b3;
-    padding: 5px 10px;
+    padding: 3px 8px; /* Adjusted padding */
     border-radius: 5px;
     z-index: 1000;
 }
@@ -69,20 +78,20 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 110px); /* Adjust for header and both color strips height */
+    height: calc(100vh - 80px); /* Adjusted for header and both color strips height */
     margin: 0 auto;
     padding: 20px;
     position: relative;
-    margin-top: 110px; /* Adjust for header and both color strips height */
+    margin-top: 80px; /* Adjusted for header and color strips height */
 }
 
 /* Question Tracker */
 #question-tracker {
     position: fixed;
     left: 0;
-    top: 100px; /* Adjusted to be below the header and color strips */
+    top: 30px; /* Start below the top color strip */
     width: 100px;
-    height: calc(100vh - 150px); /* Adjusted to exclude header, color strips, and footer height */
+    height: calc(100vh - 80px); /* End just above the bottom color strip */
     display: flex;
     flex-direction: column;
     align-items: center;
