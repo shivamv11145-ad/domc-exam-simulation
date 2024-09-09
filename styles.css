@@ -1,7 +1,7 @@
 /* Color Strip */
 .color-strip {
     background-color: #CD4131;
-    height: 5px; /* Adjust height as needed */
+    height: 50px; /* Adjust height as needed */
     width: 100%;
     position: fixed; /* Ensures it stays in place */
     left: 0;
