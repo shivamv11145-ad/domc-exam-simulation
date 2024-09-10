@@ -38,6 +38,11 @@
             bottom: 0;
             left: 0;
             z-index: 10; /* Ensures it's above other content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Set text color to white */
+            font-size: 14px;
         }
 
         /* Header */
@@ -154,8 +159,10 @@
         <button id="startQuizBtn">Start Quiz</button>
     </div>
 
-    <!-- Bottom Color Strip -->
-    <div class="color-strip bottom"></div>
+    <!-- Bottom Color Strip with Copyright -->
+    <div class="color-strip bottom">
+        <p>&copy; 2024 All rights reserved</p>
+    </div>
 
     <script>
         document.getElementById('startQuizBtn').addEventListener('click', function() {
