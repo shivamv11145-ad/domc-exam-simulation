@@ -66,8 +66,23 @@ function updateQuestionTracker() {
 
 function displayNextOption() {
     const questionObj = questions[currentQuestionIndex];
-    document.getElementById('question').innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-    document.getElementById('option').innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
+    const questionElement = document.getElementById('question');
+    const optionElement = document.getElementById('option');
+
+    // Apply fade-out effect
+    questionElement.classList.add('fade-out');
+    optionElement.classList.add('fade-out');
+
+    setTimeout(() => {
+        questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
+        optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
+
+        // Apply fade-in effect
+        questionElement.classList.remove('fade-out');
+        optionElement.classList.remove('fade-out');
+        questionElement.classList.add('fade-in');
+        optionElement.classList.add('fade-in');
+    }, 300); // Match the transition duration
 }
 
 function handleResponse(userResponse) {
