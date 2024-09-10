@@ -68,9 +68,11 @@ header h1 {
     transform: translateY(-50%); /* Vertically center */
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: #3700b3;
+    background-color: #FFFFFF; /* Background color */
+    color: #0A2E36; /* Content (text) color */
     padding: 8px 12px;
     border-radius: 5px;
+    border: 2px solid #CD4131; /* Outline color */
     z-index: 1000;
 }
 
