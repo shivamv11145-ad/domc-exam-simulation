@@ -43,7 +43,7 @@ header {
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center the header content */
     align-items: center;
     position: relative;
     height: 60px; /* Adjust header height */
@@ -62,19 +62,20 @@ header {
 /* Center the header content */
 .header-content {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 }
 
 /* SailPoint Logo */
 #sailpoint-logo {
     height: 40px;
+    margin-right: 10px; /* Space between logo and text */
 }
 
 /* Header Text */
 header h1 {
-    margin: 5px 0 0 0; /* Small margin for spacing */
+    margin: 0;
     font-size: 1.2rem;
     text-align: center;
 }
