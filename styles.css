@@ -51,7 +51,7 @@ header {
     top: 50%;
     left: 20px;
     transform: translateY(-50%); /* Vertically center */
-    width: 80px;
+    width: 120px;
     height: auto;
 }
 
