@@ -144,14 +144,16 @@ function submitReorder() {
     const questionObj = questions[currentQuestionIndex];
     const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
 
-    let correctOrder = true;
+    const correctOrder = questionObj.options.map(option => option.answer);
+    let correctOrderMatch = true;
+
     userOrder.forEach((answer, index) => {
-        if (answer !== questionObj.options[index].answer) {
-            correctOrder = false;
+        if (answer !== correctOrder[index]) {
+            correctOrderMatch = false;
         }
     });
 
-    if (correctOrder) {
+    if (correctOrderMatch) {
         score += 1;
     }
 
@@ -175,16 +177,28 @@ function enableDragAndDrop() {
     draggableItems.forEach((item) => {
         item.addEventListener('dragstart', dragStart);
         item.addEventListener('dragover', dragOver);
+        item.addEventListener('dragenter', dragEnter);
+        item.addEventListener('dragleave', dragLeave);
         item.addEventListener('drop', drop);
+        item.addEventListener('dragend', dragEnd);
     });
 }
 
 function dragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.id);
+    event.target.classList.add('dragging');
 }
 
 function dragOver(event) {
     event.preventDefault();
+}
+
+function dragEnter(event) {
+    event.target.classList.add('drag-over');
+}
+
+function dragLeave(event) {
+    event.target.classList.remove('drag-over');
 }
 
 function drop(event) {
@@ -193,9 +207,16 @@ function drop(event) {
     const draggedElement = document.getElementById(draggedId);
     const targetElement = event.target;
 
-    // Swap the positions of dragged and target elements
-    const parentElement = targetElement.parentElement;
-    parentElement.insertBefore(draggedElement, targetElement.nextSibling);
+    if (targetElement.classList.contains('reorder-option')) {
+        const parentElement = targetElement.parentElement;
+        parentElement.insertBefore(draggedElement, targetElement.nextSibling);
+    }
+
+    targetElement.classList.remove('drag-over');
+}
+
+function dragEnd(event) {
+    event.target.classList.remove('dragging');
 }
 
 function endExam() {
