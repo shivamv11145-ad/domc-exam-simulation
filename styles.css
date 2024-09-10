@@ -16,7 +16,7 @@
 /* Bottom Color Strip */
 .color-strip.bottom {
     height: 30px; /* Same as top strip */
-    bottom: 0;
+    bottom: 0; /* Positioned at the bottom of the page */
 }
 
 /* Global Styles */
@@ -93,7 +93,7 @@ main {
     left: 0;
     top: calc(30px + 60px); /* Start below the top strip and header */
     width: 100px;
-    height: calc(100vh - 120px); /* End just above the bottom color strip */
+    height: calc(100vh - 190px); /* Adjusted for header, footer, and bottom color strip */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,7 +201,7 @@ footer {
     padding: 10px 0;
     margin-top: auto;
     position: fixed;
-    bottom: 0;
+    bottom: 30px; /* Positioned just above the bottom strip */
     width: 100%;
     z-index: 1000;
 }
