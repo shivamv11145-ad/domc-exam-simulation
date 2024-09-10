@@ -47,6 +47,20 @@
         ]
     },
     {
+        "question": "Label the correct order of steps to implement an identity model for a given HR source",
+        "type": "reorder",
+        "options": [
+            {"answer": "Source setup and updating the source account schema to include the needed attributes.", "correctOrder": 1},
+            {"answer": "Create a new identity profile.", "correctOrder": 2},
+            {"answer": "Add new identity attributes.", "correctOrder": 3},
+            {"answer": "Modify the mappings for an identity profile.", "correctOrder": 4},
+            {"answer": "Aggregate & define schedule.", "correctOrder": 5},
+            {"answer": "Authentication", "correctOrder": 6},
+            {"answer": "Lifecycles & Correlation", "correctOrder": 7},
+            {"answer": "Provisioning ", "correctOrder": 8}
+        ]
+    },
+    {
         "question": "The governance process includes certification and policy.",
         "options": [
             {"answer": "FALSE", "correct": false},
