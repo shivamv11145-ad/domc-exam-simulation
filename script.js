@@ -69,6 +69,10 @@ function displayNextOption() {
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
 
+    // Add blur effect for better visibility (optional)
+    questionElement.classList.add('blur');
+    optionElement.classList.add('blur');
+
     // Apply fade-out effect
     questionElement.classList.add('fade-out');
     optionElement.classList.add('fade-out');
@@ -82,8 +86,13 @@ function displayNextOption() {
         optionElement.classList.remove('fade-out');
         questionElement.classList.add('fade-in');
         optionElement.classList.add('fade-in');
-    }, 300); // Match the transition duration
+
+        // Remove blur effect after transition
+        questionElement.classList.remove('blur');
+        optionElement.classList.remove('blur');
+    }, 600); // Match the transition duration
 }
+
 
 function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
