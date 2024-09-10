@@ -222,6 +222,23 @@ footer p {
     transition: opacity 0.3s ease-in;
 }
 
+.submit-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+    width: 120px;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
 /* Reordering Option Boxes */
 .reorder-option {
     background-color: #f4f4f9;
@@ -232,4 +249,14 @@ footer p {
     cursor: move;
     text-align: center;
     width: 200px;
+    transition: background-color 0.3s ease;
 }
+
+.dragging {
+    opacity: 0.5;
+}
+
+.drag-over {
+    background-color: #e0e0e0;
+}
+
