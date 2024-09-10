@@ -49,13 +49,14 @@
             top: 30px; /* Adjusted for top color strip height */
             left: 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            gap: 20px; /* Add space between elements */
             border-bottom: 1px solid #ddd;
             z-index: 20; /* Ensures it's above other content */
         }
 
-        #logo {
+        #logo, #sailpoint-logo {
             height: 40px;
         }
 
@@ -123,7 +124,7 @@
     <!-- Header -->
     <header>
         <img src="cyderes-web.png" alt="Cyderes Logo" id="logo">
-        <h1>SailPoint Identity Security Cloud Engineer Exam Simulator</h1>
+        <img src="sailpoint.png" alt="SailPoint Logo" id="sailpoint-logo">
     </header>
 
     <!-- Main Content -->
@@ -141,8 +142,6 @@
 
     <!-- Bottom Color Strip -->
     <div class="color-strip bottom"></div>
-
-   
 
     <script>
         document.getElementById('startQuizBtn').addEventListener('click', function() {
