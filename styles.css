@@ -43,7 +43,7 @@ header {
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 60px;
-    position: relative; /* Ensures absolute positioning within the header */
+    position: relative;
 }
 
 /* Logo on the left */
@@ -56,12 +56,11 @@ header {
     height: auto;
 }
 
-/* Fixing the SailPoint logo and text in the center */
 .header-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center-align both vertically and horizontally */
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
 }
@@ -69,7 +68,7 @@ header {
 /* SailPoint Logo */
 #sailpoint-logo {
     height: 40px;
-    margin-right: 10px; /* Space between logo and text */
+    margin-right: 10px;
 }
 
 /* Header Text */
@@ -83,7 +82,7 @@ header h1 {
 #timer {
     position: absolute;
     top: 50%;
-    right: 50px; /* Adjusted as per your earlier fix */
+    right: 50px;
     transform: translateY(-50%);
     font-size: 1.2rem;
     font-weight: bold;
@@ -153,7 +152,6 @@ main {
     background-color: #f44336;
 }
 
-/* Question Option Container for Regular Questions */
 .question-option-container {
     display: flex;
     justify-content: space-between;
@@ -222,7 +220,6 @@ button {
     background-color: #d32f2f;
 }
 
-/* Question Container for Reordering Questions */
 .question-container {
     flex-grow: 1;
     display: flex;
