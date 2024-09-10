@@ -69,7 +69,6 @@ function displayQuestion() {
 
     // Determine question type
     if (questionObj.type === 'reorder') {
-        // Reordering question type
         document.querySelector('.question-option-container').style.display = 'none';
         document.querySelector('.question-container').style.display = 'block';
 
@@ -77,13 +76,10 @@ function displayQuestion() {
         const optionElement = document.getElementById('reorder-option');
         const buttonContainer = document.getElementById('reorder-buttons');
 
-        // Clear existing options and buttons
         optionElement.innerHTML = '';
         buttonContainer.innerHTML = '';
 
-        // Update the question number and content dynamically
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-
         buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
         reorderAnswers = shuffleArray([...questionObj.options]);
 
@@ -98,7 +94,6 @@ function displayQuestion() {
 
         enableDragAndDrop();
     } else {
-        // Regular question type
         document.querySelector('.question-option-container').style.display = 'flex';
         document.querySelector('.question-container').style.display = 'none';
 
@@ -106,13 +101,10 @@ function displayQuestion() {
         const optionElement = document.getElementById('regular-option');
         const buttonContainer = document.getElementById('regular-buttons');
 
-        // Clear existing options and buttons
         optionElement.innerHTML = '';
         buttonContainer.innerHTML = '';
 
-        // Update the question number and content dynamically
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-
         currentOptionIndex = 0; // Reset option index for the new question
         displayNextOption();
     }
@@ -123,15 +115,11 @@ function displayNextOption() {
     const optionElement = document.getElementById('regular-option');
     const buttonContainer = document.getElementById('regular-buttons');
 
-    // Clear the current option
     optionElement.innerHTML = '';
 
     if (currentOptionIndex < questionObj.options.length) {
-        // Display the current option
         const currentOption = questionObj.options[currentOptionIndex];
         optionElement.innerText = `Option: ${currentOption.answer}`;
-
-        // Update buttons (Yes/No)
         buttonContainer.innerHTML = `
             <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
             <button onclick="handleResponse(false)" class="no-btn">No</button>
@@ -144,29 +132,27 @@ function handleResponse(userResponse) {
     const currentOption = questionObj.options[currentOptionIndex];
 
     if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
-        // User got this option right, do nothing
+        // Correct answer
     } else {
         isCurrentQuestionCorrect = false;
     }
 
-    currentOptionIndex++; // Move to the next option
+    currentOptionIndex++;
     if (currentOptionIndex < questionObj.options.length) {
-        displayNextOption(); // Display the next option
+        displayNextOption();
     } else {
-        // All options for this question are done
         if (isCurrentQuestionCorrect) {
-            score += 1; // Increment score if the question was answered correctly
+            score += 1;
         }
         currentOptionIndex = 0;
-        currentQuestionIndex++; // Move to the next question
-        isCurrentQuestionCorrect = true; // Reset for the next question
-
+        currentQuestionIndex++;
+        isCurrentQuestionCorrect = true;
         updateQuestionTracker();
 
         if (currentQuestionIndex < questions.length) {
-            displayQuestion(); // Display the next question
+            displayQuestion();
         } else {
-            endExam(); // End the exam if no more questions
+            endExam();
         }
     }
 }
@@ -174,8 +160,6 @@ function handleResponse(userResponse) {
 function submitReorder() {
     const questionObj = questions[currentQuestionIndex];
     const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
-
-    // Sort correct order based on correctOrder property
     const correctOrder = questionObj.options
         .slice()
         .sort((a, b) => a.correctOrder - b.correctOrder)
@@ -188,16 +172,13 @@ function submitReorder() {
         }
     });
 
-    // Increment score if the order is correct
     if (correctOrderMatch) {
         score += 1;
     }
 
-    // Move to the next question
     currentQuestionIndex++;
     updateQuestionTracker();
 
-    // Check if there are more questions or end the exam
     if (currentQuestionIndex < questions.length) {
         displayQuestion();
     } else {
@@ -285,11 +266,11 @@ function startTimer() {
         timerElement.textContent = `${minutes}:${seconds}`;
 
         if (totalTime > 0) {
-            totalTime--; // Decrement the total time
+            totalTime--;
         } else {
             clearInterval(timerInterval);
             alert("Time's up!");
-            endExam(); // End the exam when time is up
+            endExam();
         }
     }, 1000);
 }
