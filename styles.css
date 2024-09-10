@@ -212,28 +212,12 @@ footer p {
     margin: 0;
     font-size: 0.9rem;
 }
-/* Add these at the end of your existing styles.css */
-
-/* Add these at the end of your existing styles.css */
-
-/* Fade-in and fade-out effects */
+/* Transition for fade effect */
 .fade-out {
     opacity: 0;
-    transition: opacity 0.6s ease, transform 0.6s ease; /* Increased duration */
-    transform: scale(0.95); /* Slightly shrink */
+    transition: opacity 0.3s ease-out;
 }
 
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.6s ease, transform 0.6s ease; /* Increased duration */
-    transform: scale(1); /* Restore original size */
-}
-
-/* Optional: Add a slight blur effect to the transition */
-.fade-out.blur {
-    filter: blur(2px); /* Add blur effect during fade-out */
-}
-
-.fade-in.blur {
-    filter: blur(0); /* Remove blur effect during fade-in */
+.question-container p {
+    transition: opacity 0.3s ease-in;
 }
