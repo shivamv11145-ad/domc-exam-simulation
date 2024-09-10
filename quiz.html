@@ -26,9 +26,12 @@
         <!-- Question Container -->
         <div class="question-container">
             <p id="question">Loading...</p>
-            <div id="option">Loading...</div> <!-- Container for options -->
+            <div id="option">Loading...</div> <!-- Changed to a <div> for reordering options -->
             <div class="buttons">
-                <button id="action-button" onclick="handleAction()">Yes</button> <!-- Default action button -->
+                <button id="yes-btn" class="yes-btn" onclick="handleResponse(true)" style="display: none;">Yes</button>
+                <button id="no-btn" class="no-btn" onclick="handleResponse(false)" style="display: none;">No</button>
+                <button id="action-button" class="next-btn" style="display: none;">Next</button>
+                <button id="submit-button" class="submit-btn" style="display: none;">Submit</button>
             </div>
         </div>
     </main>
