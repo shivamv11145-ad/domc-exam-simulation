@@ -35,11 +35,10 @@ body {
 header {
     background-color: #FFFFFF;
     color: black;
-    text-align: center;
-    padding: 10px 0;
+    padding: 10px 20px;
     position: fixed;
     width: 100%;
-    top: 30px; 
+    top: 30px;
     left: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -47,8 +46,10 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
+    height: 60px; /* Adjust header height */
 }
 
+/* Logo on the left */
 #logo {
     position: absolute;
     top: 50%;
@@ -61,22 +62,24 @@ header {
 /* Center the header content */
 .header-content {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    gap: 10px; /* Space between logo and text */
 }
 
+/* SailPoint Logo */
 #sailpoint-logo {
     height: 40px;
 }
 
+/* Header Text */
 header h1 {
     margin: 0;
     font-size: 1.2rem;
-    padding: 0 100px;
+    text-align: center;
 }
 
+/* Timer */
 #timer {
     position: absolute;
     top: 50%;
