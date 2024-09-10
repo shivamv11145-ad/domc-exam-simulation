@@ -217,10 +217,10 @@ footer p {
 /* Fade-in and fade-out effects */
 .fade-out {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 1s ease;
 }
 
 .fade-in {
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transition: opacity 1s ease;
 }
