@@ -1,8 +1,7 @@
 let questions = [];
 let currentQuestionIndex = 0;
-let currentOptionIndex = 0;
 let score = 0;
-let isCurrentQuestionCorrect = true;
+let timerInterval;
 
 async function loadQuestions() {
     const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
@@ -14,19 +13,19 @@ async function loadQuestions() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         questions = await response.json();
-        console.log("Questions loaded:", questions);  // Debugging log
+        console.log("Questions loaded:", questions);
         initializeQuestionTracker();
         startExam();
     } catch (error) {
         console.error('Error loading questions:', error);
         document.getElementById('question').innerText = 'Failed to load questions. Please try again later.';
-        document.getElementById('option').innerText = '';
+        document.getElementById('option').innerHTML = '';
     }
 }
 
 function initializeQuestionTracker() {
     const trackerContainer = document.getElementById('question-tracker');
-    console.log("Initializing question tracker...");  // Debugging log
+    console.log("Initializing question tracker...");
 
     trackerContainer.innerHTML = ''; // Clear any existing content
 
@@ -36,15 +35,13 @@ function initializeQuestionTracker() {
         trackerItem.id = `tracker-item-${index}`;
         trackerItem.innerText = `Q${index + 1}`;
         trackerContainer.appendChild(trackerItem);
-        console.log(`Tracker item for Q${index + 1} added.`);  // Debugging log
+        console.log(`Tracker item for Q${index + 1} added.`);
     });
 }
 
 function startExam() {
     currentQuestionIndex = 0;
-    currentOptionIndex = 0;
     score = 0;
-    isCurrentQuestionCorrect = true;
     updateQuestionTracker();
     displayNextQuestion();
     startTimer();
@@ -97,7 +94,7 @@ function displayNextQuestion() {
             questionObj.options.forEach((option, index) => {
                 const optionP = document.createElement('p');
                 optionP.className = 'option';
-                optionP.innerText = `Option: ${option.answer}`;
+                optionP.innerText = option.answer;
                 optionElement.appendChild(optionP);
             });
             actionButton.innerText = 'Next';
@@ -118,7 +115,7 @@ function handleResponse() {
 
         optionElements.forEach((element, index) => {
             const option = questionObj.options[index];
-            if (element.innerText.includes(option.answer)) {
+            if (element.innerText === option.answer) {
                 if (option.correct === false) {
                     isCorrect = false;
                 }
@@ -200,7 +197,6 @@ function endExam() {
 /* Timer Code */
 let timerElement = document.getElementById('timer');
 let totalTime = 15 * 60; // Set the timer for 15 minutes
-let timerInterval;
 
 function startTimer() {
     timerInterval = setInterval(() => {
