@@ -74,6 +74,9 @@ function displayQuestion() {
     optionElement.innerHTML = '';
     buttonContainer.innerHTML = '';
 
+    // Update the question number and content dynamically
+    questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
+
     // Determine question type
     if (questionObj.type === 'reorder') {
         // Reordering question type
@@ -92,11 +95,11 @@ function displayQuestion() {
         enableDragAndDrop();
     } else {
         // Regular question type
-        questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
         currentOptionIndex = 0; // Reset option index for the new question
         displayNextOption(); // Start by displaying the first option
     }
 }
+
 
 function displayNextOption() {
     const questionObj = questions[currentQuestionIndex];
