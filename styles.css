@@ -112,7 +112,7 @@ main {
 #question-tracker {
     position: fixed;
     left: 0;
-    top: calc(30px + 70px); /* Moved down slightly to avoid overlapping with the top bar */
+    top: calc(150px);
     width: 100px;
     height: calc(100vh - 190px);
     display: flex;
