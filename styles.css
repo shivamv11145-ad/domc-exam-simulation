@@ -1,235 +1,255 @@
-/* Color Strip */
-.color-strip {
-    background-color: #CD4131;
-    width: 100%;
-    position: fixed;
-    left: 0;
-    z-index: 999;
+let questions = [];
+let currentQuestionIndex = 0;
+let currentOptionIndex = 0;
+let score = 0;
+let isCurrentQuestionCorrect = true;
+let reorderAnswers = [];
+
+async function loadQuestions() {
+    const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
+    const quizFileUrl = `https://raw.githubusercontent.com/shivamv11145-ad/domc-exam-simulation/main/${selectedQuiz}`;
+
+    try {
+        const response = await fetch(quizFileUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        questions = await response.json();
+        console.log("Questions loaded:", questions);  // Debugging log
+        initializeQuestionTracker();
+        startExam();
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        document.getElementById('question').innerText = 'Failed to load questions. Please try again later.';
+        document.getElementById('option').innerText = '';
+    }
 }
 
-/* Top Color Strip */
-.color-strip.top {
-    height: 30px;
-    top: 0;
+function initializeQuestionTracker() {
+    const trackerContainer = document.getElementById('question-tracker');
+    console.log("Initializing question tracker...");  // Debugging log
+
+    trackerContainer.innerHTML = ''; // Clear any existing content
+
+    questions.forEach((_, index) => {
+        const trackerItem = document.createElement('div');
+        trackerItem.className = 'tracker-item unanswered';
+        trackerItem.id = `tracker-item-${index}`;
+        trackerItem.innerText = `Q${index + 1}`;
+        trackerContainer.appendChild(trackerItem);
+        console.log(`Tracker item for Q${index + 1} added.`);  // Debugging log
+    });
 }
 
-/* Bottom Color Strip */
-.color-strip.bottom {
-    height: 30px; 
-    bottom: 0; 
+function startExam() {
+    currentQuestionIndex = 0;
+    currentOptionIndex = 0;
+    score = 0;
+    isCurrentQuestionCorrect = true;
+    updateQuestionTracker();
+    displayQuestion();
+    startTimer();
 }
 
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #F0F0F0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
+function updateQuestionTracker() {
+    questions.forEach((_, index) => {
+        const trackerItem = document.getElementById(`tracker-item-${index}`);
+        if (index === currentQuestionIndex) {
+            trackerItem.className = 'tracker-item active';
+        } else if (index < currentQuestionIndex) {
+            trackerItem.className = 'tracker-item answered';
+        } else {
+            trackerItem.className = 'tracker-item unanswered';
+        }
+    });
 }
 
-/* Header */
-header {
-    background-color: #FFFFFF;
-    color: black;
-    text-align: center;
-    padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    top: 30px; 
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+function displayQuestion() {
+    const questionObj = questions[currentQuestionIndex];
+    const questionElement = document.getElementById('question');
+    const optionElement = document.getElementById('option');
+    const buttonContainer = document.querySelector('.buttons');
+
+    // Clear existing options
+    optionElement.innerHTML = '';
+
+    // Determine question type
+    if (questionObj.type === 'reorder') {
+        // Reordering question type
+        buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
+        reorderAnswers = shuffleArray(questionObj.options);
+
+        reorderAnswers.forEach((option, index) => {
+            const optionBox = document.createElement('div');
+            optionBox.className = 'reorder-option';
+            optionBox.innerText = option.answer;
+            optionBox.draggable = true;
+            optionBox.id = `option-${index}`;
+            optionElement.appendChild(optionBox);
+        });
+
+        enableDragAndDrop();
+    } else {
+        // Regular question type
+        questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
+        displayNextOption();
+    }
 }
 
-#logo {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 120px;
-    height: auto;
+function displayNextOption() {
+    const questionObj = questions[currentQuestionIndex];
+    const optionElement = document.getElementById('option');
+    const buttonContainer = document.querySelector('.buttons');
+
+    buttonContainer.innerHTML = `
+        <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+        <button onclick="handleResponse(false)" class="no-btn">No</button>
+    `;
+
+    optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.2rem;
-    padding: 0 100px;
+function handleResponse(userResponse) {
+    const questionObj = questions[currentQuestionIndex];
+    const currentOption = questionObj.options[currentOptionIndex];
+
+    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+        // User got this option right, do nothing
+    } else {
+        isCurrentQuestionCorrect = false;
+    }
+
+    currentOptionIndex++;
+    if (currentOptionIndex < questionObj.options.length) {
+        displayNextOption();
+    } else {
+        if (isCurrentQuestionCorrect) {
+            score += 1;
+        }
+        currentOptionIndex = 0;
+        currentQuestionIndex++;
+        isCurrentQuestionCorrect = true;
+
+        updateQuestionTracker();
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            endExam();
+        }
+    }
 }
 
-#timer {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color: #FFFFFF;
-    color: #0A2E36;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 2px solid #CD4131;
-    z-index: 1000;
+function submitReorder() {
+    const questionObj = questions[currentQuestionIndex];
+    const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
+
+    const correctOrder = questionObj.options.map(option => option.answer);
+    let correctOrderMatch = true;
+
+    userOrder.forEach((answer, index) => {
+        if (answer !== correctOrder[index]) {
+            correctOrderMatch = false;
+        }
+    });
+
+    if (correctOrderMatch) {
+        score += 1;
+    }
+
+    currentQuestionIndex++;
+    updateQuestionTracker();
+
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+    } else {
+        endExam();
+    }
 }
 
-/* Main Content */
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 130px);
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    margin-top: 80px;
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
 }
 
-/* Question Tracker */
-#question-tracker {
-    position: fixed;
-    left: 0;
-    top: calc(30px + 60px);
-    width: 100px;
-    height: calc(100vh - 190px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f4f4f9;
-    padding: 5px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    border-right: 2px solid #e0e0e0;
-    z-index: 1000;
+function enableDragAndDrop() {
+    const draggableItems = document.querySelectorAll('.reorder-option');
+
+    draggableItems.forEach((item) => {
+        item.addEventListener('dragstart', dragStart);
+        item.addEventListener('dragover', dragOver);
+        item.addEventListener('dragenter', dragEnter);
+        item.addEventListener('dragleave', dragLeave);
+        item.addEventListener('drop', drop);
+        item.addEventListener('dragend', dragEnd);
+    });
 }
 
-.tracker-item {
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.8rem;
-    color: white;
+function dragStart(event) {
+    event.dataTransfer.setData('text/plain', event.target.id);
+    event.target.classList.add('dragging');
 }
 
-.tracker-item.active {
-    background-color: #6200ea;
+function dragOver(event) {
+    event.preventDefault();
 }
 
-.tracker-item.answered {
-    background-color: #4caf50;
+function dragEnter(event) {
+    event.target.classList.add('drag-over');
 }
 
-.tracker-item.unanswered {
-    background-color: #f44336;
+function dragLeave(event) {
+    event.target.classList.remove('drag-over');
 }
 
-/* Question Container */
-.question-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-left: 120px;
-    width: calc(100% - 120px);
-    padding-bottom: 60px;
+function drop(event) {
+    event.preventDefault();
+    const draggedId = event.dataTransfer.getData('text/plain');
+    const draggedElement = document.getElementById(draggedId);
+    const targetElement = event.target;
+
+    if (targetElement.classList.contains('reorder-option')) {
+        const parentElement = targetElement.parentElement;
+        parentElement.insertBefore(draggedElement, targetElement.nextSibling);
+    }
+
+    targetElement.classList.remove('drag-over');
 }
 
-/* Buttons */
-.buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-    justify-content: center;
+function dragEnd(event) {
+    event.target.classList.remove('dragging');
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 120px;
+function endExam() {
+    document.getElementById('exam-container').style.display = 'none';
+    document.getElementById('result-container').style.display = 'block';
+    document.getElementById('score').innerText = `${score}/${questions.length}`;
+    clearInterval(timerInterval); // Stop the timer when the exam ends
 }
 
-.yes-btn {
-    background-color: #4caf50;
-    color: white;
+/* Timer Code */
+let timerElement = document.getElementById('timer');
+let totalTime = 15 * 60; // Set the timer for 15 minutes
+let timerInterval;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        timerElement.textContent = `${minutes}:${seconds}`;
+
+        if (totalTime > 0) {
+            totalTime--; // Decrement the total time
+        } else {
+            clearInterval(timerInterval);
+            alert("Time's up!");
+            endExam(); // End the exam when time is up
+        }
+    }, 1000);
 }
 
-.yes-btn:hover {
-    background-color: #388e3c;
-}
-
-.no-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-.no-btn:hover {
-    background-color: #d32f2f;
-}
-
-/* Result Container */
-#result-container {
-    text-align: center;
-}
-
-#result-container h2 {
-    margin-bottom: 20px;
-}
-
-#result-container p {
-    font-size: 1.5rem;
-}
-
-/* Footer */
-footer {
-    background-color: #FFFFFF;
-    color: black;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: auto;
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-    z-index: 1000;
-}
-
-footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-}
-
-.question-container p {
-    transition: opacity 0.3s ease-in;
-}
-
-/* Reordering Option Boxes */
-.reorder-option {
-    background-color: #f4f4f9;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: move;
-    text-align: center;
-    width: 200px;
-}
+window.onload = loadQuestions;
