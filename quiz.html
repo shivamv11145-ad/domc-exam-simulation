@@ -93,18 +93,24 @@
             font-size: 14px;
         }
 
-        /* Footer (if needed for extra content) */
-        footer {
-            position: fixed;
-            bottom: 30px; /* Above the bottom color strip */
-            width: 100%;
-            background-color: #ffffff;
+        /* Result container */
+        #result-container {
+            display: none;
             text-align: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            z-index: 5;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px auto;
         }
 
+        #result-container h2 {
+            margin-bottom: 20px;
+        }
+
+        #result-container p {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -148,11 +154,17 @@
                 <!-- Buttons will be inserted here -->
             </div>
         </div>
+
+        <!-- Result Container -->
+        <div id="result-container">
+            <h2>Exam Completed</h2>
+            <p>Your score: <span id="score"></span></p>
+        </div>
     </main>
 
     <!-- Bottom Color Strip with Copyright -->
     <div class="color-strip bottom">
-        <p>&copy; 2024 All rights reserved</p>
+        <p>&copy; 2024 Cyderes LLC. All rights reserved</p>
     </div>
 
     <script src="script.js"></script>
