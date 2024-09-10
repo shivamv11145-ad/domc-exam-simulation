@@ -143,6 +143,22 @@
         ]
     },
     {
+        "question": "Steps of configuring and setting up the VA",
+        "type": "reorder",
+        "options": [
+            {"answer": "Download the virtual appliance zip file", "correctOrder": 1},
+            {"answer": "Unzip and copy to your virtualization platform", "correctOrder": 2},
+            {"answer": "Start the virtual appliance image", "correctOrder": 3},
+            {"answer": "Login - User Name: sailpoint Password: S@ilp0int", "correctOrder": 4},
+            {"answer": "Change the password", "correctOrder": 5},
+            {"answer": "Disable Bump Service", "correctOrder": 6},
+            {"answer": "Download va-config-241-663.yaml", "correctOrder": 7},
+            {"answer": "Set the value of keyPassphrase in va-config-241-663.yaml to match your organization’s passphrase.", "correctOrder": 8},
+            {"answer": "Copy settings to ~/config.yaml on the virtual appliance:", "correctOrder": 9},
+            {"answer": "Test connection by clicking Test Appliance", "correctOrder": 10}
+        ]
+    },
+    {
         "question": "If deploying the VA's locally Each cluster should be installed in close proximity to the connected source system.",
         "options": [
             {"answer": "FALSE", "correct": false},
