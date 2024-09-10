@@ -214,13 +214,26 @@ footer p {
 }
 /* Add these at the end of your existing styles.css */
 
+/* Add these at the end of your existing styles.css */
+
 /* Fade-in and fade-out effects */
 .fade-out {
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Increased duration */
+    transform: scale(0.95); /* Slightly shrink */
 }
 
 .fade-in {
     opacity: 1;
-    transition: opacity 1s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Increased duration */
+    transform: scale(1); /* Restore original size */
+}
+
+/* Optional: Add a slight blur effect to the transition */
+.fade-out.blur {
+    filter: blur(2px); /* Add blur effect during fade-out */
+}
+
+.fade-in.blur {
+    filter: blur(0); /* Remove blur effect during fade-in */
 }
