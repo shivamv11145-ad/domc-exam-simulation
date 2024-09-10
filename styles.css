@@ -62,9 +62,9 @@ header {
 /* Center the header content */
 .header-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between logo and text */
 }
 
 /* SailPoint Logo */
@@ -74,7 +74,7 @@ header {
 
 /* Header Text */
 header h1 {
-    margin: 0;
+    margin: 5px 0 0 0; /* Small margin for spacing */
     font-size: 1.2rem;
     text-align: center;
 }
