@@ -42,11 +42,8 @@ header {
     left: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center; /* Center the header content */
-    align-items: center;
-    position: relative;
-    height: 60px; /* Adjust header height */
+    height: 60px;
+    position: relative; /* Ensures absolute positioning within the header */
 }
 
 /* Logo on the left */
@@ -59,12 +56,14 @@ header {
     height: auto;
 }
 
-/* Center the header content */
+/* Fixing the SailPoint logo and text in the center */
 .header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center-align both vertically and horizontally */
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: row;
 }
 
 /* SailPoint Logo */
@@ -84,7 +83,7 @@ header h1 {
 #timer {
     position: absolute;
     top: 50%;
-    right: 50px;
+    right: 50px; /* Adjusted as per your earlier fix */
     transform: translateY(-50%);
     font-size: 1.2rem;
     font-weight: bold;
