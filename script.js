@@ -80,6 +80,7 @@ function displayNextQuestion() {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         if (questionObj.type === 'reorder') {
+            // For reorder type question
             questionObj.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'reorder-option';
@@ -93,12 +94,61 @@ function displayNextQuestion() {
             });
             actionButton.innerText = 'Submit';
             actionButton.onclick = handleReorderSubmit;
-            actionButton.style.display = 'block';
         } else {
-            displayOptions(questionObj.options);
-            actionButton.innerText = 'Next';
-            actionButton.onclick = handleResponse;
-            actionButton.style.display = 'block';
+            // For regular type questions
+            if (currentOptionIndex < questionObj.options.length) {
+                const option = questionObj.options[currentOptionIndex];
+                const optionButton = document.createElement('button');
+                optionButton.className = 'option-button';
+                optionButton.innerText = option.answer;
+                optionButton.onclick = () => {
+                    // Handling option click logic here
+                    if (option.correct) {
+                        score += 1;
+                    }
+                    currentOptionIndex++;
+                    if (currentOptionIndex >= questionObj.options.length) {
+                        actionButton.innerText = 'Next';
+                        actionButton.onclick = handleResponse;
+                    } else {
+                        displayNextQuestion();
+                    }
+                };
+                optionElement.appendChild(optionButton);
+            }
+
+            // Add Yes/No buttons
+            const yesButton = document.createElement('button');
+            yesButton.className = 'yes-btn';
+            yesButton.innerText = 'Yes';
+            yesButton.onclick = () => {
+                if (questionObj.options[currentOptionIndex].correct) {
+                    score += 1;
+                }
+                currentOptionIndex++;
+                if (currentOptionIndex >= questionObj.options.length) {
+                    actionButton.innerText = 'Next';
+                    actionButton.onclick = handleResponse;
+                } else {
+                    displayNextQuestion();
+                }
+            };
+
+            const noButton = document.createElement('button');
+            noButton.className = 'no-btn';
+            noButton.innerText = 'No';
+            noButton.onclick = () => {
+                currentOptionIndex++;
+                if (currentOptionIndex >= questionObj.options.length) {
+                    actionButton.innerText = 'Next';
+                    actionButton.onclick = handleResponse;
+                } else {
+                    displayNextQuestion();
+                }
+            };
+
+            optionElement.appendChild(yesButton);
+            optionElement.appendChild(noButton);
         }
 
         // Fade in the question and options
@@ -107,61 +157,26 @@ function displayNextQuestion() {
     }, 300); // Match the duration with the CSS transition duration
 }
 
-function displayOptions(options) {
-    const optionElement = document.getElementById('option');
-    optionElement.innerHTML = '';
-
-    options.forEach((option, index) => {
-        const optionP = document.createElement('p');
-        optionP.className = 'option';
-        optionP.innerText = option.answer;
-        optionP.onclick = () => handleOptionClick(index);
-        optionElement.appendChild(optionP);
-    });
-
-    // Hide the submit button for regular questions
-    const actionButton = document.getElementById('action-button');
-    actionButton.style.display = 'none';
-}
-
-function handleOptionClick(index) {
-    const questionObj = questions[currentQuestionIndex];
-    const option = questionObj.options[index];
-
-    if (option.correct) {
-        score += 1;
-        isCurrentQuestionCorrect = true;
-    } else {
-        isCurrentQuestionCorrect = false;
-    }
-
-    // Proceed to the next question
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        displayNextQuestion();
-    } else {
-        endExam();
-    }
-}
-
 function handleResponse() {
     const questionObj = questions[currentQuestionIndex];
-    const optionElements = document.querySelectorAll('#option .option');
-    let isCorrect = true;
+    if (questionObj.type !== 'reorder') {
+        const optionElements = document.querySelectorAll('#option .option-button');
+        let isCorrect = true;
 
-    optionElements.forEach((element, index) => {
-        const option = questionObj.options[index];
-        if (element.innerText.includes(option.answer)) {
-            if (option.correct === false) {
+        optionElements.forEach((element, index) => {
+            const option = questionObj.options[index];
+            if (element.innerText.includes(option.answer)) {
+                if (option.correct === false) {
+                    isCorrect = false;
+                }
+            } else {
                 isCorrect = false;
             }
-        } else {
-            isCorrect = false;
-        }
-    });
+        });
 
-    if (isCorrect) {
-        score += 1;
+        if (isCorrect) {
+            score += 1;
+        }
     }
 
     currentQuestionIndex++;
@@ -225,34 +240,11 @@ function handleDrop(event) {
 function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.getElementById('score').innerText = `${score}/${questions.length}`;
-    clearInterval(timerInterval); // Stop the timer when the exam ends
+    document.getElementById('score').innerText = `${score} / ${questions.length}`;
 }
 
-/* Timer Code */
-let timerElement = document.getElementById('timer');
-let totalTime = 15 * 60; // Set the timer for 15 minutes
-let timerInterval;
-
 function startTimer() {
-    timerInterval = setInterval(() => {
-        let minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
-
-        if (seconds < 10) {
-            seconds = '0' + seconds;
-        }
-
-        timerElement.textContent = `${minutes}:${seconds}`;
-
-        if (totalTime > 0) {
-            totalTime--; // Decrement the total time
-        } else {
-            clearInterval(timerInterval);
-            alert("Time's up!");
-            endExam(); // End the exam when time is up
-        }
-    }, 1000);
+    // Implement your timer logic here
 }
 
 window.onload = loadQuestions;
