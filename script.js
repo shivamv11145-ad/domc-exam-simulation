@@ -15,7 +15,6 @@ async function loadQuestions() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         questions = await response.json();
-        console.log("Questions loaded:", questions);  // Debugging log
         initializeQuestionTracker();
         startExam();
     } catch (error) {
@@ -27,8 +26,6 @@ async function loadQuestions() {
 
 function initializeQuestionTracker() {
     const trackerContainer = document.getElementById('question-tracker');
-    console.log("Initializing question tracker...");  // Debugging log
-
     trackerContainer.innerHTML = ''; // Clear any existing content
 
     questions.forEach((_, index) => {
@@ -37,7 +34,6 @@ function initializeQuestionTracker() {
         trackerItem.id = `tracker-item-${index}`;
         trackerItem.innerText = `Q${index + 1}`;
         trackerContainer.appendChild(trackerItem);
-        console.log(`Tracker item for Q${index + 1} added.`);  // Debugging log
     });
 }
 
@@ -67,7 +63,6 @@ function updateQuestionTracker() {
 function displayQuestion() {
     const questionObj = questions[currentQuestionIndex];
 
-    // Determine question type
     if (questionObj.type === 'reorder') {
         document.querySelector('.question-option-container').style.display = 'none';
         document.querySelector('.question-container').style.display = 'block';
@@ -105,7 +100,7 @@ function displayQuestion() {
         buttonContainer.innerHTML = '';
 
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-        currentOptionIndex = 0; // Reset option index for the new question
+        currentOptionIndex = 0;
         displayNextOption();
     }
 }
@@ -266,11 +261,11 @@ function startTimer() {
         timerElement.textContent = `${minutes}:${seconds}`;
 
         if (totalTime > 0) {
-            totalTime--;
+            totalTime--; // Decrement the total time
         } else {
             clearInterval(timerInterval);
             alert("Time's up!");
-            endExam();
+            endExam(); // End the exam when time is up
         }
     }, 1000);
 }
