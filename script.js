@@ -6,7 +6,6 @@ let isCurrentQuestionCorrect = true;
 
 async function loadQuestions() {
     const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
-
     const quizFileUrl = `https://raw.githubusercontent.com/shivamv11145-ad/domc-exam-simulation/main/${selectedQuiz}`;
 
     try {
@@ -69,11 +68,7 @@ function displayNextOption() {
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
 
-    // Add blur effect for better visibility (optional)
-    questionElement.classList.add('blur');
-    optionElement.classList.add('blur');
-
-    // Apply fade-out effect
+    // Fade out the question and option
     questionElement.classList.add('fade-out');
     optionElement.classList.add('fade-out');
 
@@ -81,18 +76,11 @@ function displayNextOption() {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
         optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
 
-        // Apply fade-in effect
+        // Fade in the question and option
         questionElement.classList.remove('fade-out');
         optionElement.classList.remove('fade-out');
-        questionElement.classList.add('fade-in');
-        optionElement.classList.add('fade-in');
-
-        // Remove blur effect after transition
-        questionElement.classList.remove('blur');
-        optionElement.classList.remove('blur');
-    }, 600); // Match the transition duration
+    }, 300); // Match the duration with the CSS transition duration
 }
-
 
 function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
@@ -134,7 +122,7 @@ function endExam() {
 
 /* Timer Code */
 let timerElement = document.getElementById('timer');
-let totalTime = 15 * 60; // Set the timer for 10 minutes
+let totalTime = 15 * 60; // Set the timer for 15 minutes
 let timerInterval;
 
 function startTimer() {
