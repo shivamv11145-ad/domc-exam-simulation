@@ -196,19 +196,23 @@ function submitReorder() {
         }
     });
 
+    // Increment score if the order is correct
     if (correctOrderMatch) {
         score += 1;
     }
 
+    // Move to the next question
     currentQuestionIndex++;
     updateQuestionTracker();
 
+    // Check if there are more questions or end the exam
     if (currentQuestionIndex < questions.length) {
         displayQuestion();
     } else {
         endExam();
     }
 }
+
 
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
