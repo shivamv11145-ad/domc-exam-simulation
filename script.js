@@ -20,8 +20,8 @@ async function loadQuestions() {
         startExam();
     } catch (error) {
         console.error('Error loading questions:', error);
-        document.getElementById('question').innerText = 'Failed to load questions. Please try again later.';
-        document.getElementById('option').innerText = '';
+        document.getElementById('regular-question').innerText = 'Failed to load questions. Please try again later.';
+        document.getElementById('regular-option').innerText = '';
     }
 }
 
@@ -66,25 +66,26 @@ function updateQuestionTracker() {
 
 function displayQuestion() {
     const questionObj = questions[currentQuestionIndex];
-    const questionElement = document.getElementById('question');
-    const optionElement = document.getElementById('option');
-    const buttonContainer = document.querySelector('.buttons');
-
-    // Clear existing options and buttons
-    optionElement.innerHTML = '';
-    buttonContainer.innerHTML = '';
-
-    // Update the question number and content dynamically
-    questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
     // Determine question type
     if (questionObj.type === 'reorder') {
         // Reordering question type
         document.querySelector('.question-option-container').style.display = 'none'; // Hide regular question layout
-        document.querySelector('.question-container').style.display = 'block'; // Show default container
+        document.querySelector('.question-container').style.display = 'block'; // Show reorder question container
+
+        const questionElement = document.getElementById('reorder-question');
+        const optionElement = document.getElementById('reorder-option');
+        const buttonContainer = document.getElementById('reorder-buttons');
+
+        // Clear existing options and buttons
+        optionElement.innerHTML = '';
+        buttonContainer.innerHTML = '';
+
+        // Update the question number and content dynamically
+        questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
-        reorderAnswers = shuffleArray(questionObj.options);
+        reorderAnswers = shuffleArray([...questionObj.options]); // Clone array to avoid mutating original
 
         reorderAnswers.forEach((option, index) => {
             const optionBox = document.createElement('div');
@@ -99,17 +100,28 @@ function displayQuestion() {
     } else {
         // Regular question type
         document.querySelector('.question-option-container').style.display = 'flex'; // Show regular question layout
-        document.querySelector('.question-container').style.display = 'none'; // Hide default container
+        document.querySelector('.question-container').style.display = 'none'; // Hide reorder question container
+
+        const questionElement = document.getElementById('regular-question');
+        const optionElement = document.getElementById('regular-option');
+        const buttonContainer = document.getElementById('regular-buttons');
+
+        // Clear existing options and buttons
+        optionElement.innerHTML = '';
+        buttonContainer.innerHTML = '';
+
+        // Update the question number and content dynamically
+        questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         currentOptionIndex = 0; // Reset option index for the new question
-        displayNextOption(); // Start by displaying the first option
+        displayNextOption();
     }
 }
 
 function displayNextOption() {
     const questionObj = questions[currentQuestionIndex];
-    const optionElement = document.getElementById('option');
-    const buttonContainer = document.querySelector('.buttons');
+    const optionElement = document.getElementById('regular-option');
+    const buttonContainer = document.getElementById('regular-buttons');
 
     // Clear the current option
     optionElement.innerHTML = '';
@@ -164,7 +176,10 @@ function submitReorder() {
     const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
 
     // Sort correct order based on correctOrder property
-    const correctOrder = questionObj.options.sort((a, b) => a.correctOrder - b.correctOrder).map(option => option.answer);
+    const correctOrder = questionObj.options
+        .slice()
+        .sort((a, b) => a.correctOrder - b.correctOrder)
+        .map(option => option.answer);
     
     let correctOrderMatch = true;
     userOrder.forEach((answer, index) => {
@@ -217,11 +232,15 @@ function dragOver(event) {
 }
 
 function dragEnter(event) {
-    event.target.classList.add('drag-over');
+    if (event.target.classList.contains('reorder-option')) {
+        event.target.classList.add('drag-over');
+    }
 }
 
 function dragLeave(event) {
-    event.target.classList.remove('drag-over');
+    if (event.target.classList.contains('reorder-option')) {
+        event.target.classList.remove('drag-over');
+    }
 }
 
 function drop(event) {
@@ -251,7 +270,7 @@ function endExam() {
 
 /* Timer Code */
 let timerElement = document.getElementById('timer');
-let totalTime = 40 * 60; // Set the timer for 15 minutes
+let totalTime = 40 * 60; // Set the timer for 40 minutes
 let timerInterval;
 
 function startTimer() {
