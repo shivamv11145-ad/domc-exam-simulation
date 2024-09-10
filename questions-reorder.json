@@ -46,14 +46,10 @@
             {"answer": "Create a new identity profile.", "correctOrder": 2},
             {"answer": "Add new identity attributes.", "correctOrder": 3},
             {"answer": "Modify the mappings for an identity profile.", "correctOrder": 4},
-            {"answer": "Create new transforms (If needed).", "correctOrder": 5},
-            {"answer": "Aggregate from the source.", "correctOrder": 6},
-            {"answer": "Define an aggregation schedule.", "correctOrder": 7},
-            {"answer": "Authentication", "correctOrder": 8},
-            {"answer": "Lifecycles", "correctOrder": 9},
-            {"answer": "Correlation", "correctOrder": 10},
-            {"answer": "Role Modelling", "correctOrder": 11},
-            {"answer": "Provisioning ", "correctOrder": 12}
+            {"answer": "Aggregate & define schedule.", "correctOrder": 5},
+            {"answer": "Authentication", "correctOrder": 6},
+            {"answer": "Lifecycles & Correlation", "correctOrder": 7},
+            {"answer": "Provisioning ", "correctOrder": 8}
         ]
     },
     {
