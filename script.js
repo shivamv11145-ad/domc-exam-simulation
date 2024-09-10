@@ -68,6 +68,9 @@ function displayNextQuestion() {
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
     const actionButton = document.getElementById('action-button');
+    const yesButton = document.getElementById('yes-btn');
+    const noButton = document.getElementById('no-btn');
+    const submitButton = document.getElementById('submit-button');
 
     // Clear previous content
     optionElement.innerHTML = '';
@@ -80,7 +83,6 @@ function displayNextQuestion() {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         if (questionObj.type === 'reorder') {
-            // For reorder type question
             questionObj.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'reorder-option';
@@ -92,63 +94,20 @@ function displayNextQuestion() {
                 optionDiv.addEventListener('drop', handleDrop);
                 optionElement.appendChild(optionDiv);
             });
-            actionButton.innerText = 'Submit';
-            actionButton.onclick = handleReorderSubmit;
+            // Hide the Yes/No buttons and show Submit button
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            actionButton.style.display = 'none';
+            submitButton.style.display = 'inline-block';
         } else {
-            // For regular type questions
-            if (currentOptionIndex < questionObj.options.length) {
-                const option = questionObj.options[currentOptionIndex];
-                const optionButton = document.createElement('button');
-                optionButton.className = 'option-button';
-                optionButton.innerText = option.answer;
-                optionButton.onclick = () => {
-                    // Handling option click logic here
-                    if (option.correct) {
-                        score += 1;
-                    }
-                    currentOptionIndex++;
-                    if (currentOptionIndex >= questionObj.options.length) {
-                        actionButton.innerText = 'Next';
-                        actionButton.onclick = handleResponse;
-                    } else {
-                        displayNextQuestion();
-                    }
-                };
-                optionElement.appendChild(optionButton);
-            }
+            // Show Yes/No buttons and hide Submit button
+            yesButton.style.display = 'inline-block';
+            noButton.style.display = 'inline-block';
+            actionButton.style.display = 'none';
+            submitButton.style.display = 'none';
 
-            // Add Yes/No buttons
-            const yesButton = document.createElement('button');
-            yesButton.className = 'yes-btn';
-            yesButton.innerText = 'Yes';
-            yesButton.onclick = () => {
-                if (questionObj.options[currentOptionIndex].correct) {
-                    score += 1;
-                }
-                currentOptionIndex++;
-                if (currentOptionIndex >= questionObj.options.length) {
-                    actionButton.innerText = 'Next';
-                    actionButton.onclick = handleResponse;
-                } else {
-                    displayNextQuestion();
-                }
-            };
-
-            const noButton = document.createElement('button');
-            noButton.className = 'no-btn';
-            noButton.innerText = 'No';
-            noButton.onclick = () => {
-                currentOptionIndex++;
-                if (currentOptionIndex >= questionObj.options.length) {
-                    actionButton.innerText = 'Next';
-                    actionButton.onclick = handleResponse;
-                } else {
-                    displayNextQuestion();
-                }
-            };
-
-            optionElement.appendChild(yesButton);
-            optionElement.appendChild(noButton);
+            // Display options one by one
+            displayOption(0);
         }
 
         // Fade in the question and options
@@ -157,10 +116,28 @@ function displayNextQuestion() {
     }, 300); // Match the duration with the CSS transition duration
 }
 
-function handleResponse() {
+function displayOption(index) {
+    const questionObj = questions[currentQuestionIndex];
+    const optionElement = document.getElementById('option');
+    if (index < questionObj.options.length) {
+        const optionP = document.createElement('p');
+        optionP.className = 'option';
+        optionP.innerText = `Option: ${questionObj.options[index].answer}`;
+        optionElement.appendChild(optionP);
+
+        // Automatically move to next option after 1 second
+        setTimeout(() => displayOption(index + 1), 1000);
+    } else {
+        // All options are displayed, show Yes/No buttons
+        document.getElementById('yes-btn').style.display = 'inline-block';
+        document.getElementById('no-btn').style.display = 'inline-block';
+    }
+}
+
+function handleResponse(isYes) {
     const questionObj = questions[currentQuestionIndex];
     if (questionObj.type !== 'reorder') {
-        const optionElements = document.querySelectorAll('#option .option-button');
+        const optionElements = document.querySelectorAll('#option .option');
         let isCorrect = true;
 
         optionElements.forEach((element, index) => {
@@ -219,32 +196,37 @@ function handleDrop(event) {
     event.preventDefault();
     const draggedIndex = event.dataTransfer.getData('text/plain');
     const draggedElement = document.querySelector(`.reorder-option[data-index="${draggedIndex}"]`);
-    const dropTarget = event.target.closest('.reorder-option');
+    const targetElement = event.target;
 
-    if (dropTarget && dropTarget !== draggedElement) {
+    if (targetElement.classList.contains('reorder-option') && targetElement !== draggedElement) {
+        const tempIndex = draggedElement.dataset.index;
+        draggedElement.dataset.index = targetElement.dataset.index;
+        targetElement.dataset.index = tempIndex;
+
         const parent = draggedElement.parentNode;
-        const draggedIndexNum = parseInt(draggedIndex, 10);
-        const dropIndexNum = parseInt(dropTarget.dataset.index, 10);
-
-        parent.insertBefore(draggedElement, dropTarget.nextSibling);
-        if (draggedIndexNum < dropIndexNum) {
-            parent.insertBefore(dropTarget, draggedElement);
-        } else {
-            parent.insertBefore(dropTarget, draggedElement.nextSibling);
-        }
+        parent.insertBefore(draggedElement, targetElement.nextSibling);
     }
-
-    draggedElement.classList.remove('dragging');
 }
 
 function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.getElementById('score').innerText = `${score} / ${questions.length}`;
+    document.getElementById('score').innerText = score;
 }
 
 function startTimer() {
-    // Implement your timer logic here
+    let timer = document.getElementById('timer');
+    let minutes = 0;
+    let seconds = 0;
+
+    setInterval(() => {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+        }
+        timer.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
 }
 
-window.onload = loadQuestions;
+document.addEventListener('DOMContentLoaded', loadQuestions);
