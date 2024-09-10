@@ -46,7 +46,7 @@ function startExam() {
     score = 0;
     isCurrentQuestionCorrect = true;
     updateQuestionTracker();
-    displayNextOption();
+    displayNextQuestion();
     startTimer();
 }
 
@@ -63,12 +63,16 @@ function updateQuestionTracker() {
     });
 }
 
-function displayNextOption() {
+function displayNextQuestion() {
     const questionObj = questions[currentQuestionIndex];
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
+    const actionButton = document.getElementById('action-button');
 
-    // Fade out the question and option
+    // Clear previous content
+    optionElement.innerHTML = '';
+
+    // Fade out the question and options
     questionElement.classList.add('fade-out');
     optionElement.classList.add('fade-out');
 
@@ -76,46 +80,88 @@ function displayNextOption() {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         if (questionObj.type === 'reorder') {
-            displayReorderOptions(questionObj);
+            questionObj.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'reorder-option';
+                optionDiv.draggable = true;
+                optionDiv.dataset.index = index;
+                optionDiv.innerText = option.answer;
+                optionDiv.addEventListener('dragstart', handleDragStart);
+                optionDiv.addEventListener('dragover', handleDragOver);
+                optionDiv.addEventListener('drop', handleDrop);
+                optionElement.appendChild(optionDiv);
+            });
+            actionButton.innerText = 'Submit';
+            actionButton.onclick = handleReorderSubmit;
         } else {
-            optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
-            // Fade in the question and option
-            questionElement.classList.remove('fade-out');
-            optionElement.classList.remove('fade-out');
+            questionObj.options.forEach((option, index) => {
+                const optionP = document.createElement('p');
+                optionP.className = 'option';
+                optionP.innerText = `Option: ${option.answer}`;
+                optionElement.appendChild(optionP);
+            });
+            actionButton.innerText = 'Next';
+            actionButton.onclick = handleResponse;
         }
+
+        // Fade in the question and options
+        questionElement.classList.remove('fade-out');
+        optionElement.classList.remove('fade-out');
     }, 300); // Match the duration with the CSS transition duration
 }
 
-function displayReorderOptions(questionObj) {
-    const optionElement = document.getElementById('option');
-    optionElement.innerHTML = ''; // Clear previous options
+function handleResponse() {
+    const questionObj = questions[currentQuestionIndex];
+    if (questionObj.type !== 'reorder') {
+        const optionElements = document.querySelectorAll('#option .option');
+        let isCorrect = true;
 
-    // Create draggable options
-    questionObj.options.forEach((option, index) => {
-        const optionDiv = document.createElement('div');
-        optionDiv.className = 'reorder-option';
-        optionDiv.draggable = true;
-        optionDiv.innerText = option.answer;
-        optionDiv.dataset.index = index;
+        optionElements.forEach((element, index) => {
+            const option = questionObj.options[index];
+            if (element.innerText.includes(option.answer)) {
+                if (option.correct === false) {
+                    isCorrect = false;
+                }
+            } else {
+                isCorrect = false;
+            }
+        });
 
-        // Add event listeners for drag and drop
-        optionDiv.addEventListener('dragstart', handleDragStart);
-        optionDiv.addEventListener('dragover', handleDragOver);
-        optionDiv.addEventListener('drop', handleDrop);
-        optionDiv.addEventListener('dragend', handleDragEnd);
+        if (isCorrect) {
+            score += 1;
+        }
+    }
 
-        optionElement.appendChild(optionDiv);
-    });
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayNextQuestion();
+    } else {
+        endExam();
+    }
+}
 
-    // Fade in the question and options
-    const questionElement = document.getElementById('question');
-    questionElement.classList.remove('fade-out');
-    optionElement.classList.remove('fade-out');
+function handleReorderSubmit() {
+    const questionObj = questions[currentQuestionIndex];
+    const optionElements = Array.from(document.querySelectorAll('#option .reorder-option'));
+    const userAnswers = optionElements.map(element => element.innerText);
+
+    const correctAnswers = questionObj.options.map(option => option.answer);
+
+    if (JSON.stringify(userAnswers) === JSON.stringify(correctAnswers)) {
+        score += 1;
+    }
+
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayNextQuestion();
+    } else {
+        endExam();
+    }
 }
 
 function handleDragStart(event) {
-    draggedElement = event.target;
-    event.target.style.opacity = '0.5';
+    event.dataTransfer.setData('text/plain', event.target.dataset.index);
+    event.target.classList.add('dragging');
 }
 
 function handleDragOver(event) {
@@ -124,68 +170,24 @@ function handleDragOver(event) {
 
 function handleDrop(event) {
     event.preventDefault();
-    if (event.target.className === 'reorder-option') {
-        const targetElement = event.target;
-        const parent = targetElement.parentNode;
-        parent.insertBefore(draggedElement, targetElement.nextSibling);
-    }
-}
+    const draggedIndex = event.dataTransfer.getData('text/plain');
+    const draggedElement = document.querySelector(`.reorder-option[data-index="${draggedIndex}"]`);
+    const dropTarget = event.target.closest('.reorder-option');
 
-function handleDragEnd(event) {
-    event.target.style.opacity = '';
-    // Update the order based on the new arrangement
-    updateOrder();
-}
+    if (dropTarget && dropTarget !== draggedElement) {
+        const parent = draggedElement.parentNode;
+        const draggedIndexNum = parseInt(draggedIndex, 10);
+        const dropIndexNum = parseInt(dropTarget.dataset.index, 10);
 
-function updateOrder() {
-    const reorderedOptions = Array.from(document.querySelectorAll('.reorder-option'));
-    const reorderedIndices = reorderedOptions.map(option => parseInt(option.dataset.index, 10));
-
-    // Check if reordered indices match the correct order
-    const questionObj = questions[currentQuestionIndex];
-    const correctOrder = questionObj.options.map(option => option.correctOrder);
-
-    if (JSON.stringify(reorderedIndices) === JSON.stringify(correctOrder)) {
-        isCurrentQuestionCorrect = true;
-    } else {
-        isCurrentQuestionCorrect = false;
-    }
-}
-
-function handleResponse(userResponse) {
-    const questionObj = questions[currentQuestionIndex];
-
-    if (questionObj.type === 'reorder') {
-        // No user response handling for re-ordering, handled in updateOrder
-    } else {
-        const currentOption = questionObj.options[currentOptionIndex];
-
-        if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
-            // User got this option right, do nothing
+        parent.insertBefore(draggedElement, dropTarget.nextSibling);
+        if (draggedIndexNum < dropIndexNum) {
+            parent.insertBefore(dropTarget, draggedElement);
         } else {
-            isCurrentQuestionCorrect = false;
-        }
-
-        currentOptionIndex++;
-        if (currentOptionIndex < questionObj.options.length) {
-            displayNextOption();
-        } else {
-            if (isCurrentQuestionCorrect) {
-                score += 1;
-            }
-            currentOptionIndex = 0;
-            currentQuestionIndex++;
-            isCurrentQuestionCorrect = true;
-
-            updateQuestionTracker();
-
-            if (currentQuestionIndex < questions.length) {
-                displayNextOption();
-            } else {
-                endExam();
-            }
+            parent.insertBefore(dropTarget, draggedElement.nextSibling);
         }
     }
+
+    draggedElement.classList.remove('dragging');
 }
 
 function endExam() {
