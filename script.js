@@ -3,6 +3,7 @@ let currentQuestionIndex = 0;
 let currentOptionIndex = 0;
 let score = 0;
 let isCurrentQuestionCorrect = true;
+let reorderAnswers = [];
 
 async function loadQuestions() {
     const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
@@ -46,7 +47,7 @@ function startExam() {
     score = 0;
     isCurrentQuestionCorrect = true;
     updateQuestionTracker();
-    displayNextOption();
+    displayQuestion();
     startTimer();
 }
 
@@ -63,23 +64,49 @@ function updateQuestionTracker() {
     });
 }
 
-function displayNextOption() {
+function displayQuestion() {
     const questionObj = questions[currentQuestionIndex];
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
+    const buttonContainer = document.querySelector('.buttons');
 
-    // Fade out the question and option
-    questionElement.classList.add('fade-out');
-    optionElement.classList.add('fade-out');
+    // Clear existing options
+    optionElement.innerHTML = '';
 
-    setTimeout(() => {
+    // Determine question type
+    if (questionObj.type === 'reorder') {
+        // Reordering question type
+        buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
+        reorderAnswers = shuffleArray(questionObj.options);
+
+        reorderAnswers.forEach((option, index) => {
+            const optionBox = document.createElement('div');
+            optionBox.className = 'reorder-option';
+            optionBox.innerText = option.answer;
+            optionBox.draggable = true;
+            optionBox.id = `option-${index}`;
+            optionElement.appendChild(optionBox);
+        });
+
+        enableDragAndDrop();
+    } else {
+        // Regular question type
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-        optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
+        displayNextOption();
+    }
+}
 
-        // Fade in the question and option
-        questionElement.classList.remove('fade-out');
-        optionElement.classList.remove('fade-out');
-    }, 300); // Match the duration with the CSS transition duration
+function displayNextOption() {
+    const questionObj = questions[currentQuestionIndex];
+    const optionElement = document.getElementById('option');
+    const buttonContainer = document.querySelector('.buttons');
+
+    buttonContainer.innerHTML = `
+        <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+        <button onclick="handleResponse(false)" class="no-btn">No</button>
+    `;
+
+    optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
 }
 
 function handleResponse(userResponse) {
@@ -106,11 +133,69 @@ function handleResponse(userResponse) {
         updateQuestionTracker();
 
         if (currentQuestionIndex < questions.length) {
-            displayNextOption();
+            displayQuestion();
         } else {
             endExam();
         }
     }
+}
+
+function submitReorder() {
+    const questionObj = questions[currentQuestionIndex];
+    const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
+
+    let correctOrder = true;
+    userOrder.forEach((answer, index) => {
+        if (answer !== questionObj.options[index].answer) {
+            correctOrder = false;
+        }
+    });
+
+    if (correctOrder) {
+        score += 1;
+    }
+
+    currentQuestionIndex++;
+    updateQuestionTracker();
+
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+    } else {
+        endExam();
+    }
+}
+
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function enableDragAndDrop() {
+    const draggableItems = document.querySelectorAll('.reorder-option');
+
+    draggableItems.forEach((item) => {
+        item.addEventListener('dragstart', dragStart);
+        item.addEventListener('dragover', dragOver);
+        item.addEventListener('drop', drop);
+    });
+}
+
+function dragStart(event) {
+    event.dataTransfer.setData('text/plain', event.target.id);
+}
+
+function dragOver(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    const draggedId = event.dataTransfer.getData('text/plain');
+    const draggedElement = document.getElementById(draggedId);
+    const targetElement = event.target;
+
+    // Swap the positions of dragged and target elements
+    const parentElement = targetElement.parentElement;
+    parentElement.insertBefore(draggedElement, targetElement.nextSibling);
 }
 
 function endExam() {
