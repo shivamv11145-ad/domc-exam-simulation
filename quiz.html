@@ -27,26 +27,24 @@
         <div class="question-option-container" style="display: none;">
             <!-- Question Box -->
             <div class="question-box">
-                <p id="question">Loading...</p>
+                <p id="regular-question">Loading...</p>
             </div>
 
             <!-- Option Box -->
             <div class="option-box">
-                <p id="option">Loading...</p>
-                <div class="buttons">
-                    <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-                    <button onclick="handleResponse(false)" class="no-btn">No</button>
+                <p id="regular-option">Loading...</p>
+                <div id="regular-buttons" class="buttons">
+                    <!-- Buttons will be inserted here -->
                 </div>
             </div>
         </div>
 
         <!-- Question Container for Reordering Questions -->
-        <div class="question-container">
-            <p id="question">Loading...</p>
-            <p id="option">Loading...</p>
-            <div class="buttons">
-                <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-                <button onclick="handleResponse(false)" class="no-btn">No</button>
+        <div class="question-container" style="display: none;">
+            <p id="reorder-question">Loading...</p>
+            <div id="reorder-option"></div>
+            <div id="reorder-buttons" class="buttons">
+                <!-- Buttons will be inserted here -->
             </div>
         </div>
     </main>
