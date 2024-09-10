@@ -1,5 +1,23 @@
 [
     {
+        "question": "Which of these VA log files is NOT a valid name?",
+        "options": [
+            {"answer": "ccg", "correct": false},
+            {"answer": "va_agent", "correct": false},
+            {"answer": "fluent", "correct": false},
+            {"answer": "sailpoint", "correct": true}
+        ]
+    },
+    {
+        "question": "How can you check if your VA's are having the expected Gateway, Netmask and IP Address configured?",
+        "options": [
+            {"answer": "ifconfig /p", "correct": false},
+            {"answer": "ipconfig", "correct": false},
+            {"answer": "ipconfig /f", "correct": false},
+            {"answer": "ifconfig", "correct": true}
+        ]
+    },
+    {
         "question": "Arrange the steps in the correct order:",
         "type": "reorder",
         "options": [
