@@ -6,6 +6,55 @@
     <title>DOMC Exam Simulation</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Matching the header style with index.html */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            position: fixed;
+            top: 30px; /* Adjusted for top color strip height */
+            left: 0;
+            display: flex;
+            justify-content: space-between; /* Distribute items */
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            z-index: 20;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #logo {
+            height: 40px;
+            position: absolute;
+            left: 20px; /* Keep Cyderes logo aligned left */
+        }
+
+        #sailpoint-logo {
+            height: 40px;
+        }
+
+        header h1 {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        #timer {
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #FFFFFF;
+            color: #0A2E36;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #CD4131;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Top Color Strip -->
