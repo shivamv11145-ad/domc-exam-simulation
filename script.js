@@ -70,8 +70,9 @@ function displayQuestion() {
     const optionElement = document.getElementById('option');
     const buttonContainer = document.querySelector('.buttons');
 
-    // Clear existing options
+    // Clear existing options and buttons
     optionElement.innerHTML = '';
+    buttonContainer.innerHTML = '';
 
     // Determine question type
     if (questionObj.type === 'reorder') {
@@ -92,7 +93,18 @@ function displayQuestion() {
     } else {
         // Regular question type
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-        displayNextOption();
+        questionObj.options.forEach((option, index) => {
+            const optionBox = document.createElement('div');
+            optionBox.className = 'option';
+            optionBox.innerText = option.answer;
+            optionElement.appendChild(optionBox);
+        });
+
+        // Add Yes/No buttons
+        buttonContainer.innerHTML = `
+            <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+            <button onclick="handleResponse(false)" class="no-btn">No</button>
+        `;
     }
 }
 
