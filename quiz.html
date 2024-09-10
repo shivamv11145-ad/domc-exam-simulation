@@ -23,7 +23,24 @@
         <!-- Question Tracker -->
         <div id="question-tracker"></div>
 
-        <!-- Question Container -->
+        <!-- Question and Option Boxes for Regular Questions -->
+        <div class="question-option-container" style="display: none;">
+            <!-- Question Box -->
+            <div class="question-box">
+                <p id="question">Loading...</p>
+            </div>
+
+            <!-- Option Box -->
+            <div class="option-box">
+                <p id="option">Loading...</p>
+                <div class="buttons">
+                    <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+                    <button onclick="handleResponse(false)" class="no-btn">No</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Container for Reordering Questions -->
         <div class="question-container">
             <p id="question">Loading...</p>
             <p id="option">Loading...</p>
