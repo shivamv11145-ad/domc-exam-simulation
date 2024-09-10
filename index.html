@@ -49,7 +49,7 @@
             top: 30px; /* Adjusted for top color strip height */
             left: 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center entire header content */
             align-items: center;
             border-bottom: 1px solid #ddd;
             z-index: 20; /* Ensures it's above other content */
@@ -57,23 +57,24 @@
 
         #logo {
             height: 40px;
-        }
-
-        header h1 {
-            font-size: 16px;
-            margin: 0;
-            text-align: center;
-            flex: 1;
+            position: absolute;
+            left: 20px; /* Keep Cyderes logo aligned left */
         }
 
         .header-content {
             display: flex;
+            flex-direction: column; /* Stack logo and text vertically */
             align-items: center;
-            gap: 10px; /* Add space between the image and text */
         }
 
         #sailpoint-logo {
             height: 40px;
+        }
+
+        header h1 {
+            font-size: 16px;
+            margin: 5px 0 0 0; /* Small margin for spacing */
+            text-align: center;
         }
 
         #selection-container {
@@ -82,7 +83,8 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 70px; /* Adjusted for header height */
+            margin-top: 130px; /* Adjusted for header height */
+            width: 400px; /* Ensures alignment with header content */
         }
 
         h2 {
