@@ -46,7 +46,7 @@ function startExam() {
     score = 0;
     isCurrentQuestionCorrect = true;
     updateQuestionTracker();
-    displayNextQuestion();
+    displayNextOption();
     startTimer();
 }
 
@@ -63,131 +63,54 @@ function updateQuestionTracker() {
     });
 }
 
-function displayNextQuestion() {
+function displayNextOption() {
     const questionObj = questions[currentQuestionIndex];
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
-    const actionButton = document.getElementById('action-button');
 
-    // Clear previous content
-    optionElement.innerHTML = '';
-    actionButton.style.display = 'none'; // Hide the action button initially
-
-    // Fade out the question and options
+    // Fade out the question and option
     questionElement.classList.add('fade-out');
     optionElement.classList.add('fade-out');
 
     setTimeout(() => {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
+        optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
 
-        if (questionObj.type === 'reorder') {
-            questionObj.options.forEach((option, index) => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'reorder-option';
-                optionDiv.draggable = true;
-                optionDiv.dataset.index = index;
-                optionDiv.innerText = option.answer;
-                optionDiv.addEventListener('dragstart', handleDragStart);
-                optionDiv.addEventListener('dragover', handleDragOver);
-                optionDiv.addEventListener('drop', handleDrop);
-                optionElement.appendChild(optionDiv);
-            });
-            actionButton.innerText = 'Submit';
-            actionButton.style.display = 'block'; // Show the action button for reorder type
-            actionButton.onclick = handleReorderSubmit;
-        } else {
-            // Display the first option for regular questions
-            if (questionObj.options.length > 0) {
-                const option = questionObj.options[currentOptionIndex];
-                const optionP = document.createElement('p');
-                optionP.className = 'option';
-                optionP.innerText = `Option: ${option.answer}`;
-                optionElement.appendChild(optionP);
-
-                actionButton.style.display = 'block'; // Show the action button for regular type
-                actionButton.innerText = 'Yes'; // Default button text
-                actionButton.onclick = handleRegularResponse;
-            }
-        }
-
-        // Fade in the question and options
+        // Fade in the question and option
         questionElement.classList.remove('fade-out');
         optionElement.classList.remove('fade-out');
     }, 300); // Match the duration with the CSS transition duration
 }
 
-function handleRegularResponse() {
+function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
-    const option = questionObj.options[currentOptionIndex];
+    const currentOption = questionObj.options[currentOptionIndex];
 
-    if (option.correct === isCurrentQuestionCorrect) {
-        score += 1;
+    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+        // User got this option right, do nothing
+    } else {
+        isCurrentQuestionCorrect = false;
     }
 
     currentOptionIndex++;
     if (currentOptionIndex < questionObj.options.length) {
-        // Show the next option
-        displayNextQuestion();
+        displayNextOption();
     } else {
-        // Move to the next question
+        if (isCurrentQuestionCorrect) {
+            score += 1;
+        }
+        currentOptionIndex = 0;
         currentQuestionIndex++;
+        isCurrentQuestionCorrect = true;
+
+        updateQuestionTracker();
+
         if (currentQuestionIndex < questions.length) {
-            currentOptionIndex = 0; // Reset option index for the next question
-            displayNextQuestion();
+            displayNextOption();
         } else {
             endExam();
         }
     }
-}
-
-function handleReorderSubmit() {
-    const questionObj = questions[currentQuestionIndex];
-    const optionElements = Array.from(document.querySelectorAll('#option .reorder-option'));
-    const userAnswers = optionElements.map(element => element.innerText);
-
-    const correctAnswers = questionObj.options.map(option => option.answer);
-
-    if (JSON.stringify(userAnswers) === JSON.stringify(correctAnswers)) {
-        score += 1;
-    }
-
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        displayNextQuestion();
-    } else {
-        endExam();
-    }
-}
-
-function handleDragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.dataset.index);
-    event.target.classList.add('dragging');
-}
-
-function handleDragOver(event) {
-    event.preventDefault();
-}
-
-function handleDrop(event) {
-    event.preventDefault();
-    const draggedIndex = event.dataTransfer.getData('text/plain');
-    const draggedElement = document.querySelector(`.reorder-option[data-index="${draggedIndex}"]`);
-    const dropTarget = event.target.closest('.reorder-option');
-
-    if (dropTarget && dropTarget !== draggedElement) {
-        const parent = draggedElement.parentNode;
-        const draggedIndexNum = parseInt(draggedIndex, 10);
-        const dropIndexNum = parseInt(dropTarget.dataset.index, 10);
-
-        parent.insertBefore(draggedElement, dropTarget.nextSibling);
-        if (draggedIndexNum < dropIndexNum) {
-            parent.insertBefore(dropTarget, draggedElement);
-        } else {
-            parent.insertBefore(dropTarget, draggedElement.nextSibling);
-        }
-    }
-
-    draggedElement.classList.remove('dragging');
 }
 
 function endExam() {
