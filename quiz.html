@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOMC Exam Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,28 +13,25 @@
 
     <!-- Header -->
     <header>
-        <img id="logo" src="logo.png" alt="Logo">
-        <h1>DOMC Exam Simulation</h1>
+        <img src="cyderes_high_quality.png" alt="Cyderes Logo" id="logo">
+        <h1>SailPoint Identity Security Cloud Engineer Exam Simulator</h1>
         <div id="timer">00:00</div>
     </header>
 
-    <!-- Question Tracker -->
-    <div id="question-tracker">
-        <div class="tracker-item unanswered">1</div>
-        <div class="tracker-item unanswered">2</div>
-        <div class="tracker-item unanswered">3</div>
-        <div class="tracker-item unanswered">4</div>
-        <div class="tracker-item unanswered">5</div>
-        <!-- Add more tracker items as needed -->
-    </div>
-
     <!-- Main Content -->
-    <main>
+    <main id="exam-container">
+        <!-- Question Tracker -->
+        <div id="question-tracker"></div> 
+
+        <!-- Question Container -->
         <div class="question-container">
-            <h2>Question goes here</h2>
+            <p id="question">Loading...</p>
+            <div id="options">
+                <!-- Dynamic options will be inserted here -->
+            </div>
             <div class="buttons">
-                <button class="yes-btn">Yes</button>
-                <button class="no-btn">No</button>
+                <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+                <button onclick="handleResponse(false)" class="no-btn">No</button>
             </div>
         </div>
     </main>
@@ -45,5 +43,7 @@
 
     <!-- Bottom Color Strip -->
     <div class="color-strip bottom"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
