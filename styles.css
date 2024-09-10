@@ -212,3 +212,15 @@ footer p {
     margin: 0;
     font-size: 0.9rem;
 }
+/* Add these at the end of your existing styles.css */
+
+/* Fade-in and fade-out effects */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
