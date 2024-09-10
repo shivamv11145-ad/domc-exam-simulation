@@ -1,7 +1,8 @@
 let questions = [];
 let currentQuestionIndex = 0;
+let currentOptionIndex = 0;
 let score = 0;
-let timerInterval;
+let isCurrentQuestionCorrect = true;
 
 async function loadQuestions() {
     const selectedQuiz = localStorage.getItem('selectedQuiz') || 'questions-VA.json';
@@ -13,19 +14,19 @@ async function loadQuestions() {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         questions = await response.json();
-        console.log("Questions loaded:", questions);
+        console.log("Questions loaded:", questions);  // Debugging log
         initializeQuestionTracker();
         startExam();
     } catch (error) {
         console.error('Error loading questions:', error);
         document.getElementById('question').innerText = 'Failed to load questions. Please try again later.';
-        document.getElementById('option').innerHTML = '';
+        document.getElementById('option').innerText = '';
     }
 }
 
 function initializeQuestionTracker() {
     const trackerContainer = document.getElementById('question-tracker');
-    console.log("Initializing question tracker...");
+    console.log("Initializing question tracker...");  // Debugging log
 
     trackerContainer.innerHTML = ''; // Clear any existing content
 
@@ -35,13 +36,15 @@ function initializeQuestionTracker() {
         trackerItem.id = `tracker-item-${index}`;
         trackerItem.innerText = `Q${index + 1}`;
         trackerContainer.appendChild(trackerItem);
-        console.log(`Tracker item for Q${index + 1} added.`);
+        console.log(`Tracker item for Q${index + 1} added.`);  // Debugging log
     });
 }
 
 function startExam() {
     currentQuestionIndex = 0;
+    currentOptionIndex = 0;
     score = 0;
+    isCurrentQuestionCorrect = true;
     updateQuestionTracker();
     displayNextQuestion();
     startTimer();
@@ -90,15 +93,12 @@ function displayNextQuestion() {
             });
             actionButton.innerText = 'Submit';
             actionButton.onclick = handleReorderSubmit;
+            actionButton.style.display = 'block';
         } else {
-            questionObj.options.forEach((option, index) => {
-                const optionP = document.createElement('p');
-                optionP.className = 'option';
-                optionP.innerText = option.answer;
-                optionElement.appendChild(optionP);
-            });
+            displayOptions(questionObj.options);
             actionButton.innerText = 'Next';
             actionButton.onclick = handleResponse;
+            actionButton.style.display = 'block';
         }
 
         // Fade in the question and options
@@ -107,26 +107,61 @@ function displayNextQuestion() {
     }, 300); // Match the duration with the CSS transition duration
 }
 
+function displayOptions(options) {
+    const optionElement = document.getElementById('option');
+    optionElement.innerHTML = '';
+
+    options.forEach((option, index) => {
+        const optionP = document.createElement('p');
+        optionP.className = 'option';
+        optionP.innerText = option.answer;
+        optionP.onclick = () => handleOptionClick(index);
+        optionElement.appendChild(optionP);
+    });
+
+    // Hide the submit button for regular questions
+    const actionButton = document.getElementById('action-button');
+    actionButton.style.display = 'none';
+}
+
+function handleOptionClick(index) {
+    const questionObj = questions[currentQuestionIndex];
+    const option = questionObj.options[index];
+
+    if (option.correct) {
+        score += 1;
+        isCurrentQuestionCorrect = true;
+    } else {
+        isCurrentQuestionCorrect = false;
+    }
+
+    // Proceed to the next question
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayNextQuestion();
+    } else {
+        endExam();
+    }
+}
+
 function handleResponse() {
     const questionObj = questions[currentQuestionIndex];
-    if (questionObj.type !== 'reorder') {
-        const optionElements = document.querySelectorAll('#option .option');
-        let isCorrect = true;
+    const optionElements = document.querySelectorAll('#option .option');
+    let isCorrect = true;
 
-        optionElements.forEach((element, index) => {
-            const option = questionObj.options[index];
-            if (element.innerText === option.answer) {
-                if (option.correct === false) {
-                    isCorrect = false;
-                }
-            } else {
+    optionElements.forEach((element, index) => {
+        const option = questionObj.options[index];
+        if (element.innerText.includes(option.answer)) {
+            if (option.correct === false) {
                 isCorrect = false;
             }
-        });
-
-        if (isCorrect) {
-            score += 1;
+        } else {
+            isCorrect = false;
         }
+    });
+
+    if (isCorrect) {
+        score += 1;
     }
 
     currentQuestionIndex++;
@@ -197,6 +232,7 @@ function endExam() {
 /* Timer Code */
 let timerElement = document.getElementById('timer');
 let totalTime = 15 * 60; // Set the timer for 15 minutes
+let timerInterval;
 
 function startTimer() {
     timerInterval = setInterval(() => {
