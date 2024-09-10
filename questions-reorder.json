@@ -67,5 +67,14 @@
             {"answer": "Copy settings to ~/config.yaml on the virtual appliance:", "correctOrder": 9},
             {"answer": "Test connection by clicking Test Appliance", "correctOrder": 10}
         ]
+    },
+    {
+        "question": "Which of these VA log files is NOT a valid name?",
+        "options": [
+            {"answer": "ccg", "correct": false},
+            {"answer": "va_agent", "correct": false},
+            {"answer": "fluent", "correct": false},
+            {"answer": "sailpoint", "correct": true}
+        ]
     }
 ]
