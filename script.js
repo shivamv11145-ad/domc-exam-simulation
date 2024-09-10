@@ -144,9 +144,10 @@ function submitReorder() {
     const questionObj = questions[currentQuestionIndex];
     const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
 
-    const correctOrder = questionObj.options.map(option => option.answer);
+    // Sort correct order based on correctOrder property
+    const correctOrder = questionObj.options.sort((a, b) => a.correctOrder - b.correctOrder).map(option => option.answer);
+    
     let correctOrderMatch = true;
-
     userOrder.forEach((answer, index) => {
         if (answer !== correctOrder[index]) {
             correctOrderMatch = false;
