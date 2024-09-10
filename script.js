@@ -80,6 +80,9 @@ function displayQuestion() {
     // Determine question type
     if (questionObj.type === 'reorder') {
         // Reordering question type
+        document.querySelector('.question-option-container').style.display = 'none'; // Hide regular question layout
+        document.querySelector('.question-container').style.display = 'block'; // Show default container
+
         buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
         reorderAnswers = shuffleArray(questionObj.options);
 
@@ -95,11 +98,13 @@ function displayQuestion() {
         enableDragAndDrop();
     } else {
         // Regular question type
+        document.querySelector('.question-option-container').style.display = 'flex'; // Show regular question layout
+        document.querySelector('.question-container').style.display = 'none'; // Hide default container
+
         currentOptionIndex = 0; // Reset option index for the new question
         displayNextOption(); // Start by displaying the first option
     }
 }
-
 
 function displayNextOption() {
     const questionObj = questions[currentQuestionIndex];
@@ -154,37 +159,6 @@ function handleResponse(userResponse) {
     }
 }
 
-function handleResponse(userResponse) {
-    const questionObj = questions[currentQuestionIndex];
-    const currentOption = questionObj.options[currentOptionIndex];
-
-    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
-        // User got this option right, do nothing
-    } else {
-        isCurrentQuestionCorrect = false;
-    }
-
-    currentOptionIndex++;
-    if (currentOptionIndex < questionObj.options.length) {
-        displayNextOption();
-    } else {
-        if (isCurrentQuestionCorrect) {
-            score += 1;
-        }
-        currentOptionIndex = 0;
-        currentQuestionIndex++;
-        isCurrentQuestionCorrect = true;
-
-        updateQuestionTracker();
-
-        if (currentQuestionIndex < questions.length) {
-            displayQuestion();
-        } else {
-            endExam();
-        }
-    }
-}
-
 function submitReorder() {
     const questionObj = questions[currentQuestionIndex];
     const userOrder = Array.from(document.querySelectorAll('.reorder-option')).map((el) => el.innerText);
@@ -215,7 +189,6 @@ function submitReorder() {
         endExam();
     }
 }
-
 
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
