@@ -15,6 +15,7 @@
             align-items: center;
             height: 100vh;
             justify-content: center;
+            position: relative;
         }
 
         /* Top Color Strip */
@@ -25,6 +26,7 @@
             position: fixed;
             top: 0;
             left: 0;
+            z-index: 10; /* Ensures it's above other content */
         }
 
         /* Bottom Color Strip */
@@ -35,6 +37,7 @@
             position: fixed;
             bottom: 0;
             left: 0;
+            z-index: 10; /* Ensures it's above other content */
         }
 
         /* Header */
@@ -49,7 +52,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ddd;
-            z-index: 1000;
+            z-index: 20; /* Ensures it's above other content */
         }
 
         #logo {
@@ -109,6 +112,7 @@
             text-align: center;
             padding: 10px;
             border-top: 1px solid #ddd;
+            z-index: 5; /* Ensures it's below other content */
         }
     </style>
 </head>
