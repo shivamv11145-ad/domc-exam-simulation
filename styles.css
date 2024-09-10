@@ -124,6 +124,7 @@ main {
     overflow-y: auto;
     border-right: 2px solid #e0e0e0;
     z-index: 1000;
+    height: 400px;
 }
 
 .tracker-item {
