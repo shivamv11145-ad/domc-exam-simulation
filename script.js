@@ -68,12 +68,10 @@ function displayNextQuestion() {
     const questionElement = document.getElementById('question');
     const optionElement = document.getElementById('option');
     const actionButton = document.getElementById('action-button');
-    const yesButton = document.getElementById('yes-btn');
-    const noButton = document.getElementById('no-btn');
-    const submitButton = document.getElementById('submit-button');
 
     // Clear previous content
     optionElement.innerHTML = '';
+    actionButton.style.display = 'none'; // Hide the action button initially
 
     // Fade out the question and options
     questionElement.classList.add('fade-out');
@@ -94,20 +92,22 @@ function displayNextQuestion() {
                 optionDiv.addEventListener('drop', handleDrop);
                 optionElement.appendChild(optionDiv);
             });
-            // Hide the Yes/No buttons and show Submit button
-            yesButton.style.display = 'none';
-            noButton.style.display = 'none';
-            actionButton.style.display = 'none';
-            submitButton.style.display = 'inline-block';
+            actionButton.innerText = 'Submit';
+            actionButton.style.display = 'block'; // Show the action button for reorder type
+            actionButton.onclick = handleReorderSubmit;
         } else {
-            // Show Yes/No buttons and hide Submit button
-            yesButton.style.display = 'inline-block';
-            noButton.style.display = 'inline-block';
-            actionButton.style.display = 'none';
-            submitButton.style.display = 'none';
+            // Display the first option for regular questions
+            if (questionObj.options.length > 0) {
+                const option = questionObj.options[currentOptionIndex];
+                const optionP = document.createElement('p');
+                optionP.className = 'option';
+                optionP.innerText = `Option: ${option.answer}`;
+                optionElement.appendChild(optionP);
 
-            // Display options one by one
-            displayOption(0);
+                actionButton.style.display = 'block'; // Show the action button for regular type
+                actionButton.innerText = 'Yes'; // Default button text
+                actionButton.onclick = handleRegularResponse;
+            }
         }
 
         // Fade in the question and options
@@ -116,51 +116,27 @@ function displayNextQuestion() {
     }, 300); // Match the duration with the CSS transition duration
 }
 
-function displayOption(index) {
+function handleRegularResponse() {
     const questionObj = questions[currentQuestionIndex];
-    const optionElement = document.getElementById('option');
-    if (index < questionObj.options.length) {
-        const optionP = document.createElement('p');
-        optionP.className = 'option';
-        optionP.innerText = `Option: ${questionObj.options[index].answer}`;
-        optionElement.appendChild(optionP);
+    const option = questionObj.options[currentOptionIndex];
 
-        // Automatically move to next option after 1 second
-        setTimeout(() => displayOption(index + 1), 1000);
-    } else {
-        // All options are displayed, show Yes/No buttons
-        document.getElementById('yes-btn').style.display = 'inline-block';
-        document.getElementById('no-btn').style.display = 'inline-block';
-    }
-}
-
-function handleResponse(isYes) {
-    const questionObj = questions[currentQuestionIndex];
-    if (questionObj.type !== 'reorder') {
-        const optionElements = document.querySelectorAll('#option .option');
-        let isCorrect = true;
-
-        optionElements.forEach((element, index) => {
-            const option = questionObj.options[index];
-            if (element.innerText.includes(option.answer)) {
-                if (option.correct === false) {
-                    isCorrect = false;
-                }
-            } else {
-                isCorrect = false;
-            }
-        });
-
-        if (isCorrect) {
-            score += 1;
-        }
+    if (option.correct === isCurrentQuestionCorrect) {
+        score += 1;
     }
 
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
+    currentOptionIndex++;
+    if (currentOptionIndex < questionObj.options.length) {
+        // Show the next option
         displayNextQuestion();
     } else {
-        endExam();
+        // Move to the next question
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            currentOptionIndex = 0; // Reset option index for the next question
+            displayNextQuestion();
+        } else {
+            endExam();
+        }
     }
 }
 
@@ -196,37 +172,55 @@ function handleDrop(event) {
     event.preventDefault();
     const draggedIndex = event.dataTransfer.getData('text/plain');
     const draggedElement = document.querySelector(`.reorder-option[data-index="${draggedIndex}"]`);
-    const targetElement = event.target;
+    const dropTarget = event.target.closest('.reorder-option');
 
-    if (targetElement.classList.contains('reorder-option') && targetElement !== draggedElement) {
-        const tempIndex = draggedElement.dataset.index;
-        draggedElement.dataset.index = targetElement.dataset.index;
-        targetElement.dataset.index = tempIndex;
-
+    if (dropTarget && dropTarget !== draggedElement) {
         const parent = draggedElement.parentNode;
-        parent.insertBefore(draggedElement, targetElement.nextSibling);
+        const draggedIndexNum = parseInt(draggedIndex, 10);
+        const dropIndexNum = parseInt(dropTarget.dataset.index, 10);
+
+        parent.insertBefore(draggedElement, dropTarget.nextSibling);
+        if (draggedIndexNum < dropIndexNum) {
+            parent.insertBefore(dropTarget, draggedElement);
+        } else {
+            parent.insertBefore(dropTarget, draggedElement.nextSibling);
+        }
     }
+
+    draggedElement.classList.remove('dragging');
 }
 
 function endExam() {
     document.getElementById('exam-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-    document.getElementById('score').innerText = score;
+    document.getElementById('score').innerText = `${score}/${questions.length}`;
+    clearInterval(timerInterval); // Stop the timer when the exam ends
 }
 
-function startTimer() {
-    let timer = document.getElementById('timer');
-    let minutes = 0;
-    let seconds = 0;
+/* Timer Code */
+let timerElement = document.getElementById('timer');
+let totalTime = 15 * 60; // Set the timer for 15 minutes
+let timerInterval;
 
-    setInterval(() => {
-        seconds++;
-        if (seconds >= 60) {
-            seconds = 0;
-            minutes++;
+function startTimer() {
+    timerInterval = setInterval(() => {
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+
+        if (seconds < 10) {
+            seconds = '0' + seconds;
         }
-        timer.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        timerElement.textContent = `${minutes}:${seconds}`;
+
+        if (totalTime > 0) {
+            totalTime--; // Decrement the total time
+        } else {
+            clearInterval(timerInterval);
+            alert("Time's up!");
+            endExam(); // End the exam when time is up
+        }
     }, 1000);
 }
 
-document.addEventListener('DOMContentLoaded', loadQuestions);
+window.onload = loadQuestions;
