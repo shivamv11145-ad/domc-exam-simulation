@@ -54,6 +54,18 @@
             border: 2px solid #CD4131;
         }
 
+        /* Styling for the copyright text in the orange strip */
+        .color-strip.bottom {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            background-color: #FFA500; /* Orange color */
+            color: #FFFFFF;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -107,13 +119,10 @@
         <p>Your score: <span id="score"></span></p>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Bottom Color Strip with Copyright Notice -->
+    <div class="color-strip bottom">
         <p>&copy; 2024 All rights reserved</p>
-    </footer>
-
-    <!-- Bottom Color Strip -->
-    <div class="color-strip bottom"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
