@@ -93,18 +93,8 @@ function displayQuestion() {
     } else {
         // Regular question type
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-        questionObj.options.forEach((option, index) => {
-            const optionBox = document.createElement('div');
-            optionBox.className = 'option';
-            optionBox.innerText = option.answer;
-            optionElement.appendChild(optionBox);
-        });
-
-        // Add Yes/No buttons
-        buttonContainer.innerHTML = `
-            <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-            <button onclick="handleResponse(false)" class="no-btn">No</button>
-        `;
+        currentOptionIndex = 0; // Reset option index for the new question
+        displayNextOption(); // Start by displaying the first option
     }
 }
 
@@ -113,12 +103,52 @@ function displayNextOption() {
     const optionElement = document.getElementById('option');
     const buttonContainer = document.querySelector('.buttons');
 
-    buttonContainer.innerHTML = `
-        <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
-        <button onclick="handleResponse(false)" class="no-btn">No</button>
-    `;
+    // Clear the current option
+    optionElement.innerHTML = '';
 
-    optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
+    if (currentOptionIndex < questionObj.options.length) {
+        // Display the current option
+        const currentOption = questionObj.options[currentOptionIndex];
+        optionElement.innerText = `Option: ${currentOption.answer}`;
+
+        // Update buttons (Yes/No)
+        buttonContainer.innerHTML = `
+            <button onclick="handleResponse(true)" class="yes-btn">Yes</button>
+            <button onclick="handleResponse(false)" class="no-btn">No</button>
+        `;
+    }
+}
+
+function handleResponse(userResponse) {
+    const questionObj = questions[currentQuestionIndex];
+    const currentOption = questionObj.options[currentOptionIndex];
+
+    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+        // User got this option right, do nothing
+    } else {
+        isCurrentQuestionCorrect = false;
+    }
+
+    currentOptionIndex++; // Move to the next option
+    if (currentOptionIndex < questionObj.options.length) {
+        displayNextOption(); // Display the next option
+    } else {
+        // All options for this question are done
+        if (isCurrentQuestionCorrect) {
+            score += 1; // Increment score if the question was answered correctly
+        }
+        currentOptionIndex = 0;
+        currentQuestionIndex++; // Move to the next question
+        isCurrentQuestionCorrect = true; // Reset for the next question
+
+        updateQuestionTracker();
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion(); // Display the next question
+        } else {
+            endExam(); // End the exam if no more questions
+        }
+    }
 }
 
 function handleResponse(userResponse) {
