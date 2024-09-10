@@ -1,0 +1,10 @@
+{
+    "question": "Arrange the steps in the correct order:",
+    "type": "reorder",
+    "options": [
+        {"answer": "Step 1", "correctOrder": 1},
+        {"answer": "Step 2", "correctOrder": 2},
+        {"answer": "Step 3", "correctOrder": 3},
+        {"answer": "Step 4", "correctOrder": 4}
+    ]
+}
