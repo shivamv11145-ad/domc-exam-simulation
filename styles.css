@@ -221,3 +221,15 @@ footer p {
 .question-container p {
     transition: opacity 0.3s ease-in;
 }
+
+/* Reordering Option Boxes */
+.reorder-option {
+    background-color: #f4f4f9;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: move;
+    text-align: center;
+    width: 200px;
+}
