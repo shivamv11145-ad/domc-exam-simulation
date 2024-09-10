@@ -74,41 +74,116 @@ function displayNextOption() {
 
     setTimeout(() => {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
-        optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
 
-        // Fade in the question and option
-        questionElement.classList.remove('fade-out');
-        optionElement.classList.remove('fade-out');
+        if (questionObj.type === 'reorder') {
+            displayReorderOptions(questionObj);
+        } else {
+            optionElement.innerText = `Option: ${questionObj.options[currentOptionIndex].answer}`;
+            // Fade in the question and option
+            questionElement.classList.remove('fade-out');
+            optionElement.classList.remove('fade-out');
+        }
     }, 300); // Match the duration with the CSS transition duration
+}
+
+function displayReorderOptions(questionObj) {
+    const optionElement = document.getElementById('option');
+    optionElement.innerHTML = ''; // Clear previous options
+
+    // Create draggable options
+    questionObj.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'reorder-option';
+        optionDiv.draggable = true;
+        optionDiv.innerText = option.answer;
+        optionDiv.dataset.index = index;
+
+        // Add event listeners for drag and drop
+        optionDiv.addEventListener('dragstart', handleDragStart);
+        optionDiv.addEventListener('dragover', handleDragOver);
+        optionDiv.addEventListener('drop', handleDrop);
+        optionDiv.addEventListener('dragend', handleDragEnd);
+
+        optionElement.appendChild(optionDiv);
+    });
+
+    // Fade in the question and options
+    const questionElement = document.getElementById('question');
+    questionElement.classList.remove('fade-out');
+    optionElement.classList.remove('fade-out');
+}
+
+function handleDragStart(event) {
+    draggedElement = event.target;
+    event.target.style.opacity = '0.5';
+}
+
+function handleDragOver(event) {
+    event.preventDefault();
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    if (event.target.className === 'reorder-option') {
+        const targetElement = event.target;
+        const parent = targetElement.parentNode;
+        parent.insertBefore(draggedElement, targetElement.nextSibling);
+    }
+}
+
+function handleDragEnd(event) {
+    event.target.style.opacity = '';
+    // Update the order based on the new arrangement
+    updateOrder();
+}
+
+function updateOrder() {
+    const reorderedOptions = Array.from(document.querySelectorAll('.reorder-option'));
+    const reorderedIndices = reorderedOptions.map(option => parseInt(option.dataset.index, 10));
+
+    // Check if reordered indices match the correct order
+    const questionObj = questions[currentQuestionIndex];
+    const correctOrder = questionObj.options.map(option => option.correctOrder);
+
+    if (JSON.stringify(reorderedIndices) === JSON.stringify(correctOrder)) {
+        isCurrentQuestionCorrect = true;
+    } else {
+        isCurrentQuestionCorrect = false;
+    }
 }
 
 function handleResponse(userResponse) {
     const questionObj = questions[currentQuestionIndex];
-    const currentOption = questionObj.options[currentOptionIndex];
 
-    if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
-        // User got this option right, do nothing
+    if (questionObj.type === 'reorder') {
+        // No user response handling for re-ordering, handled in updateOrder
     } else {
-        isCurrentQuestionCorrect = false;
-    }
+        const currentOption = questionObj.options[currentOptionIndex];
 
-    currentOptionIndex++;
-    if (currentOptionIndex < questionObj.options.length) {
-        displayNextOption();
-    } else {
-        if (isCurrentQuestionCorrect) {
-            score += 1;
+        if ((userResponse && currentOption.correct) || (!userResponse && !currentOption.correct)) {
+            // User got this option right, do nothing
+        } else {
+            isCurrentQuestionCorrect = false;
         }
-        currentOptionIndex = 0;
-        currentQuestionIndex++;
-        isCurrentQuestionCorrect = true;
 
-        updateQuestionTracker();
-
-        if (currentQuestionIndex < questions.length) {
+        currentOptionIndex++;
+        if (currentOptionIndex < questionObj.options.length) {
             displayNextOption();
         } else {
-            endExam();
+            if (isCurrentQuestionCorrect) {
+                score += 1;
+            }
+            currentOptionIndex = 0;
+            currentQuestionIndex++;
+            isCurrentQuestionCorrect = true;
+
+            updateQuestionTracker();
+
+            if (currentQuestionIndex < questions.length) {
+                displayNextOption();
+            } else {
+                endExam();
+            }
         }
     }
 }
