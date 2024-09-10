@@ -26,9 +26,10 @@
         <!-- Question Container -->
         <div class="question-container">
             <p id="question">Loading...</p>
-            <div id="option"></div> <!-- Container for options -->
+            <div id="option">Loading...</div> <!-- For options, including reorder options -->
             <div class="buttons">
-                <button id="action-button">Next</button> <!-- Button will be updated dynamically -->
+                <button id="action-button" class="yes-btn" onclick="handleResponse()">Yes</button> <!-- Default action button -->
+                <button id="next-button" class="next-btn" style="display: none;" onclick="handleNext()">Next</button> <!-- Next button for regular questions -->
             </div>
         </div>
     </main>
