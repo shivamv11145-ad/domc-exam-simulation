@@ -70,8 +70,8 @@ function displayQuestion() {
     // Determine question type
     if (questionObj.type === 'reorder') {
         // Reordering question type
-        document.querySelector('.question-option-container').style.display = 'none'; // Hide regular question layout
-        document.querySelector('.question-container').style.display = 'block'; // Show reorder question container
+        document.querySelector('.question-option-container').style.display = 'none';
+        document.querySelector('.question-container').style.display = 'block';
 
         const questionElement = document.getElementById('reorder-question');
         const optionElement = document.getElementById('reorder-option');
@@ -85,7 +85,7 @@ function displayQuestion() {
         questionElement.innerText = `Q${currentQuestionIndex + 1}: ${questionObj.question}`;
 
         buttonContainer.innerHTML = `<button onclick="submitReorder()" class="submit-btn">Submit</button>`;
-        reorderAnswers = shuffleArray([...questionObj.options]); // Clone array to avoid mutating original
+        reorderAnswers = shuffleArray([...questionObj.options]);
 
         reorderAnswers.forEach((option, index) => {
             const optionBox = document.createElement('div');
@@ -99,8 +99,8 @@ function displayQuestion() {
         enableDragAndDrop();
     } else {
         // Regular question type
-        document.querySelector('.question-option-container').style.display = 'flex'; // Show regular question layout
-        document.querySelector('.question-container').style.display = 'none'; // Hide reorder question container
+        document.querySelector('.question-option-container').style.display = 'flex';
+        document.querySelector('.question-container').style.display = 'none';
 
         const questionElement = document.getElementById('regular-question');
         const optionElement = document.getElementById('regular-option');
